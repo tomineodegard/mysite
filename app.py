@@ -22,40 +22,64 @@ def dict_factory(cursor, row):
 
 # ------------- render index
 @get("/")
-def _():
-    return template("index", title="Twitter", tweets=tweets, trends=trends, people=people)
+def render_index():
+    try:
+        db = sqlite3.connect(os.getcwd()+"/twitter.db")
+        db.row_factory = dict_factory
+        tweets = db.execute(
+            "SELECT * FROM tweets").fetchall()
+        return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
+        
+
+    except Exception as ex:
+        print(ex)
+        return "error"
+
+
+    finally:
+        if "db" in locals():
+            db.close()
 
 
 
-# ------------- data start
-users = [
-    {"profile_picture": "49b99d9e-2e60-478d-8eb4-ba7358017319.jpeg",
-     "fullname": "Rihanna",
-     "username": "rihanna",
-     "verified": 1,
-     "message": "Hey, this is my first tweet",
-     "total_comments": "4",
-     "total_retweets": "2",
-     "total_likes": "7",
-     "total_dislikes": "5",
-     },
-]
+# ----- render any username, dynamically from the database
+@get("/<username>")
+# @view("profile")
+def render_username(username):
+    try:
+        # ----- connect to the twitter database
+        db = sqlite3.connect(os.getcwd()+"/twitter.db")
+        db.row_factory = dict_factory
+        user = db.execute(
+            "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
+        
+        # ----- Get the user's id
+        user_id = user["id"]
+        print("-"*50)
+        print(f"user id: {user_id}")
 
-tweets = [
-    {"profile-picture": "49b99d9e-2e60-478d-8eb4-ba7358017319.jpeg",
-     "fullname": "Rihanna",
-     "username": "rihanna",
-     "verified": 1,
-     "message": "Hey, this is my first tweet",
-     "total_comments": "4",
-     "total_retweets": "2",
-     "total_likes": "7",
-     "total_dislikes": "5",
-     }
-]
+        # ----- With that id, look up/get all the respectives tweets
+        tweets = db.execute(
+            "SELECT * FROM tweets WHERE user_fk=?", (user_id,)).fetchall()
+        print("-"*50)
+        print(tweets)
+        print("-"*50)
+
+        # ----- pass the tweets to the view. Template it
+        print(user)
+        return template("profile", user=user, tweets=tweets, trends=trends, people=people)
+
+    except Exception as ex:
+        print(ex)
+        return "error"
+
+    finally:
+        if "db" in locals():
+            db.close()
 
 
-# ------ trending for you right side
+
+# ------------- fake data start
 trends = [
     {
         "title": "One",
@@ -63,7 +87,6 @@ trends = [
     }
 ]
 
-# ------ who to follow rights side
 people = [
     {
         "profile_picture": "438b092d-344d-4628-a2de-afabcf5b0689.jpeg",
@@ -72,91 +95,27 @@ people = [
 
     }
 ]
-# ------------- data end
-
-# -------------- get the jpeg images from the images folder
-@get("/images/<filename:re:.*\.jpeg>")
-def render_images(filename):
-    return static_file(filename, root="./images")
-
-# -------------- get the jpeg images from the images folder
-@get("/images/<filename:re:.*\.jpg>")
-def render_images(filename):
-    return static_file(filename, root="./images")
+# ------------- fake data end
 
 
-# -------------- render app.css
+# -------------- render css
 @get("/app.css")
 def render_css():
     return static_file("app.css", root=".")
 
 
-# ----- route for any username, dynamically from the database
-@get("/<username>")
-# @view("profile")
-def render_username(username):
-    try:
-        # ----- connect to database
-        db = sqlite3.connect(os.getcwd()+"/twitter.db")
+# -------------- get the images
+@get("/images/<filename:re:.*\.jpeg>")
+def render_jpeg(filename):
+    return static_file(filename, root="./images")
 
-        db.row_factory = dict_factory
-        user = db.execute(
-            "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
-        # ----- Get the user's id
-        user_id = user["id"]
-        print("-"*50)
-        print(f"user id: {user_id}")
-        # ----- With that id, look up/get the respectives tweets
-        tweets = db.execute(
-            "SELECT * FROM tweets WHERE user_fk=?", (user_id,)).fetchall()
-        print("-"*50)
-        print(tweets)
-        print("-"*50)
-
-        # ----- pass the tweets to the view. Template it
-        print(user)
-        return template("profile", user=user)
-    except Exception as ex:
-        print(ex)
-        return "error"
-    finally:
-        if "db" in locals():
-            db.close()
+@get("/images/<filename:re:.*\.jpg>")
+def render_jpg(filename):
+    return static_file(filename, root="./images")
 
 
-@get("/<username>")
-# @view("profile")
-def render_username(username):
-    try:
-        # ----- connect to database
-        db = sqlite3.connect(os.getcwd()+"/twitter.db")
 
-        db.row_factory = dict_factory
-        user = db.execute(
-            "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
-        # ----- Get the user's id
-        user_id = user["id"]
-        print("-"*50)
-        print(f"user id: {user_id}")
-        # ----- With that id, look up/get the respectives tweets
-        tweets = db.execute(
-            "SELECT * FROM tweets WHERE user_fk=?", (user_id,)).fetchall()
-        print("-"*50)
-        print(tweets)
-        print("-"*50)
-
-        # ----- pass the tweets to the view. Template it
-        print(user)
-        return template("profile", user=user)
-    except Exception as ex:
-        print(ex)
-        return "error"
-    finally:
-        if "db" in locals():
-            db.close()
-
-
-# -------------- the code will run on AWS
+###################### -------------- the code will run on AWS
 try:
   import production
   print("Server running on AWS")
@@ -165,4 +124,4 @@ try:
 # -------------- the code will run in local computer
 except Exception as ex:
   print("Running local server")
-  run(host="127.0.0.1", port=3000, debug=True, reloader=True)
+  run(host="127.0.0.1", port=4000, debug=True, reloader=True)
