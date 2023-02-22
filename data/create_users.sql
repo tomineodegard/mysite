@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS users;
 
 -- SQLite has a build in thing that is called 'data affinity', so we dont have to care about datatypes.
 CREATE TABLE users(
-    id               TEXT,
+    user_id          TEXT,
     joined_at        TEXT,
     username         TEXT,
     firstname        TEXT,
@@ -14,7 +14,7 @@ CREATE TABLE users(
     total_tweets     TEXT,
     profile_picture  TEXT,
     cover_picture    TEXT,
-    PRIMARY KEY(id)
+    PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
 
 INSERT INTO users VALUES("64c3b11f947248719fc0f7e97fb5cdb0", "June 2009", "elonmusk", "Elon", "Musk", "1", "128900000", "177", "22700", "438b092d-344d-4628-a2de-afabcf5b0689.jpeg", "64786a33-47ed-463e-a198-157991fec3f8.jpeg");

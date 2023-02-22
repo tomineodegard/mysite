@@ -27,7 +27,7 @@ def render_index():
         db = sqlite3.connect(os.getcwd()+"/twitter.db")
         db.row_factory = dict_factory
         tweets = db.execute(
-            "SELECT * FROM tweets").fetchall()
+            "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
         return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
         
 
@@ -54,7 +54,7 @@ def render_username(username):
             "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
         
         # ----- Get the user's id
-        user_id = user["id"]
+        user_id = user["user_id"]
         print("-"*50)
         print(f"user id: {user_id}")
 

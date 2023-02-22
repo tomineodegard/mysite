@@ -1,0 +1,1 @@
+SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id;
