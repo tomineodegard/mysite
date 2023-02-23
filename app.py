@@ -34,7 +34,7 @@ def render_index():
 
     except Exception as ex:
         print(ex)
-        return "error"
+        return str(ex)
 
 
     finally:
