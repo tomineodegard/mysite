@@ -34,7 +34,7 @@ INSERT INTO tweets VALUES(
     "24198c66ba294807a26e235e4bc96c2e", 
     "1676283255", 
     "Hello I am Shakira", 
-    "tweet1.jpeg", 
+    "", 
     "",
     "",
     "0",
