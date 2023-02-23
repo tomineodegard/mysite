@@ -24,24 +24,25 @@ def dict_factory(cursor, row):
 # ------------- render index
 @get("/")
 def render_index():
-    try:
-        db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
-        db.row_factory = dict_factory
-        tweets = db.execute(
-            "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
-        trends = db.execute(
-            "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
-        return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
+    return "ok"
+    # try:
+    #     db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
+    #     db.row_factory = dict_factory
+    #     tweets = db.execute(
+    #         "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
+    #     trends = db.execute(
+    #         "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
+    #     return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
         
 
-    except Exception as ex:
-        print(ex)
-        return "error"
+    # except Exception as ex:
+    #     print(ex)
+    #     return "error"
 
 
-    finally:
-        if "db" in locals():
-            db.close()
+    # finally:
+    #     if "db" in locals():
+    #         db.close()
 
 
 
