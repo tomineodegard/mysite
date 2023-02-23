@@ -28,9 +28,9 @@ def render_index():
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
         tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
-        return "ok2"
-        # trends = db.execute(
-        #     "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
+        trends = db.execute(
+            "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
+        return "ok3"
         # return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
         
 
