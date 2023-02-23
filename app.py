@@ -51,7 +51,7 @@ def render_index():
 def render_username(username):
     try:
         # ----- connect to the twitter database
-        db = sqlite3.connect(os.getcwd()+"/twitter.db")
+        db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
         user = db.execute(
             "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
