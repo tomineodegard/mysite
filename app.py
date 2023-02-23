@@ -4,6 +4,7 @@ from bottle import default_app, get, post, template, run, response, request, sta
 import sqlite3
 import os
 import git
+import pathlib
 
 # ------------- connects to github and pythonanywhere
 @post('/secret_url_for_git_hook')
@@ -24,9 +25,11 @@ def dict_factory(cursor, row):
 @get("/")
 def render_index():
     try:
-        db = sqlite3.connect(os.getcwd()+"/twitter.db")
+        db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
         tweets = db.execute(
+            "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
+        trends = db.execute(
             "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
         return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
         
