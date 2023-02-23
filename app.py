@@ -26,7 +26,7 @@ def dict_factory(cursor, row):
 def render_index():
     try:
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
-        return "ok"
+        return "ok1"
         # db.row_factory = dict_factory
         # tweets = db.execute(
         #     "SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
