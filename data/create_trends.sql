@@ -2,15 +2,29 @@ DROP TABLE IF EXISTS trends;
 
 CREATE TABLE trends(
     trend_id             TEXT,
-    trending_location    TEXT,
-    trending_content     TEXT,
-    amount_of_tweets     TEXT,
+    trend_location       TEXT,
+    title                TEXT,
+    total_hash           TEXT,
     PRIMARY KEY(trend_id)
 ) WITHOUT ROWID;
                          
 INSERT INTO trends VALUES(
-    "6973522c-c93c-4192-92ee-5c0d1c4b1517",
+    "88292d096d3140dc9438bd24596e5010",
     "Denmark", 
-    "#China",
+    "trend#1",
+    "26700"
+);
+
+INSERT INTO trends VALUES(
+    "ad52501650ed4c2d88827fac2084f678",
+    "Denmark", 
+    "trend#2",
+    "26700"
+);
+
+INSERT INTO trends VALUES(
+    "612f85e3ad424957a9a8d4c8fc40adf7",
+    "Denmark", 
+    "trend#3",
     "26700"
 );                        

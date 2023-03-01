@@ -1,10 +1,16 @@
 #https://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@github.com/tomineodegard/mysite.git
 
 from bottle import default_app, get, post, template, run, response, request, static_file, view
-import sqlite3
 import os
-import git
+import sqlite3
 import pathlib
+import uuid
+
+@get("/js/<filename>")
+def _(filename):
+  return static_file(filename, "js")
+
+
 
 # ------------- connects to github and pythonanywhere
 @post('/secret_url_for_git_hook')
@@ -27,9 +33,10 @@ def render_index():
     try:
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
-        tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
-        trends = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id").fetchall()
-        return template("index", title="Twitter", trends=trends, tweets=tweets, people=people)
+        tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id ORDER BY created_at ASC").fetchall()
+        trends = db.execute("SELECT * FROM trends").fetchall()
+        suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
+        return template("index", title="Twitter", suggested_users=suggested_users, trends=trends, tweets=tweets)
         
 
     except Exception as ex:
@@ -51,27 +58,28 @@ def render_username(username):
         # ----- connect to the twitter database
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
-        user = db.execute(
-            "SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
-        
+        user = db.execute("SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
+        trends = db.execute("SELECT * FROM trends").fetchall()
+        suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
         # ----- Get the user's id
         user_id = user["user_id"]
         print("-"*50)
         print(f"user id: {user_id}")
 
         # ----- With that id, look up/get all the respectives tweets
-        tweets = db.execute(
-            "SELECT * FROM tweets WHERE user_fk=?", (user_id,)).fetchall()
+        tweets = db.execute("SELECT * FROM tweets WHERE user_fk=? ORDER BY created_at ASC", (user_id,)).fetchall()
         print("-"*50)
         print(tweets)
         print("-"*50)
 
         # ----- pass the tweets to the view. Template it
         print(user)
-        return template("profile", user=user, tweets=tweets, trends=trends, people=people)
+        return template("profile", title="Twitter", trends=trends, user=user, tweets=tweets, suggested_users=suggested_users)
 
     except Exception as ex:
+        print("-"*50)
         print(ex)
+        print("-"*50)
         return "error"
 
     finally:
@@ -79,24 +87,13 @@ def render_username(username):
             db.close()
 
 
+##############################
+# VIEWS
+import views.tweet
 
-# ------------- fake data start
-trends = [
-    {
-        "title": "One",
-        "total_hash": 1
-    }
-]
-
-people = [
-    {
-        "profile_picture": "438b092d-344d-4628-a2de-afabcf5b0689.jpeg",
-        "fullname": "Elon Musk",
-        "username": "elonmusk",
-
-    }
-]
-# ------------- fake data end
+##############################
+# APIS
+import apis.api_tweet
 
 
 # -------------- render css

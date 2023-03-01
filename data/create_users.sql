@@ -21,3 +21,11 @@ INSERT INTO users VALUES("64c3b11f947248719fc0f7e97fb5cdb0", "June 2009", "elonm
 INSERT INTO users VALUES("24198c66ba294807a26e235e4bc96c2e", "", "shakira", "Shakira", "", "0", "53700000", "235", "7999", "a7b0c6fc-cd3b-4300-9fe4-3fef8171c62a.jpeg", "8581bbd0-f245-4816-9c7f-2f8c6cc4ac01.jpeg");
 INSERT INTO users VALUES("dd41b0e3eeb94f3c9d4304ba44ff198c", "", "rihanna", "Rihanna", "", "0", "107000000", "980", "10600", "49b99d9e-2e60-478d-8eb4-ba7358017319.jpeg", "84b6d13c-1a7a-4316-9401-3621ff0739fa.jpeg");
 INSERT INTO users VALUES("23fb0cf9-7a4d-469d-ab96-e76ece452b70", "", "tomineodegard", "Tomine", "Ødegård","1", "199000000", "1980", "10000", "50f4de12-dcd0-4b6d-b49a-8831c520662a.jpg", "");
+
+-- CREATE UNIQUE INDEX idx_users_username ON users(name);
+CREATE INDEX idx_users_firstname ON users(firstname);
+CREATE INDEX idx_users_lastname ON users(lastname);
+CREATE INDEX idx_users_profile_picture ON users(profile_picture);
+
+SELECT name FROM sqlite_master WHERE type = 'index';
+SELECT name FROM sqlite_master WHERE type = 'trigger';
