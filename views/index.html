@@ -39,6 +39,10 @@
 
 
    <!-- What's happening section -->
+   <form method="POST" onsubmit="validate(tweet); return false">
+    <!-- <input name="message" type="text" data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}"> -->
+
+
    <div class="flex border-t border-gray-500 pb-4">
      <div class="p-4">
        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -48,7 +52,7 @@
 
      <div class="w-full pr-4 pt-4 pb-4">
 
-       <textarea class="w-full bg-black outline-none" placeholder="What's happening?"></textarea>
+       <textarea class="w-full bg-black outline-none" placeholder="What's happening?" name="message" type="text" data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}"></textarea>
 
        <div class="flex w-full gap-2">
          <!-- Icons -->
@@ -103,6 +107,7 @@
      </div>
 
    </div>
+  </form>
 
    <!-- Welcome back section -->
    <div class="px-6 gap-4 pb-8 border-t border-gray-500 flex flex-col">
@@ -303,5 +308,7 @@
   </div>
   <!-- END RIGHT -->
   </main>
+  <script src="/js/post_tweet.js"></script>
+  <script src="/js/validate.js"></script>
 </body>
 </html>

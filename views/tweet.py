@@ -12,5 +12,4 @@ tweets = [
 
 @get("/tweet")
 def _():
-    return template("index", tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN, tweets=tweets)
-  # return template("tweet", tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN, tweets=tweets)
+  return template("tweet", tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN, tweets=tweets)

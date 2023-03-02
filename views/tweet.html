@@ -10,9 +10,9 @@
 
 
   <form method="POST" onsubmit="validate(tweet); return false">
-    <input name="message" type="text"
+    <input class="input_area" name="message" type="text"
     data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}">
-    <button>
+    <button class="tweet_submit">
       Tweet
     </button>
   </form>
@@ -36,10 +36,10 @@
         method: "POST",
         body: new FormData(frm)
       })
-      // const data = await conn.text() // to get plain text
       const data = await conn.json() // to get plain text
       console.log(data)
       const message = frm.querySelector("input[name='message']").value
+      
       console.log(message)
       document.querySelector("#tweets").insertAdjacentHTML("afterbegin", 
       `<div class="tweet">
@@ -47,6 +47,17 @@
           <div>${message}</div>  
         </div>`)
     }
+
+    const btn = frm.querySelector("btn")
+    btn.addEventListener('click', function handleClick(event) {
+      event.preventDefault();
+      const input = document.querySelector('input_area');
+      console.log(input.value);
+
+      input.value = '';
+    });
+
+
   </script>
 
 </body>

@@ -5,6 +5,7 @@ import os
 import sqlite3
 import pathlib
 import uuid
+import x
 
 @get("/js/<filename>")
 def _(filename):
@@ -36,7 +37,7 @@ def render_index():
         tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id ORDER BY created_at ASC").fetchall()
         trends = db.execute("SELECT * FROM trends").fetchall()
         suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
-        return template("index", title="Twitter", suggested_users=suggested_users, trends=trends, tweets=tweets)
+        return template("index", title="Twitter", suggested_users=suggested_users, trends=trends, tweets=tweets, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
         
 
     except Exception as ex:
@@ -111,6 +112,11 @@ def render_jpeg(filename):
 def render_jpg(filename):
     return static_file(filename, root="./images")
 
+
+
+@get("/ja/<filename:re:.*\.js>")
+def render_jpg(filename):
+    return static_file(filename, root="./images")
 
 
 ###################### -------------- the code will run on AWS
