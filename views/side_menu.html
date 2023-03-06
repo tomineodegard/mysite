@@ -7,6 +7,7 @@
       </a>
 
       <!-- home -->
+      % if cookie_user:
       <a href="/" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -15,6 +16,7 @@
           Home
         </span>
       </a>
+      % end
 
       <!-- exlore -->
       <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
@@ -79,6 +81,8 @@
         </span>
       </a>
 
+     
+
       <!-- tweetbutton -->
       <div class="xl:w-full xl:pr-8">
         <button class="xl:bg-sky-600 rounded-full xl:px-6 xl:py-3 items-center xl:w-full xl:items-stretch">
@@ -89,7 +93,17 @@
         </button>
       </div>
 
+      % if not cookie_user:
+      <!-- login button -->
+      <div>
+        <a href="/login">
+          Login
+        </a>
+      </div>
+      % end
 
+
+    % if cookie_user:
     <div class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-gray-800 rounded-xl">
       <img src="images/profilepictures/50f4de12-dcd0-4b6d-b49a-8831c520662a.jpg" class="w-12 h-12 rounded-full">
       <div class="">
@@ -101,5 +115,12 @@
           d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
       </svg>        
     </div>
+    <!-- log out button -->
+    <div>
+      <a href="/logout">
+        Log out
+      </a>
+    </div>
+    % end
 
   </section>

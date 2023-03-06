@@ -27,17 +27,34 @@ def dict_factory(cursor, row):
     col_names = [col[0] for col in cursor.description]
     return {key: value for key, value in zip(col_names, row)}
 
+# ------------- render login
+@get("/login")
+def _():
+    return template("login")
+
+# ------------- render logout
+@get("/logout")
+def _():
+    response.set_cookie("cookie_user", "", expires=0)
+    response.status = 303
+    response.set_header("Location", "/login")
+    return
 
 # ------------- render index
 @get("/")
 def render_index():
     try:
+        response.add_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+        response.add_header("Pragma", "no-cache")
+        response.add_header("Expires", 0)
+        cookie_user = request.get_cookie("cookie_user", secret="my-secret")
+        
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
         tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id ORDER BY created_at ASC").fetchall()
         trends = db.execute("SELECT * FROM trends").fetchall()
         suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
-        return template("index", title="Twitter", suggested_users=suggested_users, trends=trends, tweets=tweets, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+        return template("index", title="Twitter", cookie_user=cookie_user, suggested_users=suggested_users, trends=trends, tweets=tweets, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
         
 
     except Exception as ex:
@@ -53,9 +70,10 @@ def render_index():
 
 # ----- render any username, dynamically from the database
 @get("/<username>")
-# @view("profile")
+
 def render_username(username):
     try:
+
         # ----- connect to the twitter database
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
@@ -95,6 +113,10 @@ import views.tweet
 ##############################
 # APIS
 import apis.api_tweet
+
+##############################
+# BRIDGES
+import bridges.login
 
 
 # -------------- render css
