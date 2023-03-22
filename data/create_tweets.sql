@@ -1,17 +1,17 @@
 DROP TABLE IF EXISTS tweets;
 
 CREATE TABLE tweets(
-    tweet_id         TEXT,
-    user_fk          TEXT,
-    created_at       TEXT,
-    message          TEXT,
-    image            TEXT,
-    updated_at       TEXT,
-    total_retweets   TEXT,
-    total_likes      TEXT,
-    total_dislikes   TEXT,
-    total_views      TEXT,
-    total_replies    TEXT,
+    tweet_id               TEXT,
+    tweet_user_fk          TEXT,
+    tweet_created_at       TEXT,
+    tweet_message          TEXT,
+    tweet_image            TEXT,
+    tweet_updated_at       TEXT,
+    tweet_total_retweets   TEXT,
+    tweet_total_likes      TEXT,
+    tweet_total_dislikes   TEXT,
+    tweet_total_views      TEXT,
+    tweet_total_replies    TEXT,
     PRIMARY KEY(tweet_id)
 ) WITHOUT ROWID;
 

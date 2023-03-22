@@ -1,0 +1,224 @@
+[
+  {
+    "_id": "be0276d9-e8f6-400b-8490-19adfbbee604",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-follow",
+    "url": "127.0.0.1:4000/api-follow",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-16T12:45:14.984Z",
+    "modified": "2023-03-16T13:00:25.876Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_followee_fk",
+          "value": "1234"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "Content-Type",
+        "custom": "",
+        "action": "equal",
+        "value": "application/json"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "contains",
+        "value": "info"
+      }
+    ]
+  },
+  {
+    "_id": "82ff3ae9-58d2-432a-a51e-8b43b15b3d05",
+    "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
+    "containerId": "",
+    "name": "api sign up",
+    "url": "https://smses.eu.pythonanywhere.com/api-sign-up",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-03-16T13:31:25.954Z",
+    "modified": "2023-03-20T09:55:46.095Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_email",
+          "value": "tood0001@stud.kea.dk"
+        },
+        {
+          "name": "user_phone",
+          "value": "71819940"
+        },
+        {
+          "name": "user_password",
+          "value": "password"
+        },
+        {
+          "name": "user_confirm_password",
+          "value": "password"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "163c0b37-7499-4f3f-8ed6-08a894bbc0cf",
+    "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
+    "containerId": "",
+    "name": "api-login",
+    "url": "https://smses.eu.pythonanywhere.com/api-login",
+    "method": "POST",
+    "sortNum": 22500,
+    "created": "2023-03-16T13:36:28.624Z",
+    "modified": "2023-03-20T10:11:51.531Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_email",
+          "value": "tood0001@stud.kea.dk"
+        },
+        {
+          "name": "user_password",
+          "value": "password"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "7e149fc3-46d8-4ea3-9c67-693e75d9367d",
+    "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
+    "containerId": "",
+    "name": "api-send-sms",
+    "url": "https://smses.eu.pythonanywhere.com/api-send-sms",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-16T13:37:37.474Z",
+    "modified": "2023-03-20T10:12:41.765Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_api_key",
+          "value": "0fc60e320b5f4113a04f7f86b24366e6"
+        },
+        {
+          "name": "sms_message",
+          "value": "Hello world"
+        },
+        {
+          "name": "sms_to_phone",
+          "value": "71819940"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "bc307098-7496-4a6e-8ae7-829ea0c30535",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "upload picture",
+    "url": "127.0.0.1:4000/upload-picture",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2023-03-20T07:44:36.461Z",
+    "modified": "2023-03-20T07:53:08.490Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [],
+      "files": [
+        {
+          "name": "picture",
+          "value": "../../../Users/tomineodegard/Documents/pictures/of my self/proffesional/tomine-odegard-bw.png"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "94347c84-8e7e-40b3-a9f0-2ee3b9097f94",
+    "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
+    "containerId": "",
+    "name": "api-verify-account",
+    "url": "https://smses.eu.pythonanywhere.com/api-verify-account",
+    "method": "POST",
+    "sortNum": 16250,
+    "created": "2023-03-20T10:01:16.974Z",
+    "modified": "2023-03-20T10:12:06.016Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_api_key",
+          "value": "0fc60e320b5f4113a04f7f86b24366e6"
+        },
+        {
+          "name": "user_verification_key",
+          "value": "2313"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "b239c0ac-fba8-4782-9cb4-59945c40807e",
+    "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
+    "containerId": "",
+    "name": "api-forgot-password",
+    "url": "https://smses.eu.pythonanywhere.com/api-forgot-password ",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2023-03-20T10:09:35.723Z",
+    "modified": "2023-03-20T10:13:39.799Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_api_key",
+          "value": "0fc60e320b5f4113a04f7f86b24366e6"
+        }
+      ]
+    },
+    "tests": []
+  }
+]

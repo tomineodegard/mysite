@@ -4,9 +4,9 @@ import time
 @post("/login")
 def _():
     cookie_user = {
-        "user_name":"tomineodegard",
-        "user_first_name":"Tomine",
-        "user_last_name":"Ødegård"
+        "username":"tomineodegard",
+        "user_firstname":"Tomine",
+        "user_lastname":"Ødegård"
     }
 
 

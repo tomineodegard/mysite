@@ -7,6 +7,31 @@ import pathlib
 import uuid
 import x
 
+@post("/upload-picture")
+def _():
+    try:
+        the_picture = request.files.get("picture")
+        # name, ext = os.path.splitext(the_picture.filename)
+        # since we dont use or need the name of this python function, we can just ignore it by calling an underscore
+        _, ext = os.path.splitext(the_picture.filename)
+
+        # print("-"*50)
+        # print(name) #tomine-odegard-bw
+        # print(ext) #.png
+        if ext not in (".png", ".jpg", ".jpeg"):
+            response.status = 400
+            return "Oh no! Your chosen picture file-extension is not allowed. Please upload a png, jpg or jpeg."
+        picture_name = str(uuid.uuid4().hex) #4567
+        picture_name = picture_name + ext #4567.png
+        the_picture.save(f"pictures/{picture_name}")  
+        return ("picture-uploaded")
+    except Exception as e:
+        print(e)
+    finally:
+        pass
+
+
+
 @get("/js/<filename>")
 def _(filename):
   return static_file(filename, "js")
@@ -37,7 +62,7 @@ def _():
 def _():
     response.set_cookie("cookie_user", "", expires=0)
     response.status = 303
-    response.set_header("Location", "/login")
+    response.set_header("Location", "/")
     return
 
 # ------------- render index
@@ -48,11 +73,12 @@ def render_index():
         response.add_header("Pragma", "no-cache")
         response.add_header("Expires", 0)
         cookie_user = request.get_cookie("cookie_user", secret="my-secret")
-        
+
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
-        tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.user_fk = users.user_id ORDER BY created_at ASC").fetchall()
-        trends = db.execute("SELECT * FROM trends").fetchall()
+        tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.tweet_user_fk = users.user_id ORDER BY tweet_created_at ASC").fetchall()
+        trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
+        # trends = db.execute("SELECT * FROM trends").fetchall()
         suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
         return template("index", title="Twitter", cookie_user=cookie_user, suggested_users=suggested_users, trends=trends, tweets=tweets, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
         
@@ -78,22 +104,24 @@ def render_username(username):
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
         user = db.execute("SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
-        trends = db.execute("SELECT * FROM trends").fetchall()
+        trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
         suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
         # ----- Get the user's id
         user_id = user["user_id"]
         print("-"*50)
         print(f"user id: {user_id}")
+        cookie_user = request.get_cookie("cookie_user", secret="my-secret")
+
 
         # ----- With that id, look up/get all the respectives tweets
-        tweets = db.execute("SELECT * FROM tweets WHERE user_fk=? ORDER BY created_at ASC", (user_id,)).fetchall()
+        tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at ASC LIMIT 10", (user_id,)).fetchall()
         print("-"*50)
         print(tweets)
         print("-"*50)
 
         # ----- pass the tweets to the view. Template it
         print(user)
-        return template("profile", title="Twitter", trends=trends, user=user, tweets=tweets, suggested_users=suggested_users)
+        return template("profile", title="Twitter", cookie_user=cookie_user, trends=trends, user=user, tweets=tweets, suggested_users=suggested_users)
 
     except Exception as ex:
         print("-"*50)
@@ -109,10 +137,15 @@ def render_username(username):
 ##############################
 # VIEWS
 import views.tweet
+import views.test
 
 ##############################
 # APIS
 import apis.api_tweet
+import apis.api_sign_up
+import apis.api_follow
+import apis.api_send_sms
+
 
 ##############################
 # BRIDGES

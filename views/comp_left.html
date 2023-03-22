@@ -1,5 +1,26 @@
-  <section class="hidden sm:flex sticky top-0 flex-col h-screen p-4 text-lg items-end">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+      <title>
+        % if defined("user"):
+          {{user["user_firstname"]}} {{user["user_lastname"]}}
+        % else:
+          Twitter
+        % end 
+      </title>
+  </head>
+  
+  <body class="w-screen h-full overflow-x-hidden overflow-y-scroll bg-black grid grid-cols-[1fr_minmax(0,1400px)_1fr] items-center place-content-center text-white">
     
+
+  <main class="flex justify-center col-[2/3]">
+
+  <section class="hidden sm:flex sticky top-0 flex-col h-screen p-4 text-lg items-end">
+  <!-- <aside class="sm:block w-68 xs:w-88 xl:w-275 h-screen"> -->
     <!-- twitter logo -->
     <div class="flex flex-col items-center max-w-[250px] h-full gap-2 xl:items-start">
       <a href="/" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
@@ -95,11 +116,12 @@
 
       % if not cookie_user:
       <!-- login button -->
-      <div>
-        <a href="/login">
-          Login
-        </a>
-      </div>
+      <a href="/login" class="flex gap-2 xl:w-full mt-auto mb-4 p-2 hover:bg-neutral-800 rounded-full items-center">
+            <p>Log in</p>     
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+        </svg>  
+      </a>
       % end
 
 
@@ -112,15 +134,13 @@
       </div>
       <svg width="32" height="32" viewBox="0 0 24 24" class="w-6 h-6 hidden xl:flex hover:text-sky-600 hover:cursor-pointer">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-          d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
-      </svg>        
+        d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+      </svg>
     </div>
-    <!-- log out button -->
-    <div>
-      <a href="/logout">
-        Log out
-      </a>
-    </div>
-    % end
 
+    <a href="/logout" class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-gray-800 rounded-xl">
+      <p class="font-bold text-sm">Log out</p>
+    </a>
+    % end
+  <!-- </aside> -->
   </section>
