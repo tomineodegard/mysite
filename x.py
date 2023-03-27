@@ -1,14 +1,15 @@
-from bottle import request
+from bottle import request, response
 import sqlite3
 import pathlib 
 import re
 
-##############################
+
+# ------------------
 def dict_factory(cursor, row):
   col_names = [col[0] for col in cursor.description]
   return {key: value for key, value in zip(col_names, row)}
 
-##############################
+# ------------------
 def db():
   try:
     db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db") 
@@ -20,8 +21,36 @@ def db():
     pass
 
 
+# ------------------
+def disable_cache():
+    response.add_header("Cache-Control", "no-cache, no-store, must-revalidate")
+    response.add_header("Pragma", "no-cache")
+    response.add_header("Expires", 0)    
 
-##############################
+# ------------------
+def validate_user_logged_in():
+    validated_user = request.get_cookie("cookie_user", secret=COOKIE_SECRET)
+    if validated_user is None: raise Exception(400, "user must login")
+    return validated_user
+
+
+# ------------------
+
+USER_EMAIL_MIN = 6
+USER_EMAIL_MAX = 100
+USER_EMAIL_REGEX = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
+
+def validate_user_email():
+	error = f"user_email invalid"
+	user_email = request.forms.get("user_email", "")        
+	user_email = user_email.strip()
+	if len(user_email) < USER_EMAIL_MIN : raise Exception(400, error)
+	if len(user_email) > USER_EMAIL_MAX : raise Exception(400, error)  
+	if not re.match(USER_EMAIL_REGEX, user_email): raise Exception(400, error)
+	return user_email
+
+
+# ------------------
 
 TWEET_MIN_LEN = 2
 TWEET_MAX_LEN = 280
@@ -33,7 +62,7 @@ def validate_tweet():
   return request.forms.get("message")
 
 
-##############################
+# ------------------
 USERNAME_MIN = 4
 USERNAME_MAX = 15
 # english letters only, lower case and uppercase and numbers from 0 to 9 including underscore

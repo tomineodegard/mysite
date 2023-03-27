@@ -7,65 +7,7 @@ import pathlib
 import uuid
 import x
 
-@post("/upload-picture")
-def _():
-    try:
-        the_picture = request.files.get("picture")
-        # name, ext = os.path.splitext(the_picture.filename)
-        # since we dont use or need the name of this python function, we can just ignore it by calling an underscore
-        _, ext = os.path.splitext(the_picture.filename)
-
-        # print("-"*50)
-        # print(name) #tomine-odegard-bw
-        # print(ext) #.png
-        if ext not in (".png", ".jpg", ".jpeg"):
-            response.status = 400
-            return "Oh no! Your chosen picture file-extension is not allowed. Please upload a png, jpg or jpeg."
-        picture_name = str(uuid.uuid4().hex) #4567
-        picture_name = picture_name + ext #4567.png
-        the_picture.save(f"pictures/{picture_name}")  
-        return ("picture-uploaded")
-    except Exception as e:
-        print(e)
-    finally:
-        pass
-
-
-
-@get("/js/<filename>")
-def _(filename):
-  return static_file(filename, "js")
-
-
-
-# ------------- connects to github and pythonanywhere
-@post('/secret_url_for_git_hook')
-def git_update():
-  repo = git.Repo('./mysite')
-  origin = repo.remotes.origin
-  repo.create_head('main', origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
-  origin.pull()
-  return ""
-
-# ------------- makes a dictionary from SQLite data
-def dict_factory(cursor, row):
-    col_names = [col[0] for col in cursor.description]
-    return {key: value for key, value in zip(col_names, row)}
-
-# ------------- render login
-@get("/login")
-def _():
-    return template("login")
-
-# ------------- render logout
-@get("/logout")
-def _():
-    response.set_cookie("cookie_user", "", expires=0)
-    response.status = 303
-    response.set_header("Location", "/")
-    return
-
-# ------------- render index
+# -------------  route to render the index
 @get("/")
 def render_index():
     try:
@@ -76,7 +18,10 @@ def render_index():
 
         db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
         db.row_factory = dict_factory
-        tweets = db.execute("SELECT * FROM tweets JOIN users ON tweets.tweet_user_fk = users.user_id ORDER BY tweet_created_at ASC").fetchall()
+        tweets = db.execute("SELECT * FROM users JOIN tweets ON tweet_user_fk = user_id ORDER BY tweet_created_at DESC").fetchall()
+        print("-"*50 + "TWEET")
+        print(tweets)
+        
         trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
         # trends = db.execute("SELECT * FROM trends").fetchall()
         suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
@@ -94,9 +39,8 @@ def render_index():
 
 
 
-# ----- render any username, dynamically from the database
+# ----- route to render any username, dynamically from the database
 @get("/<username>")
-
 def render_username(username):
     try:
 
@@ -134,6 +78,34 @@ def render_username(username):
             db.close()
 
 
+
+# ------------- connects to github and pythonanywhere
+@post('/secret_url_for_git_hook')
+def git_update():
+  repo = git.Repo('./mysite')
+  origin = repo.remotes.origin
+  repo.create_head('main', origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+  origin.pull()
+  return ""
+
+# ------------- makes a dictionary from SQLite data
+def dict_factory(cursor, row):
+    col_names = [col[0] for col in cursor.description]
+    return {key: value for key, value in zip(col_names, row)}
+
+# ------------- render login
+@get("/login")
+def _():
+    return template("login")
+
+# ------------- render logout
+@get("/logout")
+def _():
+    response.set_cookie("cookie_user", "", expires=0)
+    response.status = 303
+    response.set_header("Location", "/")
+    return
+
 ##############################
 # VIEWS
 import views.tweet
@@ -143,8 +115,9 @@ import views.test
 # APIS
 import apis.api_tweet
 import apis.api_sign_up
-import apis.api_follow
 import apis.api_send_sms
+import apis.api_login
+import apis.api_follow
 
 
 ##############################
@@ -158,6 +131,31 @@ def render_css():
     return static_file("app.css", root=".")
 
 
+# ----- route to upload pictures when creating a tweet
+@post("/upload-picture")
+def upload_picture():
+    try:
+        the_picture = request.files.get("picture")
+        # name, ext = os.path.splitext(the_picture.filename)
+        # since we dont use or need the name of this python function, we can just ignore it by calling an underscore
+        _, ext = os.path.splitext(the_picture.filename)
+
+        # print("-"*50)
+        # print(name) #tomine-odegard-bw
+        # print(ext) #.png
+        if ext not in (".png", ".jpg", ".jpeg"):
+            response.status = 400
+            return "Oh no! Your chosen picture file-extension is not allowed. Please upload a png, jpg or jpeg."
+        picture_name = str(uuid.uuid4().hex) #4567
+        picture_name = picture_name + ext #4567.png
+        the_picture.save(f"pictures/{picture_name}")  
+        return ("picture-uploaded")
+    except Exception as e:
+        print(e)
+    finally:
+        pass
+
+
 # -------------- get the images
 @get("/images/<filename:re:.*\.jpeg>")
 def render_jpeg(filename):
@@ -169,12 +167,7 @@ def render_jpg(filename):
 
 
 
-@get("/ja/<filename:re:.*\.js>")
-def render_jpg(filename):
-    return static_file(filename, root="./images")
-
-
-###################### -------------- the code will run on AWS
+# -------------- the code will run on AWS
 try:
   import production
   print("Server running on AWS")

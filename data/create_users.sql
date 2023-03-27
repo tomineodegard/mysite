@@ -66,6 +66,21 @@ INSERT INTO users VALUES(
 "49b99d9e-2e60-478d-8eb4-ba7358017319.jpeg", 
 "84b6d13c-1a7a-4316-9401-3621ff0739fa.jpeg");
 
+INSERT INTO users VALUES(
+"2f9214d6266e4a96a95bb6a5fb7d1a47", 
+"tomineodegard",
+"tomine@gmail.com", 
+"password",
+"Februrary 2023", 
+"Tomine", 
+"Ødegård", 
+"1", 
+"107000000", 
+"980", 
+"10600", 
+"50f4de12dcd04b6db49a8831c520662a.jpg", 
+"84b6d13c-1a7a-4316-9401-3621ff0739fa.jpeg");
+
 -- CREATE UNIQUE INDEX idx_users_username ON users(name);
 -- CREATE INDEX idx_users_firstname ON users(firstname);
 -- CREATE INDEX idx_users_lastname ON users(lastname);
