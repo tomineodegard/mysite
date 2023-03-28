@@ -6,6 +6,7 @@ import sqlite3
 import pathlib
 import uuid
 import x
+import git
 
 # -------------  route to render the index
 @get("/")
