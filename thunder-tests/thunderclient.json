@@ -283,7 +283,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-03-27T17:14:27.966Z",
-    "modified": "2023-03-27T18:36:11.150Z",
+    "modified": "2023-03-28T12:30:57.465Z",
     "headers": [],
     "params": [],
     "body": {
@@ -292,7 +292,7 @@
       "form": [
         {
           "name": "message",
-          "value": "is this working?"
+          "value": "Takk MAgnus "
         }
       ]
     },

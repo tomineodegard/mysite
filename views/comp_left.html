@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
+    <script defer src="/js/post_tweet.js"></script>
+    <script defer src="/js/validate.js"></script>
       <title>
         % if defined("user"):
           {{user["user_firstname"]}} {{user["user_lastname"]}}
@@ -126,7 +128,7 @@
 
     % if cookie_user:
     <div class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-gray-800 rounded-xl">
-      <img src="images/profilepictures/50f4de12-dcd0-4b6d-b49a-8831c520662a.jpg" class="w-12 h-12 rounded-full">
+      <img src="/images/profilepictures/default_avatar.jpg" class="w-12 h-12 rounded-full">
       <div class="">
         <div class="font-bold text-sm hidden xl:flex">Tomine Ødegård</div>
         <div class="text-gray-500 text-sm hidden xl:flex">@tomineodegard</div>

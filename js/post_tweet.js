@@ -17,7 +17,7 @@ async function tweet() {
         <!-- left col -->
         <div class="p-4 flex flex-col justify-between">
           <a href="#">
-            <img src="/images/profilepictures/50f4de12-dcd0-4b6d-b49a-8831c520662a.jpg" class="w-12 h-12 rounded-full object-cover">
+            <img src="${data.cookie_user_id.user_profile_picture}" class="w-12 h-12 rounded-full object-cover">
           </a>
         </div>
          <!-- left col end -->
@@ -26,10 +26,10 @@ async function tweet() {
           <!-- username -->
           <div class="flex justify-between">
               <a href="#" class="flex justify-between gap-2 items-center text-base font-medium text-white">
-                {{user["user_firstname]}} {{user["user_lastname]}}
+                ${data.cookie_user_id.user_firstname} ${data.cookie_user_id.user_lastname}
                 <svg width="20" height="20" viewBox="0 0 24 24" class="text-sky-500"><path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/></svg>
                 <p class="ml-1 text-sm text-gray-500 font-medium group-hover:text-gray-300 transition ease-in-out duration-150">
-                  @{{user["username]}}
+                ${data.cookie_user_id.username}
                 </p>
               </a>
     

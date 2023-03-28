@@ -1,4 +1,4 @@
-#https://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@github.com/tomineodegard/mysite.git
+# Github token: https://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@github.com/tomineodegard/mysite.git
 
 from bottle import default_app, get, post, template, run, response, request, static_file, view
 import os
@@ -89,7 +89,7 @@ def git_update():
   origin.pull()
   return ""
 
-# ------------- makes a dictionary from SQLite data
+# ------------- makes a readable dictionary from SQLite data
 def dict_factory(cursor, row):
     col_names = [col[0] for col in cursor.description]
     return {key: value for key, value in zip(col_names, row)}
@@ -107,21 +107,21 @@ def _():
     response.set_header("Location", "/")
     return
 
-##############################
+# -------------
 # VIEWS
 import views.tweet
-import views.test
+import views.test_follow
 
-##############################
+# -------------
 # APIS
-import apis.api_tweet
 import apis.api_sign_up
+import apis.api_tweet
 import apis.api_send_sms
 import apis.api_login
 import apis.api_follow
 
 
-##############################
+# -------------
 # BRIDGES
 import bridges.login
 
@@ -167,6 +167,10 @@ def render_jpg(filename):
     return static_file(filename, root="./images")
 
 
+@get("/js/<filename>")
+def _(filename):
+  return static_file(filename, root="js")
+
 
 # -------------- the code will run on AWS
 try:
@@ -177,4 +181,4 @@ try:
 # -------------- the code will run in local computer
 except Exception as ex:
   print("Running local server")
-  run(host="127.0.0.1", port=4000, debug=True, reloader=True)
+  run(host="127.0.0.1", port=4000, debug=True, reloader=True, server="paste")

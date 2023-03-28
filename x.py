@@ -3,6 +3,8 @@ import sqlite3
 import pathlib 
 import re
 
+COOKIE_SECRET = "my_secret_cookie_key"
+
 
 # ------------------
 def dict_factory(cursor, row):
