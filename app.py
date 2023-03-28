@@ -1,4 +1,4 @@
-#https://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@github.com/tomineodegard/mysite.git
+#https://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@github.com/tomineodegard/mysite.git
 
 from bottle import default_app, get, post, template, run, response, request, static_file, view
 import os
