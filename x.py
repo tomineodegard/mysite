@@ -31,9 +31,9 @@ def disable_cache():
 
 # ------------------
 def validate_user_logged_in():
-    validated_user = request.get_cookie("cookie_user", secret=COOKIE_SECRET)
-    if validated_user is None: raise Exception(400, "user must login")
-    return validated_user
+    cookie_user = request.get_cookie("cookie_user", secret=COOKIE_SECRET)
+    if cookie_user is None: raise Exception(400, "user must login")
+    return cookie_user
 
 
 # ------------------
@@ -52,6 +52,23 @@ def validate_user_email():
 	return user_email
 
 
+
+USER_PASSWORD_MIN = 6
+USER_PASSWORD_MAX = 50
+
+def validate_user_password():
+  password = request.forms.user_password 
+  print(password) 
+  error = f"user_password {USER_PASSWORD_MIN} to {USER_PASSWORD_MAX} characters" 
+  request.forms.user_password = request.forms.user_password.strip() 
+  if len(request.forms.user_password) < USER_PASSWORD_MIN:
+    raise Exception(error) 
+  if len(request.forms.user_password) > USER_PASSWORD_MAX: 
+    raise Exception(error) 
+  return request.forms.user_password
+
+
+
 # ------------------
 
 TWEET_MIN_LEN = 2
@@ -67,7 +84,6 @@ def validate_tweet():
 # ------------------
 USERNAME_MIN = 4
 USERNAME_MAX = 15
-# english letters only, lower case and uppercase and numbers from 0 to 9 including underscore
 USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
 
 def validate_username():
@@ -79,9 +95,6 @@ def validate_username():
   if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
   if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
   if not re.match(USERNAME_REGEX, request.forms.username): raise Exception(error)
-
-  # ensure_ascii=True
-
 
 
 

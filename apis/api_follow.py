@@ -1,11 +1,12 @@
 from bottle import post, request, response
+import x
 
 @post("/api-follow")
 def _():
     try:
         # TODO: get user from cookie
         # user = request.get_cookie("user", secret="xxxxxx")
-        cookie_user = request.get_cookie("cookie_user", secret="my-secret")
+        cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
 
         # TODO: get user id from the user from the cookie
         # TODO: validate the followeer's id

@@ -128,10 +128,10 @@
 
     % if cookie_user:
     <div class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-gray-800 rounded-xl">
-      <img src="/images/profilepictures/default_avatar.jpg" class="w-12 h-12 rounded-full">
+      <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" class="w-12 h-12 rounded-full">
       <div class="">
-        <div class="font-bold text-sm hidden xl:flex">Tomine Ødegård</div>
-        <div class="text-gray-500 text-sm hidden xl:flex">@tomineodegard</div>
+        <div class="font-bold text-sm hidden xl:flex">{{cookie_user["user_firstname"]}} {{cookie_user["user_lastname"]}}</div>
+        <div class="text-gray-500 text-sm hidden xl:flex">@{{cookie_user["username"]}}</div>
       </div>
       <svg width="32" height="32" viewBox="0 0 24 24" class="w-6 h-6 hidden xl:flex hover:text-sky-600 hover:cursor-pointer">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
