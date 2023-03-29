@@ -307,7 +307,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2023-03-29T10:43:11.247Z",
-    "modified": "2023-03-29T11:00:10.260Z",
+    "modified": "2023-03-29T14:27:21.582Z",
     "headers": [],
     "params": [],
     "body": {
@@ -316,23 +316,15 @@
       "form": [
         {
           "name": "username",
-          "value": ""
+          "value": "lasse"
         },
         {
-          "name": "firstname",
-          "value": ""
+          "name": "user_email",
+          "value": "lasse@gmail.com"
         },
         {
-          "name": "lastname",
-          "value": ""
-        },
-        {
-          "name": "email",
-          "value": ""
-        },
-        {
-          "name": "password",
-          "value": ""
+          "name": "user_password",
+          "value": "password"
         }
       ]
     },

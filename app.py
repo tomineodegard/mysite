@@ -65,7 +65,7 @@ def render_username(username):
         return template("profile", title="Twitter", cookie_user=cookie_user, trends=trends, user=user, tweets=tweets, suggested_users=suggested_users)
 
     except Exception as ex:
-        print("this is the error:" + "-"*50)
+        print("-"*50)
         print(ex)
         print("-"*50)
         return "error"

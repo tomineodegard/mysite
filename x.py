@@ -37,6 +37,24 @@ def validate_user_logged_in():
 
 
 # ------------------
+USERNAME_MIN = 4
+USERNAME_MAX = 15
+USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
+
+def validate_username():
+  print("-"*50)
+  print(request.forms.username)
+  
+  error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
+  validated_username = request.forms.username = request.forms.username.strip()
+  if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
+  if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
+  if not re.match(USERNAME_REGEX, request.forms.username): raise Exception(error)
+  return validated_username
+
+
+
+# ------------------
 
 USER_EMAIL_MIN = 6
 USER_EMAIL_MAX = 100
@@ -79,23 +97,6 @@ def validate_tweet():
   if len(request.forms.message) < TWEET_MIN_LEN: raise Exception(error)
   if len(request.forms.message) > TWEET_MAX_LEN: raise Exception(error)
   return request.forms.get("message")
-
-
-# ------------------
-USERNAME_MIN = 4
-USERNAME_MAX = 15
-USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
-
-def validate_username():
-  print("-"*50)
-  print(request.forms.username)
-  
-  error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
-  request.forms.username = request.forms.username.strip()
-  if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
-  if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
-  if not re.match(USERNAME_REGEX, request.forms.username): raise Exception(error)
-
 
 
 
