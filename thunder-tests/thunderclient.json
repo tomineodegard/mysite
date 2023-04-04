@@ -283,7 +283,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-03-27T17:14:27.966Z",
-    "modified": "2023-03-28T12:30:57.465Z",
+    "modified": "2023-03-30T11:50:38.961Z",
     "headers": [],
     "params": [],
     "body": {
@@ -292,7 +292,7 @@
       "form": [
         {
           "name": "message",
-          "value": "Takk MAgnus "
+          "value": "one"
         }
       ]
     },
@@ -307,7 +307,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2023-03-29T10:43:11.247Z",
-    "modified": "2023-03-29T14:27:21.582Z",
+    "modified": "2023-04-04T13:42:20.514Z",
     "headers": [],
     "params": [],
     "body": {
@@ -316,11 +316,19 @@
       "form": [
         {
           "name": "username",
-          "value": "lasse"
+          "value": "magnusnielsen"
+        },
+        {
+          "name": "user_firstname",
+          "value": "Magnus"
+        },
+        {
+          "name": "user_lastname",
+          "value": "Nielsen"
         },
         {
           "name": "user_email",
-          "value": "lasse@gmail.com"
+          "value": "magnus@gmail.com"
         },
         {
           "name": "user_password",

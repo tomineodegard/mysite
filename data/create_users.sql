@@ -11,10 +11,10 @@ CREATE TABLE users(
     user_firstname            TEXT,
     user_lastname             TEXT,
     user_verified             TEXT,
-    user_total_followers      TEXT,
-    user_total_following      TEXT,
-    user_total_tweets         TEXT,
-    user_profile_picture      TEXT,
+    user_total_followers      INTEGER,
+    user_total_following      INTEGER,
+    user_total_tweets         INTEGER,
+    user_profile_picture      TEXT UNIQUE,
     user_cover_picture        TEXT,
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
@@ -64,7 +64,8 @@ INSERT INTO users VALUES(
 "980", 
 "10600", 
 "49b99d9e2e60478d8eb4ba7358017319.jpeg", 
-"84b6d13c1a7a431694013621ff0739fa.jpeg");
+"84b6d13c1a7a431694013621ff0739fa.jpeg"
+);
 
 INSERT INTO users VALUES(
 "2f9214d6266e4a96a95bb6a5fb7d1a47", 
@@ -79,12 +80,13 @@ INSERT INTO users VALUES(
 "980", 
 "10600", 
 "50f4de12dcd04b6db49a8831c520662a.jpg", 
-"84b6d13c1a7a431694013621ff0739fa.jpeg");
+"84b6d13c1a7a431694013621ff0739fa.jpeg"
+);
 
--- CREATE UNIQUE INDEX idx_users_username ON users(name);
--- CREATE INDEX idx_users_firstname ON users(firstname);
--- CREATE INDEX idx_users_lastname ON users(lastname);
--- CREATE INDEX idx_users_profile_picture ON users(profile_picture);
+-- CREATE UNIQUE INDEX idx_users_username ON users(username);
+-- CREATE INDEX idx_users_firstname ON users(user_firstname);
+-- CREATE INDEX idx_users_lastname ON users(user_lastname);
+-- CREATE INDEX idx_users_profile_picture ON users(user_profile_picture);
 
--- SELECT name FROM sqlite_master WHERE type = 'index';
--- SELECT name FROM sqlite_master WHERE type = 'trigger';
+-- SELECT username FROM sqlite_master WHERE type = 'index';
+-- SELECT username FROM sqlite_master WHERE type = 'trigger';

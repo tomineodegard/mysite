@@ -8,24 +8,26 @@ import bcrypt
 @post("/api-signup")
 def _():
 	try:
-		# Validate the information inserted by the user
+		# --- Validate the information inserted by the user
 		username = x.validate_username()
+		user_firstname = x.validate_user_firstname()
+		user_lastname = x.validate_user_lastname()
 		user_email = x.validate_user_email()
 		user_password = x.validate_user_password()
-		
-		# Adding the salt to password
+		print("validation successfull for sign up")
+		# --- Adding the salt to password
 		salt = bcrypt.gensalt()
+		# --- Generating a uuid4 without dashes as the user_id
 		user_id = str(uuid.uuid4().hex)
 		
-        # New user dictionary
 		new_user = {
             "user_id" : user_id,
             "username" : username,
             "user_email" : user_email,            
             "user_password": bcrypt.hashpw(user_password.encode('utf-8'), salt),
             "user_created_at" : int(time.time()),
-            "user_firstname" : "",
-            "user_lastname" : "",
+            "user_firstname" : user_firstname,
+            "user_lastname" : user_lastname,
             "user_verified" : 0,
             "user_total_followers" : 0,
             "user_total_following" : 0,
@@ -34,13 +36,15 @@ def _():
 	        "user_cover_picture" : ""
         }
 		
-		# create placed holders for values
+		# insert values from the 'new user dictionary' f-stringing the keys
 		values = ""
 		for key in new_user:
 			values += f":{key},"
-		# right strip the values inserted to remove potential spaces
+		# right-strip the values inserted to remove potential spaces
 		values = values.rstrip(",")
-		print(values)	
+		print(values)
+
+		# Connect to database	
 		db = x.db()
 		total_rows_inserted = db.execute(f"INSERT INTO users VALUES({values})", new_user).rowcount        
 		if total_rows_inserted != 1: raise Exception("Please, try again")

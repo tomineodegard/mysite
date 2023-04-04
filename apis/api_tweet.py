@@ -12,7 +12,6 @@ def _():
     cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
     print("-"*50 + "cookie_user:")
     print(cookie_user)
-
     tweet_id = str(uuid.uuid4().hex)
     tweet_user_fk = cookie_user["user_id"]
     tweet_created_at = int(time.time())

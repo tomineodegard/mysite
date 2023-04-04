@@ -19,5 +19,10 @@ INSERT INTO locations VALUES(
 INSERT INTO locations VALUES(
     "0b2ddf87748e466a99dcff4f77f67c2a",
     "Spain"
-);   
+);
+
+INSERT INTO locations VALUES(
+    "5b2ddf87748e466a99dcff4f77f67c2a",
+    "the entire world"
+);
   

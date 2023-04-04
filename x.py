@@ -16,6 +16,7 @@ def db():
   try:
     db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db") 
     db.row_factory = dict_factory
+    db.execute("PRAGMA foreign_keys = ON")
     return db
   except Exception as ex:
     print(ex)
@@ -36,7 +37,7 @@ def validate_user_logged_in():
     return cookie_user
 
 
-# ------------------
+# ------------------ username validation
 USERNAME_MIN = 4
 USERNAME_MAX = 15
 USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
@@ -53,9 +54,41 @@ def validate_username():
   return validated_username
 
 
+# ------------------ firstname validation
+USER_FIRSTNAME_MIN = 4
+USER_FIRSTNAME_MAX = 15
+USER_FIRSTNAME_REGEX = "^[a-zA-Z]*$"
 
-# ------------------
+def validate_user_firstname():
+  print("user firstname:" + "-"*50)
+  print(request.forms.user_firstname)
+  
+  error = f"user_firstname must contain {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} english letters"
+  validated_firstname = request.forms.user_firstname = request.forms.user_firstname.strip()
+  if len(request.forms.user_firstname) < USER_FIRSTNAME_MIN: raise Exception(error)
+  if len(request.forms.user_firstname) > USER_FIRSTNAME_MAX: raise Exception(error)
+  if not re.match(USER_FIRSTNAME_REGEX, request.forms.user_firstname): raise Exception(error)
+  return validated_firstname
 
+
+# ------------------ lastname validation
+USER_LASTNAME_MIN = 4
+USER_LASTNAME_MAX = 15
+USER_LASTNAME_REGEX = "^[a-zA-Z]*$"
+
+def validate_user_lastname():
+  print("user lastname:" + "-"*50)
+  print(request.forms.user_lastname)
+  
+  error = f"user_lastname must contain {USER_LASTNAME_MIN} to {USER_LASTNAME_MAX} english letters"
+  validated_lastname = request.forms.user_lastname = request.forms.user_lastname.strip()
+  if len(request.forms.user_lastname) < USER_LASTNAME_MIN: raise Exception(error)
+  if len(request.forms.user_lastname) > USER_LASTNAME_MAX: raise Exception(error)
+  if not re.match(USER_LASTNAME_REGEX, request.forms.user_lastname): raise Exception(error)
+  return validated_lastname
+
+
+# ------------------ email validation
 USER_EMAIL_MIN = 6
 USER_EMAIL_MAX = 100
 USER_EMAIL_REGEX = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
@@ -70,7 +103,7 @@ def validate_user_email():
 	return user_email
 
 
-
+# ------------------ password validation
 USER_PASSWORD_MIN = 6
 USER_PASSWORD_MAX = 50
 
@@ -86,9 +119,7 @@ def validate_user_password():
   return request.forms.user_password
 
 
-
-# ------------------
-
+# ------------------ tweet validation
 TWEET_MIN_LEN = 2
 TWEET_MAX_LEN = 280
 

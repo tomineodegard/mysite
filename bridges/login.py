@@ -9,4 +9,3 @@ def _():
         response.status = 303
         response.set_header("Location", "/")
         return
-

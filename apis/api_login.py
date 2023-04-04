@@ -6,8 +6,8 @@ import x
 @post("/api-login")
 def _():
 	try:
-		# if user is logged, return message to the API
 		cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
+		# if the user is succesfully logged in, return message to the API
 		if cookie_user: return {"info":"success login", "username":cookie_user["username"]}
 
 		# Validate

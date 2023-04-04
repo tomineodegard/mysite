@@ -1,4 +1,4 @@
-# Github token: https://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@github.com/tomineodegard/mysite.git
+# Github token url: https://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@github.com/tomineodegard/mysite.git
 
 from bottle import default_app, get, post, template, run, response, request, static_file, view
 import os
@@ -95,21 +95,20 @@ def dict_factory(cursor, row):
 def _():
     return template("login")
 
-# ------------- render logout
-@get("/logout")
-def _():
-    response.set_cookie("cookie_user", "", expires=0)
-    response.status = 303
-    response.set_header("Location", "/")
-    return
 
-# -------------
-# VIEWS
+
+# ------------- ROUTES
+import routes.login
+import routes.logout
+import routes.signup
+
+
+
+# ------------- VIEWS
 import views.tweet
 import views.test_follow
 
-# -------------
-# APIS
+# ------------- APIS
 import apis.api_login
 import apis.api_signup
 import apis.api_send_sms
@@ -117,8 +116,7 @@ import apis.api_tweet
 import apis.api_follow
 
 
-# -------------
-# BRIDGES
+# ------------- BRIDGES
 import bridges.login
 
 
