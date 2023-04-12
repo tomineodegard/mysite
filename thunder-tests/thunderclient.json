@@ -307,7 +307,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2023-03-29T10:43:11.247Z",
-    "modified": "2023-04-04T13:42:20.514Z",
+    "modified": "2023-04-12T11:57:21.878Z",
     "headers": [],
     "params": [],
     "body": {
@@ -316,7 +316,7 @@
       "form": [
         {
           "name": "username",
-          "value": "magnusnielsen"
+          "value": "magnusnielsenj"
         },
         {
           "name": "user_firstname",

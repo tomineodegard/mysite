@@ -44,14 +44,16 @@ USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
 
 def validate_username():
   print("-"*50)
-  print(request.forms.username)
+  print(request.forms.get("username"))
   
   error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
-  validated_username = request.forms.username = request.forms.username.strip()
+  request.forms.username = request.forms.username.strip()
+  print ("*" * 50 + "HELLO???")
+  print (request.forms.username)
   if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
   if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
   if not re.match(USERNAME_REGEX, request.forms.username): raise Exception(error)
-  return validated_username
+  return request.forms.username
 
 
 # ------------------ firstname validation

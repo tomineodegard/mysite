@@ -15,4 +15,3 @@ async function render_login() {
         console.log(data.info)
     }
 };
-

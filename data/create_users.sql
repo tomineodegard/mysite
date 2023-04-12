@@ -10,12 +10,15 @@ CREATE TABLE users(
     user_created_at           TEXT,
     user_firstname            TEXT,
     user_lastname             TEXT,
-    user_verified             TEXT,
-    user_total_followers      INTEGER,
-    user_total_following      INTEGER,
-    user_total_tweets         INTEGER,
-    user_profile_picture      TEXT UNIQUE,
+    user_is_verified          TEXT DEFAULT 0,
+    user_total_followers      INTEGER DEFAULT 0,
+    user_total_following      INTEGER DEFAULT 0,
+    user_total_tweets         INTEGER DEFAULT 0,
+    user_profile_picture      TEXT,
     user_cover_picture        TEXT,
+    user_is_activated         TEXT DEFAULT 0,
+    user_activation_key       TEXT,
+
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
 
@@ -32,8 +35,10 @@ INSERT INTO users VALUES(
 "177", 
 "22700", 
 "438b092d344d4628a2deafabcf5b0689.jpeg", 
-"64786a3347ed463ea198157991fec3f8.jpeg"
-  );
+"64786a3347ed463ea198157991fec3f8.jpeg",
+"1",
+"a0e189bdd20b437d920c1b60ec78ce22"
+);
 
 INSERT INTO users VALUES(
 "24198c66ba294807a26e235e4bc96c2e", 
@@ -48,7 +53,9 @@ INSERT INTO users VALUES(
 "235", 
 "7999", 
 "a7b0c6fccd3b43009fe43fef8171c62a.jpeg", 
-"8581bbd0f24548169c7f2f8c6cc4ac01.jpeg"
+"8581bbd0f24548169c7f2f8c6cc4ac01.jpeg",
+"1",
+"4779ed2e36a54d8491e207999ab8a606"
 );
 
 INSERT INTO users VALUES(
@@ -64,7 +71,9 @@ INSERT INTO users VALUES(
 "980", 
 "10600", 
 "49b99d9e2e60478d8eb4ba7358017319.jpeg", 
-"84b6d13c1a7a431694013621ff0739fa.jpeg"
+"84b6d13c1a7a431694013621ff0739fa.jpeg",
+"1",
+"4fbc6eb58a4940d7a15418e01b2f04bd"
 );
 
 INSERT INTO users VALUES(
@@ -80,7 +89,9 @@ INSERT INTO users VALUES(
 "980", 
 "10600", 
 "50f4de12dcd04b6db49a8831c520662a.jpg", 
-"84b6d13c1a7a431694013621ff0739fa.jpeg"
+"84b6d13c1a7a431694013621ff0739fa.jpeg",
+"1",
+"988c0e1ce84e43ca97d4a60978c2628f"
 );
 
 -- CREATE UNIQUE INDEX idx_users_username ON users(username);
