@@ -1,3 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <script defer src="/js/post_tweet.js"></script>
+    <script defer src="/js/validate.js"></script>
+    <title>
+      % if defined("user"):
+        {{user["user_firstname"]}} {{user["user_lastname"]}}
+      % else:
+        Twitter
+      % end 
+    </title>
+</head>
+
+<body class="w-screen h-full overflow-x-hidden overflow-y-scroll bg-black grid grid-cols-[1fr_minmax(0,1400px)_1fr] items-center place-content-center text-white">
+  
+
+<main class="flex justify-center col-[2/3]">
 % include('comp_left')
 
 <!-- middle -->

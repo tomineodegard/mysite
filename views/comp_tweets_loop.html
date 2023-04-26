@@ -1,15 +1,14 @@
 % for tweet in tweets:
    <div class="flex w-full border-t border-gray-600 overflow-hidden">
     <!-- left col -->
-    <div class="p-4 flex flex-col justify-between">
+    <div class="p-4 flex flex-col justify-between items-center">
       <a href="{{tweet['username']}}">
         <img src="/images/profilepictures/{{tweet['user_profile_picture']}}" class="w-12 h-12 rounded-full object-cover">
       </a>
     </div>
      <!-- left col end -->
      <!-- right -->
-     <div class="w-full pr-4 pt-4 pb-4">
-      <!-- tweet userinfo end -->
+     <div class="w-full pr-4 pt-4 pb-4 ">
       <div class="flex justify-between">
           <a href="{{tweet['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
             {{tweet["user_firstname"]}} {{tweet["user_lastname"]}}
@@ -35,9 +34,7 @@
        <div class="mt-4">
          {{tweet["tweet_message"]}}
          % if tweet.get("tweet_image"): 
-         <a href="#">
           <img src="images/tweet_images/{{tweet['tweet_image']}}" class="w-full mt-4 max-h-96 rounded-lg object-contain">
-        </a>
          % end
        </div>
       <!-- tweet content end -->

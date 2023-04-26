@@ -198,4 +198,4 @@ try:
 # -------------- the code will run in local computer
 except Exception as ex:
   print("Running local server")
-  run(host="127.0.0.1", port=4000, debug=True, reloader=True, server="paste")
+  run(host="127.0.0.1", port=4004, debug=True, reloader=True, server="paste")

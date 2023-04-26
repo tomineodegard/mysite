@@ -76,6 +76,25 @@ INSERT INTO users VALUES(
 "4fbc6eb58a4940d7a15418e01b2f04bd"
 );
 
+
+INSERT INTO users VALUES(
+"ae0069977acc4a35ae2921e287951068", 
+"barackobama",
+"barack@gmail.com", 
+"password",
+"August 2009", 
+"Barack", 
+"Obama", 
+"1", 
+"132897676", 
+"561038", 
+"16800", 
+"b3aed51663ad43079f44e05d8963d776.jpeg", 
+"c514dea6b96b4a359ca1040184467d4e.jpeg",
+"1",
+"fedd8d68227a4b09be28582432a3e5a2"
+);
+
 INSERT INTO users VALUES(
 "2f9214d6266e4a96a95bb6a5fb7d1a47", 
 "tomineodegard",
@@ -84,12 +103,12 @@ INSERT INTO users VALUES(
 "Februrary 2023", 
 "Tomine", 
 "Ødegård", 
-"1", 
+"0", 
 "107000000", 
 "980", 
 "10600", 
 "50f4de12dcd04b6db49a8831c520662a.jpg", 
-"84b6d13c1a7a431694013621ff0739fa.jpeg",
+"72712dce089e487f9c877ff0b39fd03e.jpg",
 "1",
 "988c0e1ce84e43ca97d4a60978c2628f"
 );

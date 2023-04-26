@@ -68,7 +68,7 @@ def _():
 		Thank you for signing up to Twitter, with the username {username}.
 		Now there is one last step for you to complete, before you can log in to your account.
 		Please click this link to activate your account.
-		http://127.0.0.1:4000/activate_user/{activation_key}"""
+		http://127.0.0.1:4004/activate_user/{activation_key}"""
 		html = f"""\
 		<html>
 		<body>
@@ -76,7 +76,7 @@ def _():
 			Thank you for signing up to Twitter, with the username {username}.<br>
 			Now there is one last step for you to complete, before you can log in to your account.<br>
 			Please click this link to activate your account.<br>
-			Click <a href="http://127.0.0.1:4000/activate_user/{activation_key}">here</a>.
+			Click <a href="http://127.0.0.1:4004/activate_user/{activation_key}">here</a>.
 			</p>
 		</body>
 		</html>

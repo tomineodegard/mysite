@@ -8,16 +8,18 @@ async function tweet() {
     const data = await conn.json();
 
 
-    console.log(data);
+    // console.log(data);
+    console.log(data.cookie_user.user_profile_picture);
+
 
     document.querySelector("#welcome_back").insertAdjacentHTML(
         "afterend",
 
-        `<div class="flex w-full border-t border-gray-600 overflow-hidden">
+        `<div class="flex w-full border-t border-gray-600 overflow-hidden bg-inherit">
         <!-- left col -->
         <div class="p-4 flex flex-col justify-between">
           <a href="#">
-            <img src="${data.cookie_user.user_profile_picture}" class="w-12 h-12 rounded-full object-cover">
+            <img src="images/profilepictures/${data.cookie_user.user_profile_picture}" class="w-12 h-12 rounded-full object-cover">
           </a>
         </div>
          <!-- left col end -->

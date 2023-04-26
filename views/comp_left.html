@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
-    <script defer src="/js/post_tweet.js"></script>
-    <script defer src="/js/validate.js"></script>
-      <title>
-        % if defined("user"):
-          {{user["user_firstname"]}} {{user["user_lastname"]}}
-        % else:
-          Twitter
-        % end 
-      </title>
-  </head>
-  
-  <body class="w-screen h-full overflow-x-hidden overflow-y-scroll bg-black grid grid-cols-[1fr_minmax(0,1400px)_1fr] items-center place-content-center text-white">
-    
-
-  <main class="flex justify-center col-[2/3]">
-
-  <aside class="hidden sm:flex sticky top-0 flex-col h-screen p-4 text-lg items-end">
+<aside class="hidden sm:flex sticky top-0 flex-col h-screen p-4 text-lg items-end">
     <!-- twitter logo -->
     <div class="flex flex-col items-center max-w-[250px] h-full gap-2 xl:items-start">
       <a href="/" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
@@ -30,7 +7,7 @@
 
       <!-- home -->
       % if cookie_user:
-      <a href="/" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      <a href="/" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>        
@@ -41,15 +18,17 @@
       % end
 
       <!-- exlore -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M224 88h-48.6l8.5-46.6a8 8 0 0 0-15.8-2.8l-9 49.4h-47.7l8.5-46.6a8 8 0 1 0-15.8-2.8l-9 49.4H43.6a8 8 0 1 0 0 16h48.6l-8.7 48H32a8 8 0 0 0 0 16h48.6l-8.5 46.6a8 8 0 0 0 6.5 9.3H80a8 8 0 0 0 7.9-6.6l9-49.4h47.7l-8.5 46.6a8 8 0 0 0 6.5 9.3h1.4a8 8 0 0 0 7.9-6.6l9-49.4h51.5a8 8 0 0 0 0-16h-48.6l8.7-48H224a8 8 0 0 0 0-16Zm-76.5 64H99.8l8.7-48h47.7Z"/></svg>
         <span class="hidden xl:flex">
           Explore
         </span>
       </a>
 
+
       <!-- Notifications -->
-      <a href="#" class="flex gap-2 px-4 py-2 hover:bg-gray-800 rounded-full relative">
+      % if cookie_user:
+      <a href="#" class="flex gap-4 px-4 py-2 hover:bg-gray-800 rounded-full relative">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M168 224a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm52.9-32a15.9 15.9 0 0 1-13.9 8H49a16 16 0 0 1-13.8-24.1c5.9-10.2 13-29.6 13-63.9v-8A79.9 79.9 0 0 1 128 24h.6c43.7.3 79.2 36.6 79.2 80.9v7.1c0 34.3 7.1 53.7 13 63.9a16.2 16.2 0 0 1 .1 16.1Zm-13.9-8c-6.9-12-15.2-34.1-15.2-72v-7.1c0-35.5-28.4-64.7-63.3-64.9h-.5a63.8 63.8 0 0 0-63.8 64v8c0 37.9-8.3 60-15.2 72Z"/></svg>
         <span class="hidden xl:flex">
           Notifications
@@ -58,43 +37,57 @@
           4
         </div>
       </a>
+      % end
+
 
       <!-- messages -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      % if cookie_user:
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m0 1c-.5 0-.94.17-1.28.47l7.78 5.03l7.78-5.03C18.94 6.17 18.5 6 18 6H5m6.5 6.71L3.13 7.28C3.05 7.5 3 7.75 3 8v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8c0-.25-.05-.5-.13-.72l-8.37 5.43Z"/></svg>
         <span class="hidden xl:flex">
           Messages
         </span>
       </a>
+      % end
+
 
       <!-- bookmarks -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      % if cookie_user:
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M184 36H72a12 12 0 0 0-12 12v176a3.9 3.9 0 0 0 2.1 3.5a3.8 3.8 0 0 0 4-.1l61.9-38.7l61.9 38.7a3.9 3.9 0 0 0 2.1.6a4.1 4.1 0 0 0 1.9-.5a3.9 3.9 0 0 0 2.1-3.5V48a12 12 0 0 0-12-12Zm4 180.8l-57.9-36.2a4 4 0 0 0-4.2 0L68 216.8V48a4 4 0 0 1 4-4h112a4 4 0 0 1 4 4Z"/></svg>
         <span class="hidden xl:flex">
           Bookmarks
         </span>
       </a>
+      % end
 
-      <!-- lists -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-        </svg>        
+
+      <!-- Twitter Blue -->
+      % if cookie_user:
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4c0 146.8-111.8 315.9-316.1 315.9c-63 0-121.4-18.3-170.6-49.8c9 1 17.6 1.4 26.8 1.4c52 0 99.8-17.6 137.9-47.4c-48.8-1-89.8-33-103.8-77c17.1 2.5 32.5 2.5 50.1-2a111 111 0 0 1-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 0 1-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 0 0 229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35c25.1-4.7 49.1-14.1 70.5-26.7c-8.3 25.7-25.7 47.4-48.8 61.1c22.4-2.4 44-8.6 64-17.3c-15.1 22.2-34 41.9-55.7 57.6z"/></svg>
         <span class="hidden xl:flex">
-          Lists
+          Twitter Blue
         </span>
       </a>
+      % end
+
 
       <!-- profile -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      % if cookie_user:
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M230.2 213a118.3 118.3 0 0 0-70.5-54.6a70 70 0 1 0-63.4 0A118.3 118.3 0 0 0 25.8 213a5.9 5.9 0 0 0 2.2 8.2a6 6 0 0 0 8.2-2.2a106 106 0 0 1 183.6 0a6 6 0 0 0 5.2 3a6.4 6.4 0 0 0 3-.8a5.9 5.9 0 0 0 2.2-8.2ZM70 96a58 58 0 1 1 58 58a58 58 0 0 1-58-58Z"/></svg>
         <span class="hidden xl:flex">
           Profile
         </span>
       </a>
+      % end
+      
+      
 
       <!-- more -->
-      <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-800 rounded-full">
+      % if cookie_user:
+      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-gray-800 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>        
@@ -102,9 +95,11 @@
           More
         </span>
       </a>
+      % end
+
 
      
-
+      % if cookie_user:
       <!-- tweetbutton -->
       <div class="xl:w-full xl:pr-8">
         <button class="xl:bg-sky-600 rounded-full xl:px-6 xl:py-3 items-center xl:w-full xl:items-stretch">
@@ -114,10 +109,12 @@
           <span class="hidden xl:flex justify-center">Tweet</span>
         </button>
       </div>
+      % end
+
 
       % if not cookie_user:
       <!-- login button -->
-      <a href="/login" class="flex gap-2 xl:w-full mt-auto mb-4 p-2 hover:bg-neutral-800 rounded-full items-center">
+      <a href="/login" class="flex gap-4 xl:w-full mt-auto mb-4 p-2 hover:bg-neutral-800 rounded-full items-center">
             <p>Log in</p>     
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
           <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
@@ -128,11 +125,12 @@
 
     % if cookie_user:
     <div class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-gray-800 rounded-xl">
+      <a href="{{cookie_user['username']}}">
       <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" class="w-12 h-12 rounded-full">
       <div class="">
         <div class="font-bold text-sm hidden xl:flex">{{cookie_user["user_firstname"]}} {{cookie_user["user_lastname"]}}</div>
-        <div class="text-gray-500 text-sm hidden xl:flex">@{{cookie_user["username"]}}</div>
-      </div>
+          <div class="text-gray-500 text-sm hidden xl:flex">@{{cookie_user["username"]}}</div>
+        </a>      </div>
       <svg width="32" height="32" viewBox="0 0 24 24" class="w-6 h-6 hidden xl:flex hover:text-sky-600 hover:cursor-pointer">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
         d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
