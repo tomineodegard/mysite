@@ -8,95 +8,6 @@ import uuid
 import x
 import git
 
-# -------------  route to render the index
-@get("/")
-def render_index():
-    try:
-        response.add_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
-        response.add_header("Pragma", "no-cache")
-        response.add_header("Expires", 0)
-        cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
-
-        db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
-        db.row_factory = dict_factory
-        tweets = db.execute("SELECT * FROM users JOIN tweets ON tweet_user_fk = user_id ORDER BY tweet_created_at DESC").fetchall()
-        trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
-        suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
-        return template("index", title="Twitter", cookie_user=cookie_user, suggested_users=suggested_users, trends=trends, tweets=tweets, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
-        
-
-    except Exception as ex:
-        print(ex)
-        return str(ex)
-
-
-    finally:
-        if "db" in locals():
-            db.close()
-
-
-
-# ----- route to render any username, dynamically from the database
-@get("/<username>")
-def render_username(username):
-    try:
-
-        # ----- connect to the twitter database
-        db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db")
-        db.row_factory = dict_factory
-        user = db.execute("SELECT * FROM users WHERE username=? COLLATE NOCASE", (username,)).fetchall()[0]
-        trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
-        suggested_users = db.execute("SELECT * FROM suggested_users").fetchall()
-        # ----- Get the user's id
-        user_id = user["user_id"]
-        print("-"*50)
-        print(f"user id: {user_id}")
-        cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
-
-
-        # ----- With that id, look up/get all the respectives tweets
-        tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at ASC LIMIT 10", (user_id,)).fetchall()
-        # print("-"*50)
-        # print(tweets)
-        # print("-"*50)
-
-        # ----- pass the tweets to the view. Template it
-        print(user)
-        return template("profile", title="Twitter", cookie_user=cookie_user, trends=trends, user=user, tweets=tweets, suggested_users=suggested_users)
-
-    except Exception as ex:
-        print("-"*50)
-        print(ex)
-        print("-"*50)
-        return "error"
-
-    finally:
-        if "db" in locals():
-            db.close()
-
-
-
-
-# ----- route to render the verification of a new user
-@get("/activate_user/<user_activation_key>")
-def _(user_activation_key):
-    try:
-        db = x.db()
-
-        user = db.execute("UPDATE users SET user_is_activated = 1 WHERE user_activation_key = ?", (user_activation_key,)).rowcount
-        print("-"*50)
-        print(user)
-        if not user: raise Exception("User not found")
-        db.commit()
-        return template("activate_user", title="Activate account - Twitter")
-
-    except Exception as ex:
-        print(ex)
-        return {"info":str(ex)}
-    finally:
-        if "db" in locals(): db.close()
-
-
 
 # ------------- connects to github and pythonanywhere
 @post('/secret_url_for_git_hook')
@@ -112,23 +23,19 @@ def dict_factory(cursor, row):
     col_names = [col[0] for col in cursor.description]
     return {key: value for key, value in zip(col_names, row)}
 
-# ------------- render login
-@get("/login")
-def _():
-    return template("login")
-
-
 
 # ------------- ROUTES
-import routes.login
-import routes.logout
-import routes.signup
+import routes.render_signup
+import routes.render_login
+import routes.render_logout
+import routes.render_index
+import routes.render_profile
+import routes.render_activate_user
 
 
 
 # ------------- VIEWS
 import views.tweet
-import views.test_follow
 
 # ------------- APIS
 import apis.api_login
@@ -136,6 +43,7 @@ import apis.api_signup
 import apis.api_send_sms
 import apis.api_tweet
 import apis.api_follow
+import apis.api_unfollow
 import apis.api_activate_user
 
 

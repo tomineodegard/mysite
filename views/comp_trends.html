@@ -1,0 +1,36 @@
+<!-- trending -->
+<div class="flex flex-col gap-4 w-full p-8 rounded-lg mt-8">
+  <div class="text-2xl font-bold">
+    Trending on twitter
+  </div>
+
+  % for trend in trends:
+    <!-- trend -->
+    <div class="">
+      <div class="flex">
+        <div class="text-white">
+          <p class="text-sm text-gray-500">Trending in {{trend["location_title"]}}</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 24 24" class="ml-auto text-gray-500">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+        </svg>
+      </div>
+      <div class="">
+        <p class="font-bold">{{trend["trend_title"]}}</p>
+      </div>
+      <div class="text-sm text-gray-500">
+        <p>{{ f'{int(trend["trend_total_hashtags"]):,d}'.replace(',','.') }} Tweets</p>
+
+        <!-- <p>{{trend["trend_total_hashtags"]}} Tweets</p> -->
+      </div>
+    </div>
+    <!-- end trend -->
+  % end
+
+  <!-- <a href="" class="text-sky-500">
+    Show more
+  </a> -->
+
+</div>
+<!-- end trending -->

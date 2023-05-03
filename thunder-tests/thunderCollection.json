@@ -6,7 +6,6 @@
     "sortNum": 10000,
     "folders": [],
     "settings": {
-      "headers": [],
       "tests": [
         {
           "type": "res-code",
@@ -34,7 +33,7 @@
         }
       ],
       "options": {
-        "baseUrl": "127.0.0.1:4000/"
+        "baseUrl": "127.0.0.1:4004/"
       }
     }
   },

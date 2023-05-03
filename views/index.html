@@ -16,16 +16,17 @@
       </title>
   </head>
   
-  <body class="w-screen h-full overflow-x-hidden overflow-y-scroll bg-black grid grid-cols-[1fr_minmax(0,1400px)_1fr] items-center place-content-center text-white">
+  <body class="w-full h-full overflow-x-hidden overflow-y-scroll bg-black items-center place-content-center text-white">
     
 
-  <main class="flex justify-center col-[2/3]">
+  <main class="justify-center col-[2/3] grid grid-cols-[100fr_150fr_100fr]">
 
 
   % include('comp_left')
   % include('comp_middle')
   % include('comp_right')
 
+  % include('comp_bottom_blue')
     
   </main>
 </body>

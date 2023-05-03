@@ -1,54 +1,5 @@
 [
   {
-    "_id": "be0276d9-e8f6-400b-8490-19adfbbee604",
-    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
-    "containerId": "",
-    "name": "api-follow",
-    "url": "127.0.0.1:4000/api-follow",
-    "method": "POST",
-    "sortNum": 10000,
-    "created": "2023-03-16T12:45:14.984Z",
-    "modified": "2023-03-16T13:00:25.876Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "user_followee_fk",
-          "value": "1234"
-        }
-      ]
-    },
-    "tests": [
-      {
-        "type": "res-code",
-        "custom": "",
-        "action": "equal",
-        "value": "200"
-      },
-      {
-        "type": "res-body",
-        "custom": "",
-        "action": "isjson",
-        "value": ""
-      },
-      {
-        "type": "Content-Type",
-        "custom": "",
-        "action": "equal",
-        "value": "application/json"
-      },
-      {
-        "type": "res-body",
-        "custom": "",
-        "action": "contains",
-        "value": "info"
-      }
-    ]
-  },
-  {
     "_id": "82ff3ae9-58d2-432a-a51e-8b43b15b3d05",
     "colId": "32b07cd1-bbe1-45b8-a985-8ae6fb0d5775",
     "containerId": "",
@@ -230,7 +181,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-27T13:38:45.810Z",
-    "modified": "2023-03-27T15:45:36.094Z",
+    "modified": "2023-04-26T13:44:09.497Z",
     "headers": [],
     "params": [],
     "body": {
@@ -239,11 +190,11 @@
       "form": [
         {
           "name": "user_email",
-          "value": ""
+          "value": "tomine@gmail.com"
         },
         {
           "name": "user_password",
-          "value": ""
+          "value": "password"
         }
       ]
     },
@@ -333,6 +284,54 @@
         {
           "name": "user_password",
           "value": "password"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "c2578a8d-d7ad-4b98-bdeb-579d3f3fef73",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-follow",
+    "url": "api-follow",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-04-26T12:23:15.027Z",
+    "modified": "2023-05-03T10:13:22.670Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "followee_fk",
+          "value": "rihanna"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "612a2ea1-f907-414b-99cc-e57a9d89dca5",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-unfollow",
+    "url": "api-unfollow",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2023-04-26T13:52:39.085Z",
+    "modified": "2023-05-03T10:36:41.830Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "unfollowee_fk",
+          "value": "rihanna"
         }
       ]
     },
