@@ -31,6 +31,8 @@ import routes.render_logout
 import routes.render_index
 import routes.render_profile
 import routes.render_activate_user
+import routes.render_settings
+
 
 
 

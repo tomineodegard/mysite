@@ -1,4 +1,4 @@
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT SIDE PANEL -->
   <div class="hidden lg:flex w-[400px] pl-6 pr-4 flex-col">
 
     <!-- search -->
@@ -47,6 +47,7 @@
         <p class="text-gray-500">By signing up, you agree to the <a href="#" class="text-sky-500">Terms of Service</a> and <a href="#" class="text-sky-500">Privacy Policy</a>, including <a href="#" class="text-sky-500">Cookie Use</a>.</p>
       </div>
     </div>
+    <!-- terms and conditions -->
     <div class="text-xs text-zinc-500 flex flex-wrap gap-4 items-center mt-4 cursor-pointer">
       <div><p>Terms of Service</p></div>
       <div><p>Privacy Policy</p></div>
@@ -65,87 +66,18 @@
     % end
 
 
-
-
-    <!-- trending -->
+    <!-- trending panel -->
     % if cookie_user:
-    <div class="flex flex-col gap-4 w-full p-2 bg-zinc-900 rounded-lg">
-      <div class="text-2xl font-bold">
-        Trends for you
-      </div>
-
-      % for trend in trends:
-        <!-- trend -->
-        <div class="">
-          <div class="flex">
-            <div class="text-white">
-              <p class="text-sm text-gray-500">Trending in {{trend["location_title"]}}</p>
-            </div>
-            <svg width="32" height="32" viewBox="0 0 24 24" class="ml-auto text-gray-500">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
-            </svg>
-          </div>
-          <div class="">
-            <p class="font-bold">{{trend["trend_title"]}}</p>
-          </div>
-          <div class="text-sm text-gray-500">
-            <p>{{ f'{int(trend["trend_total_hashtags"]):,d}'.replace(',','.') }} Tweets</p>
-
-            <!-- <p>{{trend["trend_total_hashtags"]}} Tweets</p> -->
-          </div>
-        </div>
-        <!-- end trend -->
-      % end
-
-      <a href="" class="text-sky-500">
-        Show more
-      </a>
-
-    </div>
+    % include('comp_trends')
     % end
-    <!-- end trending -->
+    <!-- end trending panel -->
 
-    <!-- who to follow -->
+    <!-- who to follow start -->
     % if cookie_user:
-    <div class="sticky top-20 flex flex-col gap-4 w-full p-2 mt-4 bg-zinc-900 rounded-lg">
-      <div class="text-2xl font-bold">
-        Who to follow
-      </div>
-      
-      % for suggested_user in suggested_users:
-      <!-- suggested user single -->
-
-      <a href="{{suggested_user['suggested_user_username']}}" class=" w-full h-full">
-       <div class="flex flex-col gap-6 mt-6">
-        <div class="flex items-center gap-4">
-          <img src="/images/profilepictures/{{suggested_user['suggested_user_picture']}}" class="w-12 h-12 rounded-full object-cover">
-          <div class="flex flex-col">
-            <div class="text-gray-200 font-bold">
-              {{suggested_user["suggested_user_firstname"]}} {{suggested_user["suggested_user_lastname"]}}
-            </div>
-            <div class="text-zinc-500">
-
-              @{{suggested_user["suggested_user_username"]}}
-            </div>
-          </div>
-          <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-gray-200 rounded-full">
-            Follow
-          </button>
-        </div>
-      </div>
-    </a>
-    <!-- end person -->
+    % include('comp_who_to_follow')
     % end
-
-      <a href="#" class="text-sky-500">
-        Show more
-      </a>
-
-    </div>
-    % end
-    <!-- end who to follow  -->
+  <!-- end who to follow  -->
 
 
   </div>
-  <!-- END RIGHT -->
+  <!-- END RIGHT SIDE PANEL -->

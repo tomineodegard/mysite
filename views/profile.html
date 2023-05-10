@@ -26,10 +26,10 @@
    % include('comp_left')
 
    <!-- middle -->
-   <div class="min-h-screen h-full border-x border-gray-600 max-w-[600px]">
+   <div id="profile" class="min-h-screen h-full border-x border-gray-600 max-w-[600px]">
       % include('comp_profile_header')
 
-      <!-- Tweets -->
+      <!-- Profile tweets -->
       % for tweet in tweets:
       <div class="flex gap-4 p-4 border-t border-gray-600">
          <div class="">
@@ -112,10 +112,14 @@
          <!-- end right column of tweet -->
       </div>
       % end
-      <!-- Tweets end -->
+      <!-- Profile tweets end -->
    </div>
    <!-- end middle -->
    % include('comp_right')
+
+   % if not cookie_user:
+   % include('comp_bottom_blue')
+   % end
 
 
       </main>

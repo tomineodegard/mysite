@@ -12,11 +12,20 @@ CREATE TABLE trends(
                          
 
 INSERT INTO trends VALUES(
+    "f3bdbe58f22b4781b596a2bf0d89fc43",
+    "89ffc88c611744518eab6a6dc7cf1bd8",
+    "43143be9e2584fc89b0ae71625de3da4",
+    "Store Bededag",
+    "2190"
+);
+
+
+INSERT INTO trends VALUES(
     "88292d096d3140dc9438bd24596e5010",
     "add4498db796415484cc22890b707d91",
     "43143be9e2584fc89b0ae71625de3da4",
-    "Rød grød med fløde",
-    "26"
+    "ChatGPT",
+    "89000"
 );
 
 INSERT INTO trends VALUES(
@@ -34,4 +43,5 @@ INSERT INTO trends VALUES(
     "Twitter algorithm",
     "199999"
 );
+
 

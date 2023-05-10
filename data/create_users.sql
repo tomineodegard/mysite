@@ -10,6 +10,7 @@ CREATE TABLE users(
     user_created_at           TEXT,
     user_firstname            TEXT,
     user_lastname             TEXT,
+    user_bio                  TEXT,
     user_is_verified          TEXT DEFAULT 0,
     user_total_followers      INTEGER DEFAULT 0,
     user_total_following      INTEGER DEFAULT 0,
@@ -30,6 +31,7 @@ INSERT INTO users VALUES(
 "June 2009",
 "Elon", 
 "Musk", 
+"Bio coming here",
 "1", 
 "128900000", 
 "177", 
@@ -47,7 +49,8 @@ INSERT INTO users VALUES(
 "password",
 "April 2010",
 "Shakira", 
-"", 
+"",
+"Bio coming here", 
 "1", 
 "53700000", 
 "235", 
@@ -66,6 +69,7 @@ INSERT INTO users VALUES(
 "August 2009", 
 "Rihanna", 
 "", 
+"Bio coming here",
 "1", 
 "107000000", 
 "980", 
@@ -85,12 +89,13 @@ INSERT INTO users VALUES(
 "August 2009", 
 "Barack", 
 "Obama", 
+"Bio coming here",
 "1", 
 "132897676", 
 "561038", 
 "16800", 
 "b3aed51663ad43079f44e05d8963d776.jpeg", 
-"c514dea6b96b4a359ca1040184467d4e.jpeg",
+"f60e3019f269420a8d5589222ffd4eff.jpeg",
 "1",
 "fedd8d68227a4b09be28582432a3e5a2"
 );
@@ -103,15 +108,116 @@ INSERT INTO users VALUES(
 "Februrary 2023", 
 "Tomine", 
 "Ødegård", 
+"Bio coming here",
 "0", 
-"107000000", 
-"980", 
-"10600", 
+"0", 
+"0", 
+"0", 
 "50f4de12dcd04b6db49a8831c520662a.jpg", 
 "72712dce089e487f9c877ff0b39fd03e.jpg",
 "1",
 "988c0e1ce84e43ca97d4a60978c2628f"
 );
+
+INSERT INTO users VALUES(
+"5293c15d99904c6bbb512f8828216486", 
+"beyonce",
+"beyonce@gmail.com", 
+"password",
+"April 2009", 
+"Beyoncé", 
+"", 
+"Bio coming here",
+"0", 
+"0", 
+"0", 
+"0", 
+"95eb1075b6ec4804964e14094f8dae46.jpeg", 
+"cef45e69e9f64069a6cec9f995fa5c88.jpeg",
+"1",
+"28255b871ac34bf5be087e62b800c0e9"
+);
+
+
+INSERT INTO users VALUES(
+"999ac9342c79411c9a4800f2af792847", 
+"billgates",
+"beyonce@gmail.com", 
+"password",
+"June 2009", 
+"Bill", 
+"Gates", 
+"Bio coming here",
+"0", 
+"500048", 
+"536", 
+"0", 
+"720e20d964e844b39068767d25e79623.jpeg", 
+"9832d0b2a1e94238b4e2993e46a7b069.jpeg",
+"1",
+"696a9430f4044501aab1d231267e5b9f"
+);
+
+
+INSERT INTO users VALUES(
+"38ccc0414dcc4aecb72dfa207b947fa1", 
+"kyliejenner",
+"kylie@gmail.com", 
+"password",
+"January 2011", 
+"Kylie", 
+"Jenner", 
+"Bio coming here",
+"0", 
+"4000048", 
+"959", 
+"14200", 
+"a0fbf16e7daa41daa95e95d6f9b54cfb.jpeg", 
+"724cee819e554d6999768e199bf9fd83.jpeg",
+"1",
+"696a9430f4044501aab1d231267e5b9f"
+);
+
+INSERT INTO users VALUES(
+"f415ccbd409f4547bf7e263f92e550af", 
+"justinbieber",
+"justin@gmail.com", 
+"password",
+"January 2011", 
+"Justin", 
+"Bieber", 
+"Bio coming here",
+"0", 
+"14000048", 
+"279000", 
+"31200", 
+"6b04b05663294572ab43c5982bdfc1f4.jpeg", 
+"3a860033043d48da9bb76d68b5023886.jpeg",
+"1",
+"32201dd332d54e7ea6380e3da442a6e2"
+);
+
+
+INSERT INTO users VALUES(
+"73efc6d9a14f42d4ba7e7f55393efa5c", 
+"jeffbezoz",
+"jeff@gmail.com", 
+"password",
+"July 2008", 
+"Jeff", 
+"Bezoz", 
+"Bio coming here",
+"0", 
+"61000000", 
+"220", 
+"391", 
+"06d072b8dc624d93bbc39802cd013ab8.jpeg", 
+"fecbbd05a777412f8a5e13fd8846825d.jpeg",
+"1",
+"1c39de32d86e4f15b965d75748386e74"
+);
+
+
 
 -- CREATE UNIQUE INDEX idx_users_username ON users(username);
 -- CREATE INDEX idx_users_firstname ON users(user_firstname);

@@ -3,7 +3,7 @@
     <!-- left col -->
     <div class="p-4 flex flex-col justify-between items-center">
       <a href="{{tweet['username']}}">
-        <img src="/images/profilepictures/{{tweet['user_profile_picture']}}" class="w-12 h-12 rounded-full object-cover">
+        <img src="/images/profilepictures/{{tweet['user_profile_picture']}}" class="w-12 h-auto rounded-full object-cover">
       </a>
     </div>
      <!-- left col end -->
@@ -15,7 +15,7 @@
             % if tweet["user_is_verified"]:
             <svg width="20" height="20" viewBox="0 0 24 24" class="text-sky-500"><path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/></svg>
             % end
-            <p class="ml-1 text-sm text-gray-500 font-medium group-hover:text-gray-300 transition ease-in-out duration-150">
+            <p class="text-sm text-zinc-500 font-medium group-hover:text-gray-300 transition ease-in-out duration-150">
               @{{tweet["username"]}}
             </p>
           </a>
@@ -23,9 +23,10 @@
 
             <!-- ellipse icon -->
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots w-6 h-6 ml-auto text-zinc-400 hover:text-sky-600 hover:cursor-pointer" viewBox="0 0 16 16">
-              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
+              <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-gray-500">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+              </svg>
             </div>
       </div>
        <!-- tweet userinfo end -->

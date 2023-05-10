@@ -1,5 +1,11 @@
  <div class="min-h-screen h-full border-x border-gray-600 max-w-[600px]">
 
+  % if not cookie_user:
+  <div class="flex justify-center items-center h-full w-full text-xl">
+    <h2>Content coming soon</h2>
+  </div>
+  % end
+  
   % if cookie_user:
     <!-- Toggle options -->
     <div class="sticky top-0 z-0 bg-black backdrop-blur-md border-zinc-600 border-b">
@@ -21,7 +27,7 @@
    % end
 
   % if cookie_user:
-  % include('tweet')
+  % include('comp_new_tweet_modal')
   % end
 
    
@@ -40,11 +46,6 @@
        Get started
      </button>
    </div>
-   % end
-
-
-   % if not cookie_user:
-   % include('comp_trends')
    % end
 
    % if cookie_user:

@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="app.css">
     <script defer src="/js/post_tweet.js"></script>
     <script defer src="/js/validate.js"></script>
+    <script defer src="/js/follow.js"></script>
+    <script defer src="/js/unfollow.js"></script>
+
       <title>
         % if defined("user"):
           {{user["user_firstname"]}} {{user["user_lastname"]}}
@@ -17,17 +20,16 @@
   </head>
   
   <body class="w-full h-full overflow-x-hidden overflow-y-scroll bg-black items-center place-content-center text-white">
-    
+    <main class="justify-center col-[2/3] grid grid-cols-[100fr_150fr_100fr]">
 
-  <main class="justify-center col-[2/3] grid grid-cols-[100fr_150fr_100fr]">
+    % include('comp_left')
+    % include('comp_middle')
+    % include('comp_right')
 
-
-  % include('comp_left')
-  % include('comp_middle')
-  % include('comp_right')
-
-  % include('comp_bottom_blue')
-    
+    % if not cookie_user:
+    % include('comp_bottom_blue')
+    % end
+  
   </main>
 </body>
 </html>

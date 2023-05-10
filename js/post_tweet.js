@@ -6,12 +6,7 @@ async function tweet() {
      body: new FormData(frm),
     });
     const data = await conn.json();
-
-
-    // console.log(data);
-    console.log(data.cookie_user.user_profile_picture);
-
-
+    
     document.querySelector("#welcome_back").insertAdjacentHTML(
         "afterend",
 

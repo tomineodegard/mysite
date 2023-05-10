@@ -17,7 +17,6 @@ def _():
         print("followee_username is" + "-"*30)
         print(followee_username)
         print("followee_fk is" + "-"*30)
-
         print(followee_fk["user_id"])
 
 
@@ -26,7 +25,7 @@ def _():
         db.commit()
         
         # return {"info":f"user with id {follower_fk} is following user with id {followee_fk} successfully"}
-        return {"info":"follow success", "username":followee_username}
+        return {"info":"follow success"}
     except Exception as ex:
         print("-"*30)
         print(ex)

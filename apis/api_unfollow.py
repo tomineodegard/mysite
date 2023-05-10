@@ -24,7 +24,7 @@ def _():
         print("unfollowee_fk is" + "-"*30)
 
         db.commit()
-        return {"info":f"user with id {unfollower_fk} is unfollowing {unfollowee_username}", "username":unfollowee_username}
+        return {"info":f"user with id {unfollower_fk} is unfollowing {unfollowee_username}"}
     
     except Exception as ex:
         print("-"*30)
