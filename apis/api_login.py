@@ -13,14 +13,20 @@ def _():
 		# Validate
 		user_email = x.validate_user_email()
 		user_password = x.validate_user_password()
-		print("fixing login")
+
 		# Connect to database
 		db = x.db()
 		cookie_user = db.execute("SELECT * FROM users WHERE user_email = ? LIMIT 1", (user_email,)).fetchone()
 		print("-"*50)
 		print(cookie_user)
 		
-		if not cookie_user: raise Exception(400, "You can not log in")
+		activated_user = cookie_user["user_is_activated"]
+		print("-"*50)
+		print(activated_user)
+
+		if not activated_user == "1": raise Exception(400, "You need to check your email and activate your account before you can log in.")
+		
+		if not cookie_user: raise Exception(400, "Wrong credidentials")
 		# if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
 			# raise Exception(400, "Error, the credentials you have entered are invalid")
 		try:

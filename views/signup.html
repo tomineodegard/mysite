@@ -15,17 +15,23 @@
     <div>
         <h1 class="text-4xl text-white">Sign up to Twitter</h1>
     </div>
-    <form onsubmit="render_signup(); return false" class="flex flex-col gap-4">
-        <input name="username" type="text" placeholder="Username" class="placeholder:text-slate-400 py-2 px-6 rounded-full">
-        <input name="user_firstname" type="text" placeholder="First name" class="placeholder:text-slate-400 py-2 px-6 rounded-full">
-        <input name="user_lastname" type="text" placeholder="Last name" class="placeholder:text-slate-400 py-2 px-6 rounded-full">
-        <input name="user_email" type="text" placeholder="Email" class="placeholder:text-slate-400 py-2 px-6 rounded-full">
-        <input name="user_password" type="password" placeholder="Password" class="placeholder:text-slate-400 py-2 px-6 rounded-full"/>
-        <button type="submit" class="cursor-pointer bg-sky-500 py-2 px-6 rounded-full text-white">Create account</button>
+    <form onsubmit="render_signup(); return false" class="flex flex-col gap-4">  
+        <label for="username" class="text-zinc-400 text-sm -mb-2">Username</label>
+        <input name="username" type="text" placeholder="Username" class="placeholder:text-slate-400 py-2 px-6 rounded-full  focus:ring-twitterBlue focus:border-twitterBlue">
+        <label for="user_firstname" class="text-zinc-400 text-sm -mb-2">First name</label>
+        <input name="user_firstname" type="text" placeholder="First name" class="placeholder:text-slate-400 py-2 px-6 rounded-full focus:ring-twitterBlue focus:border-twitterBlue">
+        <label for="user_lastname" class="text-zinc-400 text-sm -mb-2">Last name</label>
+        <input name="user_lastname" type="text" placeholder="Last name" class="placeholder:text-slate-400 py-2 px-6 rounded-full focus:ring-twitterBlue focus:border-twitterBlue">
+        <label for="user_email" class="text-zinc-400 text-sm -mb-2">Email</label>
+        <input name="user_email" type="email" placeholder="Email" class="placeholder:text-slate-400 py-2 px-6 rounded-full">
+        <label for="user_password" class="text-zinc-400 text-sm -mb-2">Password</label>
+        <input name="user_password" type="password" placeholder="Password" class="placeholder:text-slate-400 py-2 px-6 rounded-full focus:ring-twitterBlue focus:border-twitterBlue"/>
+        <button type="submit" class="cursor-pointer bg-twitterBlue py-2 px-6 rounded-full text-white ">Create account</button>
     </form>
 
-    <a href="/" class="text-sky-500 no-underline hover:underline"><p class="text-trending text-base">Already have an account? Log in</p></a>
+    <a href="/" class="text-twitterBlue no-underline hover:underline"><p class="text-trending text-base">Already have an account? Log in</p></a>
 
+    % include('comp_error_modal')
     <script src="/js/render_signup.js"></script>
 </body>
 </html>

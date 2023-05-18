@@ -7,11 +7,15 @@ async function render_login() {
      body: new FormData(form),
     })
     const data = await connection.json();
-    data.info === "success login" ? location.href = `/` : displayError
+    data.info === "success login" ? location.href = `/` : displayError();
     console.log(data)
 
 
     function displayError() {
-        console.log(data.info)
+        const errorMessage = data.info;
+        console.log(errorMessage)
+
+        document.querySelector("#errorModal").classList.remove("hidden");
+        document.querySelector("#errorMessage").textContent = errorMessage
     }
 };

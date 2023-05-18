@@ -46,9 +46,10 @@ def validate_username():
   print("-"*50)
   print(request.forms.get("username"))
   
-  error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
+  error = f"Something went wrong when creating your username."
+
+  # error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
   request.forms.username = request.forms.username.strip()
-  print ("*" * 50 + "HELLO???")
   print (request.forms.username)
   if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
   if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
@@ -96,7 +97,7 @@ USER_EMAIL_MAX = 100
 USER_EMAIL_REGEX = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
 
 def validate_user_email():
-	error = f"user_email invalid"
+	error = f"The email you entered did not match our records. Please double check and try again."
 	user_email = request.forms.get("user_email", "")        
 	user_email = user_email.strip()
 	if len(user_email) < USER_EMAIL_MIN : raise Exception(400, error)
@@ -112,7 +113,7 @@ USER_PASSWORD_MAX = 50
 def validate_user_password():
   password = request.forms.user_password 
   print(password) 
-  error = f"user_password {USER_PASSWORD_MIN} to {USER_PASSWORD_MAX} characters" 
+  error = f"The password you entered did not match our records. Please double check and try again." 
   request.forms.user_password = request.forms.user_password.strip() 
   if len(request.forms.user_password) < USER_PASSWORD_MIN:
     raise Exception(error) 
@@ -130,6 +131,17 @@ def validate_tweet():
   if len(request.forms.message) < TWEET_MIN_LEN: raise Exception(error)
   if len(request.forms.message) > TWEET_MAX_LEN: raise Exception(error)
   return request.forms.get("message")
+
+
+# ------------------ bio validation
+BIO_MIN_LEN = 2
+BIO_MAX_LEN = 280
+
+def validate_user_bio():
+  error = f"Bio is not valid, the bio must contain minimum {BIO_MIN_LEN} charactes and maximum {BIO_MAX_LEN} characters"
+  if len(request.forms.user_bio) < BIO_MIN_LEN: raise Exception(error)
+  if len(request.forms.user_bio) > BIO_MAX_LEN: raise Exception(error)
+  return request.forms.get("user_bio")
 
 
 

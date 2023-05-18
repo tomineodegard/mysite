@@ -320,9 +320,9 @@
     "name": "api-unfollow",
     "url": "api-unfollow",
     "method": "DELETE",
-    "sortNum": 80000,
+    "sortNum": 100000,
     "created": "2023-04-26T13:52:39.085Z",
-    "modified": "2023-05-03T10:36:41.830Z",
+    "modified": "2023-05-10T13:39:45.247Z",
     "headers": [],
     "params": [],
     "body": {
@@ -332,6 +332,38 @@
         {
           "name": "unfollowee_fk",
           "value": "rihanna"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "a606010f-cfef-438e-9552-08fb7c6a1021",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-update-user",
+    "url": "api-update-user",
+    "method": "POST",
+    "sortNum": 90000,
+    "created": "2023-05-10T13:39:19.060Z",
+    "modified": "2023-05-11T15:18:28.102Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_firstname",
+          "value": "Tomineee"
+        },
+        {
+          "name": "user_lastname",
+          "value": "Oedegaard"
+        },
+        {
+          "name": "user_bio",
+          "value": "This is my NEW bio"
         }
       ]
     },

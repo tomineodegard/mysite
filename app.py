@@ -47,6 +47,7 @@ import apis.api_tweet
 import apis.api_follow
 import apis.api_unfollow
 import apis.api_activate_user
+import apis.api_update_user
 
 
 # ------------- BRIDGES
@@ -91,6 +92,10 @@ def render_jpeg(filename):
 
 @get("/images/<filename:re:.*\.jpg>")
 def render_jpg(filename):
+    return static_file(filename, root="./images")
+
+@get("/images/<filename:re:.*\.png>")
+def render_png(filename):
     return static_file(filename, root="./images")
 
 

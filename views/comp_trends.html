@@ -7,9 +7,9 @@
     <div class="">
       <div class="flex">
         <div class="text-white">
-          <p class="text-sm text-gray-500">Trending in {{trend["location_title"]}}</p>
+          <p class="text-sm text-twitterLightGray">Trending in {{trend["location_title"]}}</p>
         </div>
-        <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-gray-500">
+        <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray">
           <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
             d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
         </svg>
@@ -17,13 +17,13 @@
       <div class="">
         <p class="font-bold">{{trend["trend_title"]}}</p>
       </div>
-      <div class="text-sm text-gray-500">
+      <div class="text-sm text-twitterLightGray">
         <p>{{ f'{int(trend["trend_total_hashtags"]):,d}'.replace(',','.') }} Tweets</p>
       </div>
     </div>
   % end
 
-  <a href="" class="text-sky-500">
+  <a href="" class="text-twitterBlue">
     Show more
   </a>
 

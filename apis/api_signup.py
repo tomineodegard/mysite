@@ -28,6 +28,7 @@ def _():
             "user_created_at" : int(time.time()),
             "user_firstname" : user_firstname,
             "user_lastname" : user_lastname,
+	   		"user_bio" : "",
             "user_is_verified" : 0,
             "user_total_followers" : 0,
             "user_total_following" : 0,
@@ -111,9 +112,11 @@ def _():
 			if "user_email" in str(ex): 
 				response.status = 400 
 				return {"info":"user_email already exists"}
+
 			if "username" in str(ex): 
 				response.status = 400 
 				return {"info":"username already exists"}
+
 			# unknown scenario
 			response.status = 500
 			return {"info":str(ex)}

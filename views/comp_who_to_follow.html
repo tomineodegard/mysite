@@ -4,19 +4,25 @@
       % for suggested_user in suggested_users:
       <a href="{{suggested_user['username']}}" class=" w-full h-full">
       <div class="flex flex-col gap-6 mt-6">
-        <div class="flex items-center gap-4">
-          <img src="/images/profilepictures/{{suggested_user['user_profile_picture']}}" class="w-12 h-12 rounded-full object-cover">
-          <div class="flex flex-col">
-            <div class="text-gray-200 font-bold flex gap-2">
-              {{suggested_user["user_firstname"]}} {{suggested_user["user_lastname"]}}
-              % if suggested_user["user_is_verified"]:
-              <svg width="20" height="20" viewBox="0 0 24 24" class="text-sky-500">
-                  <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
-              </svg>
-              % end
-            </div>
-            <div>
-              <p class="text-zinc-500">@{{suggested_user["username"]}}</p>
+        <div class="flex items-center justify-between">
+          <div class="flex gap-4">
+            % if suggested_user["user_profile_picture"]:
+            <img src="/images/profilepictures/{{suggested_user['user_profile_picture']}}" class="w-12 h-12 rounded-full object-cover">
+            % else:
+            <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-12 rounded-full">
+            % end
+            <div class="flex flex-col">
+              <div class="text-white font-bold flex gap-2">
+                {{suggested_user["user_firstname"]}} {{suggested_user["user_lastname"]}}
+                % if suggested_user["user_is_verified"]:
+                <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
+                    <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
+                </svg>
+                % end
+              </div>
+              <div>
+                <p class="text-zinc-500">@{{suggested_user["username"]}}</p>
+              </div>
             </div>
           </div>
 
@@ -32,5 +38,5 @@
     </a>
     % end
 
-    <a href="#" class="text-sky-500">Show more</a>
+    <a href="#" class="text-twitterBlue">Show more</a>
 </div>

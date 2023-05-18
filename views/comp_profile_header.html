@@ -11,31 +11,43 @@
         
         <div class="flex flex-row items-center">
             <p class="font-bold text-xl px-4">{{user["user_firstname"]}} {{user["user_lastname"]}}</p>
+           
             % if user["user_is_verified"]:
-            <svg width="20" height="20" viewBox="0 0 24 24" class="text-sky-500">
+            <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
                 <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
             </svg>
             % end
 
             % if user["user_is_activated"] == "1":
-            <svg width="20" height="20" viewBox="0 0 24 24" class="text-red-500">
+            <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterRed">
                 <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
             </svg>
             % end
         </div>
-    </div>
-
-        <p class="px-10 text-xs font-normal text-gray-400 pb-4">
-            {{ f'{int(user["user_total_tweets"]):,d}'.replace(',','.') }} Tweets
-        </p>
         
+    </div>
+        <p class="px-10 text-xs font-normal text-twitterLightGray pb-4">
+            {{user["user_total_tweets"]}} Tweets
+        </p>
+    
+        % if user["user_cover_picture"]:
         <img src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture" class="object-cover">
+       % else:
+        <div class="w-full bg-cover bg-no-repeat bg-center h-[200px]">
+            <div class="bg-zinc-600 w-full h-full"></div>
+        </div>
+        % end
+    
     </div>
     <!-- end top details -->
     
 
     <div class="flex px-4">
+        % if user["user_profile_picture"]:
         <img src="/images/profilepictures/{{user['user_profile_picture']}}" alt="" class="w-28 h-28 rounded-full object-cover border-4 border-black -mt-12">
+        % else:
+        <img src="/images/profilepictures/default_avatar.png" alt="" class="w-28 h-28 rounded-full object-cover border-4 border-black -mt-12">
+        % end
         <div class="flex ml-auto items-center gap-2">
         <a href="">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -47,8 +59,9 @@
 
         <div id="follow_unfollow" value="{{user['username']}}_profile">
             % if cookie_user["user_id"] == user_id:
-            <button href="{{user['username']}}/settings" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-base font-medium bg-gray-200 rounded-full">Edit profile</button>
-            
+            <button onclick="displayModal()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-base font-medium bg-gray-200 rounded-full">Edit profile</button>
+            % include('comp_settings_modal')
+
             % elif follow == []:
             <form onsubmit="follow(); return false">
                 <input type="text" name="followee_fk" value="{{user['username']}}" style="display:none">
@@ -73,37 +86,39 @@
         <div>
         <div class="flex items-center gap-2 mt-4">
             <p class="font-bold text-xl">{{user["user_firstname"]}} {{user["user_lastname"]}}</p>
+
             % if user["user_is_verified"]:
-            <svg width="20" height="20" viewBox="0 0 24 24" class="text-sky-500">
+            <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
                 <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
             </svg>
             % end
+
         </div>
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-2">
                 <div class="">
-                    <p class="text-sm text-gray-400">@{{user["username"]}}</p>
+                    <p class="text-sm text-twitterLightGray">@{{user["username"]}}</p>
                 </div>
                 <div class="mt-4">
                     <p class="text-white text-base">{{user["user_bio"]}}</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-twitterLightGray">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                     </svg>
-                    <p class="text-sm text-gray-400">Joined {{user["user_created_at"]}}</p>
+                    <p class="text-sm text-twitterLightGray">Joined <span class="epoch">{{user["user_created_at"]}}</span></p>
                 </div>
             </div>
             %if cookie_user:
             <div class="flex gap-4">
-                <p class="text-sm text-gray-400"><span id="my_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
-                <p class="text-sm text-gray-400"><span id="my_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
+                <p class="text-sm text-twitterLightGray"><span id="my_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
+                <p class="text-sm text-twitterLightGray"><span id="my_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
             </div>
 
             % else:
             <div class="flex gap-4">
-                <p class="text-sm text-gray-400"><span id="user_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
-                <p class="text-sm text-gray-400"><span id="user_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
+                <p class="text-sm text-twitterLightGray"><span id="user_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
+                <p class="text-sm text-twitterLightGray"><span id="user_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
             </div>
             % end
         </div>
@@ -116,7 +131,7 @@
  <div>
     <div class="flex">
        <a href="" class="w-full hover:bg-zinc-800 text-center p-4 text-sm">
-       <span class="border-b-4 border-sky-400 pb-4">
+       <span class="border-b-4 border-twitterBlue pb-4">
        Tweets
        </span>
        </a>

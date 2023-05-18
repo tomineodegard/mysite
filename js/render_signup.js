@@ -13,8 +13,11 @@ async function render_signup() {
     console.log(data)
 
     function displayError() {
-        console.log(data.info)
-        // TO DO: Create popup with error message
+        const errorMessage = data.info;
+        console.log(errorMessage)
+
+        document.querySelector("#errorModal").classList.remove("hidden");
+        document.querySelector("#errorMessage").textContent = errorMessage
     }
 };
    

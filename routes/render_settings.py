@@ -1,7 +1,7 @@
 from bottle import get, template, request
 import x
 
-@get("/<username>/settings")
+@get("/settings")
 def render_settings(username):
     try:
         db = x.db()

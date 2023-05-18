@@ -1,0 +1,38 @@
+<!-- Full screen modal with overlay start -->
+<form action="" >
+<div id="settingsModal" class="hidden z-10 fixed top-0 left-0 w-full h-full bg-zinc-900 bg-opacity-80 overflow-auto">
+    <!-- Modal content -->
+    <div class= "bg-black rounded-lg w-full h-fit flex flex-col justify-start mx-auto my-0 md:w-5/12 md:h-fit md:my-32">
+        <!-- Navigation -->
+        <div class="p-4 flex items-center justify-between">
+            <div class="flex gap-2">
+                <button onclick="closeModal()">
+                    <svg class="closeModal" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 15 15"><path fill="currentColor" fill-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" clip-rule="evenodd"/></svg>
+                </button>
+                <p class="text-base text-white">Edit profile</p>
+            </div>
+            <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-gray-200 rounded-full">Save</button>
+    
+        </div>
+        <!-- Coverpicture -->
+        <div class="top-0">
+            <img src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture" class="object-cover">
+        </div>
+
+        <!-- Personal information wrapper -->
+        <div class="flex flex-col text-white p-4">
+            <!-- Form with input fields -->
+            <div class="">
+                <form action="" >
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" name="new_user_firstname" value="{{cookie_user['user_firstname']}}" placeholder="{{cookie_user['user_firstname']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full focus:ring-blue-500 focus:border-blue-500">
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastname" name="new_user_lastname" value="{{cookie_user['user_lastname']}}" placeholder="{{cookie_user['user_lastname']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full">
+                    <label for="bio">Bio</label>
+                    <input type="text" id="bio" name="new_user_bio" value="{{cookie_user['user_bio']}}" placeholder="{{cookie_user['user_bio']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full"> 
+                </div>                
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Modal end -->
