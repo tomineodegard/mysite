@@ -32,9 +32,10 @@ async function tweet() {
     
                 <!-- ... icon -->
                 <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots w-6 h-6 ml-auto text-zinc-400 hover:text-twitterBlue hover:cursor-pointer" viewBox="0 0 16 16">
-                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                </svg>
+                <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+              </svg>
                 </div>
           </div>
            <!-- tweet userinfo end -->
@@ -85,4 +86,7 @@ async function tweet() {
          </div>
        </div>`
     )
+
+    // empty the input field from the form
+    frm[0].value = "";
 };

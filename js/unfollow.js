@@ -25,7 +25,7 @@ async function unfollow(){
         `
         <form onsubmit="follow(); return false">
             <input type="text" name="followee_fk" value="${username}" style="display:none">
-            <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-gray-200 rounded-full">Follow</button>
+            <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full">Follow</button>
         </form>  
         `
     )

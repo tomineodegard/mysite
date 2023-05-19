@@ -22,10 +22,24 @@ def _():
 
         follow_success = db.execute("INSERT INTO followers VALUES(?, ?, ?)", (follower_fk, followee_fk["user_id"], followed_at))
         if not follow_success:raise Exception("user not followed")
+
+        user_total_followers = db.execute("SELECT * FROM users WHERE user_total_followers = ?").fetchall()
+
+        if user_total_followers["user_total_followers"] >= 3:
+            rows_affected = db.execute("""
+                UPDATE users 
+                SET user_is_verified = 1
+                WHERE user_id = ?
+            """, (followee_fk,))
+            if not rows_affected: raise Exception (400, "user not found")
+            user_is_verified = 1
         db.commit()
         
-        # return {"info":f"user with id {follower_fk} is following user with id {followee_fk} successfully"}
-        return {"info":"follow success"}
+        return {
+            "info":"follow success", 
+            "user_is_verified":user_is_verified,
+            "user_total_followers":user_total_followers
+        }
     except Exception as ex:
         print("-"*30)
         print(ex)

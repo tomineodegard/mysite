@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
+    <script defer src="/js/render_login.js"></script>
     <title>{{title}}</title>
 </head>
 <body class="bg-black w-full flex flex-col justify-center items-center h-screen gap-6">
@@ -23,8 +24,6 @@
 
     <a href="/signup" class="text-twitterBlue no-underline hover:underline"><p class="text-trending text-base">Don't have an account? Signup</p></a>
 
-    % include('comp_error_modal')
-
-    <script src="/js/render_login.js"></script>
+    % include('modal_error')
 </body>
 </html>

@@ -1,10 +1,22 @@
 "use strict"
 
 function displayModal() {
-    document.querySelector("#settingsModal").classList.remove("hidden");
+    document.querySelector("#modal_profile_options").classList.remove("hidden");
 };
 
 
 function closeModal() {
-    document.querySelector("#settingsModal").classList.add("hidden");
+    document.querySelector("#modal_profile_options").classList.add("hidden");
 };
+
+
+function displaySettingsModal() {
+    document.querySelector("#settingsmodal").classList.remove("hidden");
+};
+
+
+function closeSettingsModal() {
+    document.querySelector("#settingsmodal").classList.add("hidden");
+};
+
+

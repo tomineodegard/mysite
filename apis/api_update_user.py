@@ -9,9 +9,17 @@ def _():
         user_id = cookie_user["user_id"]
 
         new_user_firstname = x.validate_user_firstname()
-        new_user_lastname = x.validate_user_lastname()
         new_user_bio = x.validate_user_bio()
-        print(new_user_bio)
+        new_user_lastname = ""
+
+        input_new_user_lastname = request.forms.get("user_lastname")
+        # print("input_new_user_lastname is this:"+"-"*50)
+        # print(input_new_user_lastname)
+        if input_new_user_lastname:
+            print("input_new_user_lastname is TRUE:"+"-"*50)
+            print(input_new_user_lastname)
+            new_user_lastname = x.validate_user_lastname()
+        
 
 
         update_user = db.execute("UPDATE users SET user_firstname = ?, user_lastname = ?, user_bio = ? WHERE user_id = ?", (new_user_firstname, new_user_lastname, new_user_bio, user_id)).rowcount

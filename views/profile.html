@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
     <script defer src="/js/post_tweet.js"></script>
-    <script defer src="/js/validate.js"></script>
+    <!-- <script defer src="/js/validate.js"></script> -->
     <script defer src="/js/follow.js"></script>
     <script defer src="/js/unfollow.js"></script>
     <script defer src="/js/convert_epoch.js"></script>
@@ -17,7 +17,7 @@
 
     <title>
       % if defined("user"):
-        {{user["user_firstname"]}} {{user["user_lastname"]}}
+        {{user["user_firstname"]}} {{user["user_lastname"]}} (@{{user["username"]}})
       % else:
         Twitter
       % end 

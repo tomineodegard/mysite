@@ -1,4 +1,4 @@
-from bottle import post, response
+from bottle import post, response, request
 import x
 import uuid
 import time
@@ -11,7 +11,13 @@ from email.mime.multipart import MIMEMultipart
 @post("/api-signup")
 def _():
 	try:
-		username = x.validate_username()
+		db = x.db()
+		taken_username = db.execute("SELECT username FROM users WHERE username = ?",(request.forms.username,)).fetchone()
+		
+		print(taken_username)
+		
+		username = x.validate_username(taken_username)
+
 		user_firstname = x.validate_user_firstname()
 		user_lastname = x.validate_user_lastname()
 		user_email = x.validate_user_email()
@@ -48,7 +54,7 @@ def _():
 		print(values)
 
 		# Connect to database	
-		db = x.db()
+		
 		total_rows_inserted = db.execute(f"INSERT INTO users VALUES({values})", new_user).rowcount        
 		if total_rows_inserted != 1: raise Exception("Please, try again")
 
@@ -111,11 +117,12 @@ def _():
 		except: # Something unknown went wrong
 			if "user_email" in str(ex): 
 				response.status = 400 
-				return {"info":"user_email already exists"}
+				return {"info":f"{ex}"}
 
 			if "username" in str(ex): 
 				response.status = 400 
-				return {"info":"username already exists"}
+				print(ex)
+				return {"info":f"{ex}"}
 
 			# unknown scenario
 			response.status = 500

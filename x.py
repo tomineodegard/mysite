@@ -42,18 +42,20 @@ USERNAME_MIN = 4
 USERNAME_MAX = 15
 USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
 
-def validate_username():
+def validate_username(taken_username):
+ 
   print("-"*50)
   print(request.forms.get("username"))
-  
-  error = f"Something went wrong when creating your username."
+  error_taken_username = f"The username is already taken."
+  error = f"The username must contain {USERNAME_MIN} to {USERNAME_MAX} and only contain letters from the english alphabet and/or numbers between 0 and 9."
 
-  # error = f"username must contain {USERNAME_MIN} to {USERNAME_MAX} english letters or number from 0 to 9"
   request.forms.username = request.forms.username.strip()
   print (request.forms.username)
   if len(request.forms.username) < USERNAME_MIN: raise Exception(error)
   if len(request.forms.username) > USERNAME_MAX: raise Exception(error)
   if not re.match(USERNAME_REGEX, request.forms.username): raise Exception(error)
+  
+  if taken_username: raise Exception(error_taken_username)
   return request.forms.username
 
 

@@ -37,7 +37,6 @@ async function follow(){
     const increment_followers = document.querySelector("#user_total_followers");
     const increment_my_following = document.querySelector("#my_total_following");
 
-
     if(cookie_user_profile) {
         console.log("true")
     } else if(increment_followers) {
@@ -50,4 +49,5 @@ async function follow(){
     } else if(increment_my_following) {
         console.log("true")
     }
+
 }
