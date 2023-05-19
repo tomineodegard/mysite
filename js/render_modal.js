@@ -20,3 +20,13 @@ function closeSettingsModal() {
 };
 
 
+// function displayForgotPasswordModal() {
+//     document.querySelector("#forgotPasswordModal").classList.remove("hidden");
+// };
+
+
+// function closeForgotPasswordModal() {
+//     document.querySelector("#forgotPasswordModal").classList.add("hidden");
+// };
+
+

@@ -1,6 +1,5 @@
 from bottle import post
 
-##############################
 @post("/activate_user")
 def _():
     try:

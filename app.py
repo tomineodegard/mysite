@@ -31,7 +31,9 @@ import routes.render_logout
 import routes.render_index
 import routes.render_profile
 import routes.render_activate_user
-import routes.render_settings
+import routes.render_forgot_password
+import routes.render_reset_password
+# import routes.render_settings
 
 
 
@@ -42,7 +44,7 @@ import views.tweet
 # ------------- APIS
 import apis.api_login
 import apis.api_signup
-import apis.api_send_sms
+import apis.api_reset_password_email
 import apis.api_tweet
 import apis.api_follow
 import apis.api_unfollow

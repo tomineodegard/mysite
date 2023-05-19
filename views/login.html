@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
     <script defer src="/js/render_login.js"></script>
+    <script defer src="/js/render_modal.js"></script>
+    <script defer src="/js/handle_reset_password.js"></script>
+
+
     <title>{{title}}</title>
 </head>
 <body class="bg-black w-full flex flex-col justify-center items-center h-screen gap-6">
@@ -21,6 +25,12 @@
         <input name="user_password" type="password" placeholder="password" class="placeholder:text-slate-400 py-2 px-6 rounded-full"/>
         <button class="cursor-pointer bg-twitterBlue py-2 px-6 rounded-full text-white">Login</button>
     </form>
+
+    <a href="/forgot_password" class="text-twitterBlue no-underline hover:underline"><p class="text-trending text-base">Forgot password?</p></a>
+
+    <!-- <form name="forgot_password" method="POST" onsubmit="handleForgotPassword(); return false">
+        <button class="cursor-pointer bg-inherit border border-white py-2 px-6 rounded-full text-white">Forgot password?</button>
+    </form> -->
 
     <a href="/signup" class="text-twitterBlue no-underline hover:underline"><p class="text-trending text-base">Don't have an account? Signup</p></a>
 

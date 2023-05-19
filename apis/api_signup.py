@@ -25,6 +25,7 @@ def _():
 		salt = bcrypt.gensalt()
 		user_id = str(uuid.uuid4().hex)
 		activation_key = str(uuid.uuid4().hex)
+		user_reset_password_key = str(uuid.uuid4().hex)
 
 		new_user = {
             "user_id" : user_id,
@@ -43,6 +44,7 @@ def _():
 	        "user_cover_picture" : "",
 			"user_is_activated" : 0,
 			"user_activation_key" : activation_key,
+			"user_reset_password_key":user_reset_password_key
         }
 		
 		# insert values from the 'new user dictionary' f-stringing the keys
