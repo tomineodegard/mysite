@@ -3,9 +3,10 @@ import x
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import uuid
 
 
-@post("/api-reset-password-email")
+@post("/api-forgot-password")
 def _():
     try:
         db = x.db()
@@ -15,10 +16,19 @@ def _():
         user_email = request.forms.get("user_email")
 
         verify_identity = db.execute("SELECT * FROM users WHERE username = ? AND user_email = ?", (username, user_email)).fetchone()
-        if not verify_identity: raise Exception ("The user does not exist")
+        if not verify_identity: raise Exception ("Error")
 
-        user_reset_password_key = verify_identity["user_reset_password_key"]
-        # salt = bcrypt.gensalt()
+
+        user_reset_password_key = str(uuid.uuid4()).replace("-","")
+
+        total_changes = db.execute("""
+            UPDATE users
+            SET user_reset_password_key = ?
+            WHERE user_email = ? AND username = ?
+        """, (user_reset_password_key, user_email, username)).rowcount
+
+        if not total_changes: raise Exception(400, "Could not update user_reset_password_key.")
+
 
         user = {
             "username" : username,

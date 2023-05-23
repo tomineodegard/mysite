@@ -1,6 +1,6 @@
 from bottle import post, request, response
 import x
-# import bcrypt
+import bcrypt
 
 ##############################
 @post("/api-login")
@@ -27,8 +27,8 @@ def _():
 		if not activated_user == "1": raise Exception(400, "You need to check your email and activate your account before you can log in.")
 		
 		if not cookie_user: raise Exception(400, "Wrong credidentials")
-		# if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
-			# raise Exception(400, "Error, the credentials you have entered are invalid")
+		if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
+			raise Exception(400, "Error, the credentials you have entered are invalid")
 		try:
 			import production
 			is_cookie_https = True

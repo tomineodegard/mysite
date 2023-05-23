@@ -44,7 +44,8 @@ import views.tweet
 # ------------- APIS
 import apis.api_login
 import apis.api_signup
-import apis.api_reset_password_email
+import apis.api_forgot_password
+import apis.api_reset_password
 import apis.api_tweet
 import apis.api_follow
 import apis.api_unfollow

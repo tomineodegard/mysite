@@ -43,7 +43,6 @@ USERNAME_MAX = 15
 USERNAME_REGEX = "^[a-zA-Z0-9_]*$"
 
 def validate_username(taken_username):
- 
   print("-"*50)
   print(request.forms.get("username"))
   error_taken_username = f"The username is already taken."
@@ -114,14 +113,22 @@ USER_PASSWORD_MAX = 50
 
 def validate_user_password():
   password = request.forms.user_password 
-  print(password) 
   error = f"The password you entered did not match our records. Please double check and try again." 
-  request.forms.user_password = request.forms.user_password.strip() 
+  user_password = request.forms.user_password = request.forms.user_password.strip() 
   if len(request.forms.user_password) < USER_PASSWORD_MIN:
     raise Exception(error) 
   if len(request.forms.user_password) > USER_PASSWORD_MAX: 
     raise Exception(error) 
   return request.forms.user_password
+
+
+def validate_user_confirm_password():
+	error = f"user_password and user_confirm_password do not match"
+	user_password = request.forms.get("user_password", "").strip()
+	user_confirm_password = request.forms.get("user_confirm_password", "").strip()
+	if user_confirm_password != user_password: raise Exception(400, error)
+	return user_confirm_password
+
 
 
 # ------------------ tweet validation

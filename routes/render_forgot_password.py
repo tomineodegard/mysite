@@ -1,5 +1,4 @@
 from bottle import get, template
-import x
 
 
 @get("/forgot_password")
