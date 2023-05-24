@@ -7,6 +7,7 @@ def _():
         db = x.db()
         cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
         user_id = cookie_user["user_id"]
+        
 
         new_user_firstname = x.validate_user_firstname()
         new_user_bio = x.validate_user_bio()

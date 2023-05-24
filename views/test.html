@@ -1,0 +1,96 @@
+<!-- Full screen modal with overlay start -->
+<form onsubmit="handleUpdateUser(); return false" action="" >
+    <div id="settingsmodal" class="hidden z-10 fixed top-0 left-0 w-full h-full bg-zinc-900 bg-opacity-80 overflow-auto">
+        <!-- Modal content -->
+        <div class= "bg-black rounded-lg w-full h-fit flex flex-col justify-start mx-auto my-0 md:w-5/12 md:h-fit md:my-32">
+            <!-- Navigation -->
+            <div class="p-4 flex items-center justify-between">
+                <div class="flex gap-2">
+                    <button type="button" onclick="closeSettingsModal()">
+                        <svg class="closeModal" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 15 15"><path fill="currentColor" fill-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" clip-rule="evenodd"/></svg>
+                    </button>
+                    <p class="text-base text-white">Edit profile</p>
+                </div>
+                <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full">Save</button>
+            </div>
+    
+            <!-- Cover picture -->
+            <div class="relative overflow-hidden">
+                % if user["user_cover_picture"]:
+                <img id="user_cover_picture_preview" src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture" class="w-full md:w-max[600px] h-max[200px]">
+                % else:
+                <div class="w-full bg-cover bg-no-repeat bg-center h-[200px]">
+                    <div class="bg-zinc-600 w-full h-full"></div>
+                </div>
+                % end
+            </div>
+    
+            <!-- Coverpicture wrapper -->
+            <div class="absolute flex top-1/2 left-1/2">
+                <!-- Wrapper for upload coverpicture + input field -->
+                <div class="p-3 bg-zinc-600 hover:bg-zinc-500 rounded-full opacity-80">
+                    <label for="user_cover_picture_upload" class="cursor-pointer">
+                        <span class="hidden">User cover picture</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" 
+                        class="w-7 h-7">
+                            <g><path fill="#fafafa" d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z"></path></g>
+                        </svg>
+                    </label>
+                    <input onchange="previewImg()" class="hidden" type="file" name="user_cover_picture" id="user_cover_picture_upload" accept="image/*" />
+                </div>    
+    
+                <!-- Wrapper for delete coverpicture + input field -->
+                <div class="p-3 bg-zinc-600 hover:bg-zinc-500 rounded-full opacity-80">
+                    <label for="user_delete_cover_picture" class="cursor-pointer">
+                        <span class="hidden">Delete user cover image</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </label>
+                </div>
+                <!-- End wrapper for delete coverpicture + input field -->
+            </div>
+            <!-- Coverpicture wrapper end -->
+    
+    
+            <!-- Profile picture -->
+            <div class="relative w-24 sm:w-32 h-12 ml-4 mt-8">
+                % if user["user_profile_picture"]:
+                    <img id="user_profile_picture_preview" src="/images/profilepictures/{{user['user_profile_picture']}}" class="absolute bottom-0 w-32 rounded-full" alt="" />
+                % else:
+                    <div class="absolute bottom-0 w-32 h-32 rounded-full bg-slate-500"></div>
+                % end
+                <!-- Edit icon -->
+                <div class="absolute left-1/2 sm:-top-1/4 flex -translate-y-1/2 -translate-x-1/2 gap-4 p-3 bg-zinc-600 hover:bg-zinc-500 rounded-full opacity-80">
+                    <label for="user_profile_picture_upload" class="cursor-pointer">
+                        <span class="hidden">User profile picture</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" 
+                        class="w-7 h-7">
+                            <g><path fill="#fafafa" d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z"></path></g>
+                        </svg>
+                    </label>
+                    <input onchange="previewImg()" class="hidden" type="file" name="user_profile_picture" id="user_profile_picture_upload" accept="image/*" />
+                </div>
+            </div>
+            <!-- Profile picture end -->
+    
+    
+            <!-- Personal information form wrapper -->
+            <div class="flex flex-col text-white p-4">
+                <!-- Input fields in form -->
+                <div class="">
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" name="user_firstname" value="{{cookie_user['user_firstname']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full focus:ring-blue-500 focus:border-blue-500">
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastname" name="user_lastname" value="{{cookie_user['user_lastname']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full">
+                    <label for="bio">Bio</label>
+                    <input type="text" id="bio" name="user_bio" value="{{cookie_user['user_bio']}}" class="bg-inherit text-zinc-400 border border-zinc-400 p-2 rounded-md w-full"> 
+                </div>    
+                <!-- Input fields in form end -->
+            </div>
+            <!-- Personal information form wrapper end -->
+    
+            </div>
+        </div>
+    </form>
+    <!-- Modal end -->

@@ -3,8 +3,12 @@ import sqlite3
 import pathlib 
 import re
 
-COOKIE_SECRET = "my_secret_cookie_key"
+import os
+import uuid
+import mimetypes
 
+
+COOKIE_SECRET = "my_secret_cookie_key"
 
 # ------------------
 def dict_factory(cursor, row):
@@ -153,6 +157,30 @@ def validate_user_bio():
   return request.forms.get("user_bio")
 
 
+
+
+# ------------------ image validation and upload
+def check_mimetype_and_upload_image(field_name, path, current_image=""):
+  field_name = request.files.get(f"{field_name}", "")
+  _, extention = os.path.splitext(field_name.filename)
+
+  if extention not in (".png", ".jpg", ".jpeg"): raise Exception(400, f"Images with the extention {field_name} is not allowed. Please upload a png, jpg og a jpeg.")
+  image_name = str(uuid.uuid4().hex)
+  image_name = image_name + extention
+
+  ## Delete the old image
+  # if not current_image == "":
+  #   os.remove(f"assets/images/{path}/{current_image}")
+
+  field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{image_name}")
+
+# DOES NOT WORK
+  # mime_type = mimetypes.guess_type(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{image_name}", strict=True)
+  # if str(mime_type[0]) not in "image/jpg image/jpeg image/png":
+  #   os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{field_name_image_name}")
+  #   return {"info": f"{field_name} not uploaded, because file is not allowed"}
+  
+  return image_name
 
 
 

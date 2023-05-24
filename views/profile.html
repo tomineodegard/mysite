@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
     <script defer src="/js/post_tweet.js"></script>
-    <!-- <script defer src="/js/validate.js"></script> -->
+    <script defer src="/js/validate.js"></script>
     <script defer src="/js/follow.js"></script>
     <script defer src="/js/unfollow.js"></script>
     <script defer src="/js/convert_epoch.js"></script>
@@ -17,7 +17,7 @@
 
     <title>
       % if defined("user"):
-        {{user["user_firstname"]}} {{user["user_lastname"]}} (@{{user["username"]}})
+        {{user["user_firstname"]}} {{user["user_lastname"]}} (@{{user["username"]}}) / Twitter
       % else:
         Twitter
       % end 
@@ -25,7 +25,8 @@
 </head>
 
 <body class="w-full h-full overflow-x-hidden overflow-y-scroll bg-black items-center place-content-center text-white">  
-   <main class="flex justify-center col-[2/3]">
+   <!-- <main class="justify-center col-[2/3] grid grid-cols-[100fr_150fr_100fr]"> -->
+    <main class="flex justify-center col-[2/3]">
 
    % include('comp_left')
 
@@ -44,13 +45,15 @@
        </div>
         <!-- left col end -->
         <!-- right -->
-        <div class="w-full pr-4 pt-4 pb-4 ">
+        <div class="w-full pr-4 pt-4 pb-4">
          <div class="flex justify-between">
              <a href="{{user['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
                {{user["user_firstname"]}} {{user["user_lastname"]}}
-               % if user["user_is_verified"]:
-               <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue"><path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/></svg>
-               % end
+               % if user["user_is_verified"] == "1":
+              <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
+                  <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
+              </svg>
+              % end
                <p class="text-sm text-zinc-500 font-medium transition ease-in-out duration-150">
                  @{{user["username"]}}
                </p>

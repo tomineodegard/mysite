@@ -51,6 +51,8 @@ import apis.api_follow
 import apis.api_unfollow
 import apis.api_activate_user
 import apis.api_update_user
+import apis.api_update_user_profile_picture
+import apis.api_update_user_cover_picture
 
 
 # ------------- BRIDGES
