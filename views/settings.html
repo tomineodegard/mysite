@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <script defer src="/js/handle_deactivate_user.js"></script>
+
+    <title>{{title}}</title>
+</head>
+<body class="w-full h-full overflow-x-hidden overflow-y-scroll bg-black items-center place-content-center text-white">
+    <main class="flex justify-center col-[2/3]">
+        % include('comp_left')
+        % include('comp_deactivate_account')
+
+
+       % include('modal_error')
+  </main>
+</body>
+</html>

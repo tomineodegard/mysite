@@ -18,8 +18,10 @@ CREATE TABLE users(
     user_profile_picture      TEXT,
     user_cover_picture        TEXT,
     user_is_activated         TEXT DEFAULT 0,
+    user_is_active            TEXT DEFAULT 1,
     user_activation_key       TEXT,
     user_reset_password_key   TEXT,
+    user_deactivate_key       TEXT,
 
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
@@ -40,7 +42,9 @@ INSERT INTO users VALUES(
 "438b092d344d4628a2deafabcf5b0689.jpeg", 
 "64786a3347ed463ea198157991fec3f8.jpeg",
 "1",
+"1",
 "a0e189bdd20b437d920c1b60ec78ce22",
+"",
 ""
 );
 
@@ -60,7 +64,9 @@ INSERT INTO users VALUES(
 "a7b0c6fccd3b43009fe43fef8171c62a.jpeg", 
 "8581bbd0f24548169c7f2f8c6cc4ac01.jpeg",
 "1",
+"1",
 "4779ed2e36a54d8491e207999ab8a606",
+"",
 ""
 );
 
@@ -80,7 +86,9 @@ INSERT INTO users VALUES(
 "49b99d9e2e60478d8eb4ba7358017319.jpeg", 
 "84b6d13c1a7a431694013621ff0739fa.jpeg",
 "1",
+"1",
 "4fbc6eb58a4940d7a15418e01b2f04bd",
+"",
 ""
 );
 
@@ -101,7 +109,9 @@ INSERT INTO users VALUES(
 "b3aed51663ad43079f44e05d8963d776.jpeg", 
 "f60e3019f269420a8d5589222ffd4eff.jpeg",
 "1",
+"1",
 "fedd8d68227a4b09be28582432a3e5a2",
+"",
 ""
 );
 
@@ -121,7 +131,9 @@ INSERT INTO users VALUES(
 "50f4de12dcd04b6db49a8831c520662a.jpg", 
 "72712dce089e487f9c877ff0b39fd03e.jpg",
 "1",
+"1",
 "988c0e1ce84e43ca97d4a60978c2628f",
+"",
 ""
 );
 
@@ -141,7 +153,9 @@ INSERT INTO users VALUES(
 "95eb1075b6ec4804964e14094f8dae46.jpeg", 
 "cef45e69e9f64069a6cec9f995fa5c88.jpeg",
 "1",
+"1",
 "28255b871ac34bf5be087e62b800c0e9",
+"",
 ""
 );
 
@@ -162,7 +176,9 @@ INSERT INTO users VALUES(
 "720e20d964e844b39068767d25e79623.jpeg", 
 "9832d0b2a1e94238b4e2993e46a7b069.jpeg",
 "1",
+"1",
 "696a9430f4044501aab1d231267e5b9f",
+"",
 ""
 );
 
@@ -183,7 +199,9 @@ INSERT INTO users VALUES(
 "a0fbf16e7daa41daa95e95d6f9b54cfb.jpeg", 
 "724cee819e554d6999768e199bf9fd83.jpeg",
 "1",
+"1",
 "696a9430f4044501aab1d231267e5b9f",
+"",
 ""
 );
 
@@ -203,7 +221,9 @@ INSERT INTO users VALUES(
 "6b04b05663294572ab43c5982bdfc1f4.jpeg", 
 "3a860033043d48da9bb76d68b5023886.jpeg",
 "1",
+"1",
 "32201dd332d54e7ea6380e3da442a6e2",
+"",
 ""
 );
 
@@ -224,7 +244,9 @@ INSERT INTO users VALUES(
 "06d072b8dc624d93bbc39802cd013ab8.jpeg", 
 "fecbbd05a777412f8a5e13fd8846825d.jpeg",
 "1",
+"1",
 "1c39de32d86e4f15b965d75748386e74",
+"",
 ""
 );
 

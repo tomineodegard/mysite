@@ -30,10 +30,10 @@ def _():
         if not total_changes: raise Exception(400, "Could not update user_reset_password_key.")
 
 
-        user = {
-            "username" : username,
-            "user_email" : user_email,            
-        }
+        # user = {
+        #     "username" : username,
+        #     "user_email" : user_email,            
+        # }
 
 		
         # total_rows_inserted = db.execute("INSERT INTO users(user_password) VALUES ('?')", user).rowcount 
@@ -53,12 +53,12 @@ def _():
 		Hi {username}.
 		Looks like you have forgotten the password. Lets help you get access to your account again by resetting your password. Click the link below to reset your password.
         Your reset key is: {user_reset_password_key}.
-		http://127.0.0.1:4004/reset_password/{user_reset_password_key}"""
+		http://127.0.0.1:4005/reset_password/{user_reset_password_key}"""
 
         html = f"""\
 		<html>
 		<body>
-			<p>Hi.<br>Looks like you have forgotten the password.<br>Lets help you get access to your account again by resetting your password.<br>Click the link below to reset your password.<br>Your reset key is: {user_reset_password_key}.<br>Click <a href="http://127.0.0.1:4004/reset_password/{user_reset_password_key}">here</a>.
+			<p>Hi.<br>Looks like you have forgotten the password.<br>Lets help you get access to your account again by resetting your password.<br>Click the link below to reset your password.<br>Your reset key is: {user_reset_password_key}.<br>Click <a href="http://127.0.0.1:4005/reset_password/{user_reset_password_key}">here</a>.
 			</p>
 		</body>
 		</html>
@@ -84,4 +84,4 @@ def _():
         print(e)
         return {"info":str(e)}
     finally:
-        pass
+        if "db" in locals(): db.close()

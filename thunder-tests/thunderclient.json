@@ -421,5 +421,43 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "6fe1af5e-4979-4e0b-894e-c0d19cd2752a",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-deactivate-user-key",
+    "url": "api-deactivate-user-key",
+    "method": "POST",
+    "sortNum": 120000,
+    "created": "2023-05-25T09:54:23.181Z",
+    "modified": "2023-05-25T13:24:25.372Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "bbf4a7f2-24bb-42c0-9903-cd4a625db9dd",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-deactivate-user",
+    "url": "api-deactivate-user/78a20b49faf345d5b32123c95d9544d8",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2023-05-26T19:48:44.626Z",
+    "modified": "2023-05-26T19:50:13.720Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_deactivate_key",
+          "value": "78a20b49faf345d5b32123c95d9544d8"
+        }
+      ]
+    },
+    "tests": []
   }
 ]
