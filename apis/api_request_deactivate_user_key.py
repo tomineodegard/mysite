@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import uuid
 
-@post("/api-deactivate-user-key")
+@post("/api-request-deactivate-user-key")
 def _():
     try:
         db = x.db()
@@ -14,11 +14,11 @@ def _():
         user_email = db.execute("SELECT user_email FROM users WHERE user_id=?", (user_id,)).fetchone()
         username = db.execute("SELECT username FROM users WHERE user_id=?", (user_id,)).fetchone()
 
-        print("user email:"+"-"*50)
-        print(user_email["user_email"])
+        # print("user email:"+"-"*50)
+        # print(user_email["user_email"])
 
-        print("user_deactivate_key:"+"-"*50)
-        print(user_deactivate_key)
+        # print("user_deactivate_key:"+"-"*50)
+        # print(user_deactivate_key)
 
         total_changes = db.execute(f"""
             UPDATE users

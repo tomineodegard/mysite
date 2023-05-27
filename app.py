@@ -54,7 +54,7 @@ import apis.api_activate_user
 import apis.api_update_user
 import apis.api_update_user_profile_picture
 import apis.api_update_user_cover_picture
-import apis.api_deactivate_user_key
+import apis.api_request_deactivate_user_key
 import apis.api_deactivate_user
 
 
@@ -108,18 +108,19 @@ def render_png(filename):
     return static_file(filename, root="./images")
 
 
+# -------------- get the js files
 @get("/js/<filename>")
 def _(filename):
   return static_file(filename, root="js")
 
 
-# -------------- the code will run on AWS
+# -------------- this code will run on AWS
 try:
   import production
   print("Server running on AWS")
   application = default_app()
   
-# -------------- the code will run in local computer
+# -------------- this code will run in local computer
 except Exception as ex:
   print("Running local server")
   run(host="127.0.0.1", port=4005, debug=True, reloader=True, server="paste")

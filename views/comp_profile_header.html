@@ -31,7 +31,7 @@
         </p>
     
         % if user["user_cover_picture"]:
-        <img src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture" class="w-full bg-cover bg-no-repeat bg-center max-h-[200px]">
+        <img src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture" class="w-full object-cover bg-no-repeat bg-center max-h-[200px]">
        % else:
         <div class="w-full bg-cover bg-no-repeat bg-center h-[200px]">
             <div class="bg-zinc-600 w-full h-full"></div>
@@ -136,7 +136,7 @@
        </span>
        </a>
        <a href="" class="w-full hover:bg-zinc-800 text-center p-4 text-sm">
-       Tweets & replies
+       Replies
        </a>
        <a href="" class="w-full hover:bg-zinc-800 text-center p-4 text-sm">
        Media

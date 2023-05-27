@@ -6,7 +6,7 @@ async function handleDeactivateUser() {
     const form = event.target
     console.log(form)
 
-    const connection = await fetch(`/api-deactivate-user-key`, {
+    const connection = await fetch(`/api-request-deactivate-user-key`, {
         method: "POST",
         body: new FormData(form)
     })
