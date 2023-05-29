@@ -1,6 +1,6 @@
-PRAGMA foreign_keys;
-PRAGMA foreign_keys = true;
-PRAGMA foreign_keys;
+-- PRAGMA foreign_keys;
+-- PRAGMA foreign_keys = true;
+-- PRAGMA foreign_keys;
 
 
 DROP TABLE IF EXISTS tweets;

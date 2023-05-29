@@ -1,23 +1,28 @@
 "use strict"
 
-window.addEventListener("load", timestamps); 
+
+const userCreatedAt = document.querySelectorAll(".epoch");
+userCreatedAt.forEach((e) => {
+  const epochTimestamp = e.textContent;
+  const date = new Date(epochTimestamp * 1000);
+  const dateOptions = {
+    year: 'numeric',
+    month: "long",
+  };
+  const created_at = new Intl.DateTimeFormat("en-US", dateOptions).format(date);
+  e.textContent = `${created_at}`;
+});
 
 
-function timestamps() { 
-    const epoch = document.querySelectorAll(".epoch"); 
-    epoch.forEach((e) => { 
-        const epochTimestamp = Number(e.textContent); 
-        // console.log(e.textContent);
+const tweetCreatedAt = document.querySelectorAll(".epochDayMonth");
+tweetCreatedAt.forEach((e) => {
+  const epochTimestamp = e.textContent;
+  const date = new Date(epochTimestamp * 1000);
+  const dateOptions = {
+    day: "numeric",
+    month: "short",
 
-        // console.log(epochTimestamp);
-
-        const date = new Date(epochTimestamp * 1000); 
-        const dateOptions = { 
-            // day: "numeric", 
-            month: "long", 
-            year: "numeric",
-        }; 
-        const created_at = new Intl.DateTimeFormat("en-GB", dateOptions).format(date); 
-        e.textContent = created_at; 
-    }); 
-}
+  };
+  const created_at = new Intl.DateTimeFormat("en-US", dateOptions).format(date);
+  e.textContent = `${created_at}`;
+});

@@ -17,18 +17,33 @@ def _():
 		# Connect to database
 		db = x.db()
 		cookie_user = db.execute("SELECT * FROM users WHERE user_email = ? LIMIT 1", (user_email,)).fetchone()
-		print("-"*50)
-		print(cookie_user)
+		# print("-"*50)
+		# print(cookie_user)
 		
 		activated_user = cookie_user["user_is_activated"]
 		print("-"*50)
 		print(activated_user)
 
-		if not activated_user == "1": raise Exception(400, "You need to check your email and activate your account before you can log in.")
+		if not activated_user == 1: raise Exception(400, "You need to check your email and activate your account before you can log in.")
+		
+		user_is_active = cookie_user["user_is_active"]
+		# print("-"*50)
+		# print(user_is_active)
+		print("user_password"+"-"*50)
+		print(user_password)
+
+		print("cookie user[user_password]"+"-"*50)
+		print(cookie_user["user_password"])
+
+		print("user password encode"+"-"*50)
+		print(user_password.encode("utf-8"))
+		if not user_is_active == 1: raise Exception(400, "You account is deactivated. Please contact customer support (admin@gmail.com).")
 		
 		if not cookie_user: raise Exception(400, "Wrong credidentials")
 		if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
 			raise Exception(400, "Error, the credentials you have entered are invalid")
+		
+
 		
 		# if cookie_user["user_is_active"] == 0:
 		# 	raise Exception(400, "User is no longer activate, check your email or contact support.")

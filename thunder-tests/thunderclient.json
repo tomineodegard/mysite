@@ -459,5 +459,19 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "628f9a7c-d8bd-4071-a21b-0bcb113746f9",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-delete-tweet",
+    "url": "api-delete-tweet",
+    "method": "DELETE",
+    "sortNum": 140000,
+    "created": "2023-05-27T14:06:47.841Z",
+    "modified": "2023-05-27T15:08:28.635Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

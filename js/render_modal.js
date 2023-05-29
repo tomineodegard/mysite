@@ -20,13 +20,15 @@ function closeSettingsModal() {
 };
 
 
-// function displayForgotPasswordModal() {
-//     document.querySelector("#forgotPasswordModal").classList.remove("hidden");
-// };
+
+function displayTweetOptionsModal() {
+    document.querySelector("#tweetOptionsModal").classList.remove("hidden");
+};
 
 
-// function closeForgotPasswordModal() {
-//     document.querySelector("#forgotPasswordModal").classList.add("hidden");
-// };
+function closeTweetOptionsModal() {
+    document.querySelector("#tweetOptionsModal").classList.add("hidden");
+};
+
 
 

@@ -1,5 +1,5 @@
 % for tweet in tweets:
-   <div class="flex w-full border-t border-gray-600 overflow-hidden">
+   <div id="tweet_id"class="flex w-full border-t border-gray-600 overflow-hidden">
     <!-- left col -->
     <div class="p-4 flex flex-col justify-between items-center">
       <a href="{{tweet['username']}}">
@@ -10,27 +10,31 @@
      <!-- right -->
      <div class="w-full pr-4 pt-4 pb-4">
       <div class="flex justify-between">
+        <div class="flex gap-4">
           <a href="{{tweet['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
             {{tweet["user_firstname"]}} {{tweet["user_lastname"]}}
             % if tweet["user_is_verified"] == "1":
-            <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
-                <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
-            </svg>
-            % end
-            <p class="text-sm text-zinc-500 font-medium">
-              <strong>@</strong>{{tweet["username"]}}
+           <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
+               <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
+           </svg>
+           % end
+            <p class="text-sm text-zinc-500 font-medium transition ease-in-out duration-150">
+              @{{tweet["username"]}}
             </p>
           </a>
-
-
-            <!-- ellipse icon -->
-            <div>
-              <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray">
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
-              </svg>
-            </div>
-      </div>
+          <!-- timestamp -->
+            <p class="text-sm text-zinc-500 font-medium">
+              <span class="epochDayMonth">{{tweet["tweet_created_at"]}}</span>
+            </p>
+        </div>
+          <!-- ellipse icon -->
+          <button>
+            <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+            </svg>
+          </button>
+       </div>
        <!-- tweet userinfo end -->
        
        <!-- tweet content -->

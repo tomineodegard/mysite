@@ -1,5 +1,5 @@
  <!-- deactivate middle section -->
- <div class="min-h-screen h-full border-x border-gray-600 w-[600px] p-4">
+ <div class="min-h-screen h-full md:border-x border-gray-600 w-[600px] p-4">
     <h1 class="text-3xl font-bold">Settings</h1>
 
 
@@ -46,7 +46,7 @@
 
     <form onsubmit="handleDeactivateUser(); return false" class="flex flex-col mt-8" >
         <input type="text" name="user_id" id="user_id" value="{{cookie_user['user_id']}}" style="display:none">
-        <button type="submit" class="cursor-pointer bg-twitterRed py-2 px-6 rounded-full text-white flex justify-center">Deactivate</button>
+        <button type="submit" class="cursor-pointer bg-twitterRed py-2 px-6 rounded-full text-white flex justify-center">Send mail to deactivate</button>
     </form>
     
 </div>

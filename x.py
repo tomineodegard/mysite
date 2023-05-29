@@ -10,12 +10,12 @@ import mimetypes
 
 COOKIE_SECRET = "my_secret_cookie_key"
 
-# ------------------
+# ------------------ Make the dict to "json"
 def dict_factory(cursor, row):
   col_names = [col[0] for col in cursor.description]
   return {key: value for key, value in zip(col_names, row)}
 
-# ------------------
+# ------------------ Connect to the database
 def db():
   try:
     db = sqlite3.connect(str(pathlib.Path(__file__).parent.resolve())+"/twitter.db") 
@@ -27,14 +27,14 @@ def db():
   finally:
     pass
 
-
-# ------------------
+# ------------------ Disable cache so that the system forgets the cookie when removed
 def disable_cache():
     response.add_header("Cache-Control", "no-cache, no-store, must-revalidate")
     response.add_header("Pragma", "no-cache")
     response.add_header("Expires", 0)    
 
-# ------------------
+# ------------------ Validate if user is logged in aka is the cookie_user
+
 def validate_user_logged_in():
     cookie_user = request.get_cookie("cookie_user", secret=COOKIE_SECRET)
     if cookie_user is None: raise Exception(400, "user must login")
@@ -165,22 +165,22 @@ def check_mimetype_and_upload_image(field_name, path, current_image=""):
   _, extention = os.path.splitext(field_name.filename)
 
   if extention not in (".png", ".jpg", ".jpeg"): raise Exception(400, f"Images with the extention {field_name} is not allowed. Please upload a png, jpg og a jpeg.")
-  image_name = str(uuid.uuid4().hex)
-  image_name = image_name + extention
+  uploaded_image = str(uuid.uuid4().hex)
+  uploaded_image = uploaded_image + extention
 
   ## Delete the old image
   # if not current_image == "":
   #   os.remove(f"assets/images/{path}/{current_image}")
 
-  field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{image_name}")
+  field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
 
 # DOES NOT WORK
-  # mime_type = mimetypes.guess_type(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{image_name}", strict=True)
+  # mime_type = mimetypes.guess_type(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{uploaded_image}", strict=True)
   # if str(mime_type[0]) not in "image/jpg image/jpeg image/png":
-  #   os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{field_name_image_name}")
+  #   os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{field_name_uploaded_image}")
   #   return {"info": f"{field_name} not uploaded, because file is not allowed"}
   
-  return image_name
+  return uploaded_image
 
 
 

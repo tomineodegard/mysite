@@ -112,7 +112,7 @@
 
 
     % if cookie_user:
-    <div class="flex gap-4 items-center w-full mt-auto p-2 hover:bg-zinc-900 rounded-full">
+    <div class="flex items-center w-full mt-auto p-2 hover:bg-zinc-900 rounded-full">
       <a href="{{cookie_user['username']}}">
         % if cookie_user["user_profile_picture"]:
         <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
@@ -120,7 +120,7 @@
         <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
         % end
         
-      <div class="">
+      <div class="xl:px-2">
         <div class="font-bold text-sm hidden xl:flex">{{cookie_user["user_firstname"]}} {{cookie_user["user_lastname"]}}</div>
           <div class="text-twitterLightGray text-sm hidden xl:flex">@{{cookie_user["username"]}}</div>
         </a>      
