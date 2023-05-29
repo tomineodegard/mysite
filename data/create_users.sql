@@ -28,10 +28,9 @@ CREATE TABLE users(
 
 
 
--- CREATE UNIQUE INDEX idx_users_username ON users(username);
--- CREATE INDEX idx_users_firstname ON users(user_firstname);
--- CREATE INDEX idx_users_lastname ON users(user_lastname);
--- CREATE INDEX idx_users_profile_picture ON users(user_profile_picture);
+CREATE UNIQUE INDEX idx_users_username ON users(username);
+CREATE INDEX idx_users_firstname ON users(user_firstname);
+CREATE INDEX idx_users_lastname ON users(user_lastname);
 
 -- SELECT username FROM sqlite_master WHERE type = 'index';
 -- SELECT username FROM sqlite_master WHERE type = 'trigger';

@@ -10,8 +10,6 @@ def render_index():
         response.add_header("Expires", 0)
         cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
 
-
-
         tweets = db.execute("SELECT * FROM users JOIN tweets ON tweet_user_fk = user_id ORDER BY tweet_created_at DESC").fetchall()
         trends = db.execute("SELECT * FROM trends JOIN locations ON trends.location_fk = locations.location_id").fetchall()
 
@@ -27,8 +25,6 @@ def render_index():
     except Exception as ex:
         print(ex)
         return f"{str(ex)}"
-
-
     finally:
         if "db" in locals():
             db.close()

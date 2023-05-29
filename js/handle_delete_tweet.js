@@ -6,7 +6,6 @@ async function handleDeleteTweet() {
     })
     const data = await conn.json()
     console.log(data)
-
-    tweet = document.querySelector(`#tweet_id`)
-    tweet.remove();
+    tweet_id = document.querySelector(`#tweet_id`)
+    console.log(tweet_id)
 }

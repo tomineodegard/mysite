@@ -181,7 +181,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-27T13:38:45.810Z",
-    "modified": "2023-04-26T13:44:09.497Z",
+    "modified": "2023-05-29T09:03:46.524Z",
     "headers": [],
     "params": [],
     "body": {
@@ -190,7 +190,7 @@
       "form": [
         {
           "name": "user_email",
-          "value": "tomine@gmail.com"
+          "value": "elon@gmail.com"
         },
         {
           "name": "user_password",
@@ -234,7 +234,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2023-03-27T17:14:27.966Z",
-    "modified": "2023-03-30T11:50:38.961Z",
+    "modified": "2023-05-29T13:29:18.374Z",
     "headers": [],
     "params": [],
     "body": {
@@ -243,7 +243,7 @@
       "form": [
         {
           "name": "message",
-          "value": "one"
+          "value": "hello"
         }
       ]
     },
@@ -469,9 +469,19 @@
     "method": "DELETE",
     "sortNum": 140000,
     "created": "2023-05-27T14:06:47.841Z",
-    "modified": "2023-05-27T15:08:28.635Z",
+    "modified": "2023-05-29T09:04:24.601Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "tweet_id",
+          "value": "49c29377eda74912b854ffd818bf34cf"
+        }
+      ]
+    },
     "tests": []
   }
 ]

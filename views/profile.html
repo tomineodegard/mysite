@@ -60,12 +60,13 @@
                 </p>
               </a>
               <!-- timestamp -->
-                <p class="text-sm text-zinc-500 font-medium">
-                  <span class="epochDayMonth">{{tweet["tweet_created_at"]}}</span>
-                </p>
+              <!-- timestamp -->
+              <div class="text-sm text-zinc-500 font-medium items-center">
+                <p class="epochDayMonth">{{tweet["tweet_created_at"]}}</p>
+              </div>
             </div>
 
-
+          <!-- ellipse -->
             % if cookie_user:
                 % if cookie_user["user_id"] == user_id:
                 <button onclick="displayTweetOptionsModal()" type="button" id="cookie_user_profile">
@@ -74,6 +75,7 @@
                       d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
                   </svg>
                 </button>
+
                 
                 % else:
                 <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
@@ -139,7 +141,9 @@
    % end
 
    % if cookie_user:
-   % include('comp_tweet_options')
+    % if tweets:  
+    % include('modal_tweet_options')
+    % end
    % end
 
 

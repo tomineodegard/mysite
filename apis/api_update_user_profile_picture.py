@@ -1,5 +1,6 @@
 from bottle import post, request, response
 import x
+import os
 
 @post("/api-update-user-profile-picture")
 
@@ -33,6 +34,7 @@ def _():
 
         if not rows_affected: raise Exception(400, "user not found")
         user = db.execute("SELECT * FROM users WHERE user_id = ?", (user_id,)).fetchone()
+        
         db.commit()
 
         try: 

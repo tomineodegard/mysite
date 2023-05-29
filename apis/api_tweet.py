@@ -6,6 +6,7 @@ import time
 @post("/api-tweet")
 def _():
   try:
+    print("HELLO?")
     x.disable_cache()
     x.validate_tweet()
     db = x.db()

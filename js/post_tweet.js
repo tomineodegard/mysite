@@ -69,9 +69,9 @@ async function tweet() {
           </p>
         </a>
         <!-- timestamp -->
-          <p class="text-sm text-zinc-500 font-medium">
-            <span class="epochDayMonth"> ${data.tweet_created_at}</span>
-          </p>
+        <div class="text-sm text-zinc-500 font-medium items-center">
+          <p class="epochDayMonth">Just now</p>
+        </div>
       </div>
         <!-- ellipse icon -->
         <a href="#">
