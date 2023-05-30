@@ -4,7 +4,6 @@
 
 
 DROP TABLE IF EXISTS tweets;
-
 CREATE TABLE tweets(
     tweet_id               TEXT,
     tweet_user_fk          TEXT,

@@ -483,5 +483,35 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "60d93f28-f7cc-4d72-9b2f-3e29f4b0ca9c",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-upload-tweet-image",
+    "url": "api-upload-tweet-image",
+    "method": "POST",
+    "sortNum": 150000,
+    "created": "2023-05-29T15:30:46.999Z",
+    "modified": "2023-05-30T08:53:27.565Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "tweet_id",
+          "value": "adc0af50db8047bb997e931e26d2a036"
+        }
+      ],
+      "files": [
+        {
+          "name": "tweet_image",
+          "value": "../../../Users/tomineodegard/Desktop/test.jpeg"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

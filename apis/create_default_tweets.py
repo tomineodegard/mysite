@@ -32,9 +32,9 @@ def db():
 
 db = db()
 
-elon_tweet_image = "tweet1.jpeg"
+elon_tweet_image = "94e041777c28495cbf62de59b75fa2d7.jpeg"
 rihanna_tweet_image = "8432451bc484471fac3788f2ac70ad26.jpeg"
-tomine_tweet_image = ""
+tomine_tweet_image = "3f19d64fe81b478bb93a1c6346f7a482.jpeg"
         
 tweet_elon = {
         "tweet_id": "49c29377eda74912b854ffd818bf34cf",
@@ -63,7 +63,7 @@ tweet_rihanna = {
     }
         
 tweet_tomine = {
-        "tweet_id": "2b31f2e209ef48cc9b57758b212d1510",
+        "tweet_id": "2002ffd57fb642da8a413052f378c717",
         "tweet_user_fk": "2f9214d6266e4a96a95bb6a5fb7d1a47",
         "tweet_created_at": int(time.time()) - random.randint(0, 1000000),
         "tweet_message": "Hello world, I am tweeting!",

@@ -16,9 +16,9 @@ def _():
 
         
         if not cookie_user:
-            # TO DO: replace the user_id with a dynamic user_id
-            user_id = "2f9214d6266e4a96a95bb6a5fb7d1a47"
-            user_cover_picture = ""
+            raise Exception(400, "cookie_user don´t exists")
+            # user_id = "2f9214d6266e4a96a95bb6a5fb7d1a47"
+            # user_cover_picture = ""
             
         user_cover_picture_image_name = x.check_mimetype_and_upload_image("user_cover_picture", "coverpictures", user_cover_picture)
 

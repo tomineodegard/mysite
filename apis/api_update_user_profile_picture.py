@@ -17,8 +17,9 @@ def _():
 
         
         if not cookie_user:
-            user_id = "2f9214d6266e4a96a95bb6a5fb7d1a47"
-            user_profile_picture = ""
+            raise Exception(400, "cookie_user don´t exists")
+            # user_id = "2f9214d6266e4a96a95bb6a5fb7d1a47"
+            # user_profile_picture = ""
             
         user_profile_picture_image_name = x.check_mimetype_and_upload_image("user_profile_picture", "profilepictures", user_profile_picture)
 

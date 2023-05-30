@@ -15,6 +15,13 @@ def dict_factory(cursor, row):
   col_names = [col[0] for col in cursor.description]
   return {key: value for key, value in zip(col_names, row)}
 
+# ------------------ Making a dictionary and putting the values in a variable, so I dont have to write x amout of questionsmarks
+def get_values_from_dictionary(dictionary):
+			values = ""
+			for key in dictionary:
+				values += f":{key},"
+			return values.rstrip(",")	
+
 # ------------------ Connect to the database
 def db():
   try:
@@ -141,10 +148,10 @@ TWEET_MAX_LEN = 280
 
 def validate_tweet():
   error = f"Tweet is not valid, the message must contain minimum {TWEET_MIN_LEN} charactes and maximum {TWEET_MAX_LEN} characters"
-  if len(request.forms.message) < TWEET_MIN_LEN: raise Exception(error)
-  if len(request.forms.message) > TWEET_MAX_LEN: raise Exception(error)
-  return request.forms.get("message")
-
+  tweet_message = request.forms.get("tweet_message", "").strip()
+  if len(tweet_message) < TWEET_MIN_LEN: raise Exception(400, error)
+  if len(tweet_message) > TWEET_MAX_LEN: raise Exception(400, error)
+  return tweet_message
 
 # ------------------ bio validation
 BIO_MIN_LEN = 2

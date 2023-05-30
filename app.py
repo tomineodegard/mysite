@@ -43,21 +43,22 @@ import routes.render_settings
 import views.tweet
 
 # ------------- APIS
-import apis.api_login
-import apis.api_signup
-import apis.api_forgot_password
-import apis.api_reset_password
-import apis.api_tweet
-import apis.api_follow
-import apis.api_unfollow
 import apis.api_activate_user
-import apis.api_update_user
-import apis.api_update_user_profile_picture
-import apis.api_update_user_cover_picture
-import apis.api_request_deactivate_user_key
 import apis.api_deactivate_user
 import apis.api_delete_tweet
-
+import apis.api_follow
+import apis.api_forgot_password
+import apis.api_login
+import apis.api_request_deactivate_user_key
+import apis.api_reset_password
+import apis.api_signup
+import apis.api_tweet
+import apis.api_twitter_gold
+import apis.api_unfollow
+import apis.api_update_user_cover_picture
+import apis.api_update_user_profile_picture
+import apis.api_update_user
+import apis.api_upload_tweet_image
 
 
 # ------------- BRIDGES
