@@ -13,7 +13,7 @@ CREATE TRIGGER increment_user_total_followers
     AFTER INSERT ON followers
 BEGIN
     UPDATE users
-    SET user_total_followers = user_total_followers + "1"
+    SET user_total_followers = user_total_followers + 1
     WHERE user_id = NEW.followee_fk;
 END;
 
@@ -23,7 +23,7 @@ CREATE TRIGGER decrement_user_total_followers
     AFTER DELETE ON followers
 BEGIN
     UPDATE users
-    SET user_total_followers = user_total_followers - "1"
+    SET user_total_followers = user_total_followers - 1
     WHERE user_id = OLD.followee_fk;
 END;
 

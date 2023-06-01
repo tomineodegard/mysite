@@ -21,22 +21,18 @@ CREATE TABLE tweets(
 
 
 
--- Tweets Plus 
 DROP TRIGGER IF EXISTS increment_user_total_tweets;
-CREATE TRIGGER increment_user_total_tweets 
-    AFTER INSERT ON tweets
-BEGIN
-    UPDATE users
-    SET user_total_tweets = user_total_tweets + 1
-    WHERE user_id = NEW.tweet_user_fk;
+CREATE TRIGGER increment_user_total_tweets AFTER INSERT ON tweets
+BEGIN 
+UPDATE users
+SET user_total_tweets = user_total_tweets + 1
+WHERE user_id = NEW.tweet_user_fk;
 END;
 
--- Tweets Minus
 DROP TRIGGER IF EXISTS decrement_user_total_tweets;
-CREATE TRIGGER decrement_user_total_tweets 
-    AFTER DELETE ON tweets
-BEGIN
-    UPDATE users
-    SET user_total_tweets = user_total_tweets - 1
-    WHERE user_id = NEW.tweet_user_fk;
+CREATE TRIGGER decrement_user_total_tweets AFTER DELETE ON tweets
+BEGIN UPDATE users
+SET user_total_tweets = user_total_tweets - 1
+WHERE user_id = OLD.tweet_user_fk;
 END;
+

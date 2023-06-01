@@ -1,18 +1,12 @@
 async function tweet() {
   const frm = event.target;
-
-  console.log(frm)
-  console.log(frm.tweet_image.value)
-  console.log(frm.tweet_message.value)
-
- 
   const conn = await fetch("/api-tweet", {
    method: "POST",
    body: new FormData(frm),
   });
+
   const data = await conn.json();
   console.log(data.tweet_id);
- 
   let uploadedImg; 
  
   if (frm.tweet_image.files.length) {
@@ -37,26 +31,25 @@ async function tweet() {
    uploadedImg = "";
   }
 
-  // or should I use the 'data.user' instead of 'data.cookie_user'?
-    let user_is_verified = data.cookie_user.user_is_verified
-    if (data.cookie_user.user_is_verified == "0") {
-      user_is_verified = "";
-    }
+  let user_is_verified = data.cookie_user.user_is_verified
+  if (data.cookie_user.user_is_verified == "0") {
+    user_is_verified = "";
+  }
 
-    let is_cookie_user = data.cookie_user.user_is_verified
-    if (data.cookie_user.user_id == data.cookie_user.tweet_user_fk) {
-      is_cookie_user = "";
-    }
+  let is_cookie_user = data.cookie_user.user_is_verified
+  if (data.cookie_user.user_id == data.cookie_user.tweet_user_fk) {
+    is_cookie_user = "";
+  }
   
-    // insertAdjecentHTML with new tweet created
+  // insertAdjecentHTML with new tweet created
   document.querySelector("#welcome_back").insertAdjacentHTML(
    "afterend",
    `
-   <div id="tweet_id"class="flex w-full border-t border-gray-600 overflow-hidden">
+   <div id="tweet_id" class="flex w-full border-t border-gray-600 overflow-hidden">
     <!-- left col -->
     <div class="p-4 flex flex-col justify-between items-center">
       <a href="/${data.cookie_user.username}">
-        <img src="images/user_profile_picture/${data.cookie_user.user_profile_picture}" class="w-12 h-auto rounded-full object-cover">
+        <img src="images/profilepictures/${data.cookie_user.user_profile_picture}" class="w-12 h-auto rounded-full object-cover">
       </a>
     </div>
      <!-- left col end -->
@@ -86,14 +79,12 @@ async function tweet() {
         </div>
 
           <!-- ellipse icon --> 
-          ${is_cookie_user &&
-            `<button onclick="displayTweetOptionsModal()" type="button" id="cookie_user_profile">
+            <button onclick="displayTweetOptionsModal()" type="button" id="cookie_user_profile">
               <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                   d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
               </svg>
-            </button>`
-          }
+            </button>
        </div>
        <!-- tweet userinfo end -->
        
@@ -148,7 +139,8 @@ async function tweet() {
    </div>
     `
   );
-  frm[0].value = "";
+  // frm.reset();
+  frm[0].remove();
  }
   
   
