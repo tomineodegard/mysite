@@ -11,7 +11,7 @@
     <script defer src="/js/handle_delete_tweet.js"></script>
     <script defer src="/js/handle_update_user.js"></script>
     <script defer src="/js/post_tweet.js"></script>
-    <script defer src="/js/render_modal.js"></script>
+    <script defer src="/js/render_modals.js"></script>
     <script defer src="/js/unfollow.js"></script>
 
 
@@ -69,7 +69,7 @@
           <!-- ellipse -->
             % if cookie_user:
                 % if cookie_user["user_id"] == user_id:
-                <button onclick="displayTweetOptionsModal()" type="button" id="cookie_user_profile">
+                <button onclick="displayModalDeleteTweet()" type="button" id="cookie_user_profile">
                   <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                       d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />

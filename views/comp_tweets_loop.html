@@ -34,7 +34,7 @@
           <!-- ellipse icon -->
           % if cookie_user:
           % if cookie_user["user_id"] == tweet["tweet_user_fk"]:
-          <button onclick="displayTweetOptionsModal()" type="button">
+          <button onclick="displayModalDeleteTweet()" type="button">
             <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />

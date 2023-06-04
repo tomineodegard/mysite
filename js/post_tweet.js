@@ -82,7 +82,7 @@ async function tweet() {
         </div>
 
           <!-- ellipse icon --> 
-            <button onclick="displayTweetOptionsModal()" type="button">
+            <button onclick="displayModalDeleteTweet()" type="button">
               <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                   d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
@@ -142,7 +142,7 @@ async function tweet() {
    </div>
 
    <!-- Full screen overlay element -->
-<div class="hidden fixed z-40 w-screen h-screen inset-0 bg-gray-700 bg-opacity-75" id="tweetOptionsModal">
+<div class="hidden fixed z-40 w-screen h-screen inset-0 bg-gray-700 bg-opacity-75" id="modal_delete_tweet">
     <!-- Dialog start -->
     <div class="fixed z-50 w-screen h-screen sm:top-[30%] sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/4 bg-black sm:rounded-xl space-y-5 drop-shadow-lg sm:w-[600px] sm:h-auto">
         <!-- Form start -->
@@ -151,7 +151,7 @@ async function tweet() {
                 <!-- Modal navigation -->
                 <div class="p-4 flex items-center justify-between">
                     <div class="flex gap-2">
-                        <button onclick="closeTweetOptionsModal()" type="button">
+                        <button onclick="closeModalDeleteTweet()" type="button">
                             <svg class="modal" height="22" viewbox="0 0 15 15" width="22" xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" fill="currentColor" fill-rule="evenodd"></path>
                             </svg>
@@ -161,7 +161,7 @@ async function tweet() {
                 </div>
                 <!-- Modal navigation end -->
                     <input type="text" name="tweet_id" id="${data.tweet_id}" value="${data.tweet_id}" style="display: none">
-                    <button onclick="closeTweetOptionsModal()" type="submit" class="cursor-pointer bg-twitterRed py-2 w-1/2 rounded-full text-white flex justify-center">Delete</button>
+                    <button onclick="closeModalDeleteTweet()" type="submit" class="cursor-pointer bg-twitterRed py-2 w-1/2 rounded-full text-white flex justify-center">Delete</button>
                 </div>
         </form>
         <!-- Form end -->

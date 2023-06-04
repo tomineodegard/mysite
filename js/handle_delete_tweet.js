@@ -6,7 +6,6 @@ async function handleDeleteTweet() {
         body: new FormData(frm)
     })
     const data = await conn.json()
-    // data.info ===  "tweet is deleted" ? closeModal() : location.href = `/`
     console.log(data)
 
     tweet = document.querySelector("#tweet_id")
@@ -14,7 +13,7 @@ async function handleDeleteTweet() {
     tweet.remove();
 
     
-    function closeModal() {
-        document.querySelector("#tweetOptionsModal").classList.remove("hidden");
-    }
+    // function closeModalDeleteTweet() {
+    //     document.querySelector("#modal_delete_tweet").classList.remove("hidden");
+    // }
 }
