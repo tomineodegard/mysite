@@ -18,7 +18,7 @@
       % end
 
       <!-- exlore -->
-      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M224 88h-48.6l8.5-46.6a8 8 0 0 0-15.8-2.8l-9 49.4h-47.7l8.5-46.6a8 8 0 1 0-15.8-2.8l-9 49.4H43.6a8 8 0 1 0 0 16h48.6l-8.7 48H32a8 8 0 0 0 0 16h48.6l-8.5 46.6a8 8 0 0 0 6.5 9.3H80a8 8 0 0 0 7.9-6.6l9-49.4h47.7l-8.5 46.6a8 8 0 0 0 6.5 9.3h1.4a8 8 0 0 0 7.9-6.6l9-49.4h51.5a8 8 0 0 0 0-16h-48.6l8.7-48H224a8 8 0 0 0 0-16Zm-76.5 64H99.8l8.7-48h47.7Z"/></svg>
         <span class="hidden xl:flex">
           Explore
@@ -27,7 +27,8 @@
 
 
       <!-- settings -->
-      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+      % if cookie_user:
+      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -36,11 +37,12 @@
           Settings
         </span>
       </a>
+      % end
 
 
       <!-- Notifications -->
       % if cookie_user:
-      <a href="#" class="flex gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full relative">
+      <a href="" class="flex gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full relative">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M168 224a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm52.9-32a15.9 15.9 0 0 1-13.9 8H49a16 16 0 0 1-13.8-24.1c5.9-10.2 13-29.6 13-63.9v-8A79.9 79.9 0 0 1 128 24h.6c43.7.3 79.2 36.6 79.2 80.9v7.1c0 34.3 7.1 53.7 13 63.9a16.2 16.2 0 0 1 .1 16.1Zm-13.9-8c-6.9-12-15.2-34.1-15.2-72v-7.1c0-35.5-28.4-64.7-63.3-64.9h-.5a63.8 63.8 0 0 0-63.8 64v8c0 37.9-8.3 60-15.2 72Z"/></svg>
         <span class="hidden xl:flex">
           Notifications
@@ -54,7 +56,7 @@
 
       <!-- messages -->
       % if cookie_user:
-      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
         <svg width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m0 1c-.5 0-.94.17-1.28.47l7.78 5.03l7.78-5.03C18.94 6.17 18.5 6 18 6H5m6.5 6.71L3.13 7.28C3.05 7.5 3 7.75 3 8v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8c0-.25-.05-.5-.13-.72l-8.37 5.43Z"/></svg>
         <span class="hidden xl:flex">
           Messages
@@ -65,7 +67,7 @@
 
       <!-- bookmarks -->
       % if cookie_user:
-      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
         <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M184 36H72a12 12 0 0 0-12 12v176a3.9 3.9 0 0 0 2.1 3.5a3.8 3.8 0 0 0 4-.1l61.9-38.7l61.9 38.7a3.9 3.9 0 0 0 2.1.6a4.1 4.1 0 0 0 1.9-.5a3.9 3.9 0 0 0 2.1-3.5V48a12 12 0 0 0-12-12Zm4 180.8l-57.9-36.2a4 4 0 0 0-4.2 0L68 216.8V48a4 4 0 0 1 4-4h112a4 4 0 0 1 4 4Z"/></svg>
         <span class="hidden xl:flex">
           Bookmarks
@@ -76,7 +78,7 @@
 
       <!-- Twitter Blue -->
       % if cookie_user:
-      <a href="#" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4c0 146.8-111.8 315.9-316.1 315.9c-63 0-121.4-18.3-170.6-49.8c9 1 17.6 1.4 26.8 1.4c52 0 99.8-17.6 137.9-47.4c-48.8-1-89.8-33-103.8-77c17.1 2.5 32.5 2.5 50.1-2a111 111 0 0 1-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 0 1-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 0 0 229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35c25.1-4.7 49.1-14.1 70.5-26.7c-8.3 25.7-25.7 47.4-48.8 61.1c22.4-2.4 44-8.6 64-17.3c-15.1 22.2-34 41.9-55.7 57.6z"/></svg>
         <span class="hidden xl:flex">
           Twitter Blue
@@ -111,17 +113,18 @@
 
       <!-- admin -->
       % if cookie_user:
-      % if cookie_user["user_is_active"] == 2:
-      <a href="/adminpanel" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>        
-        <span class="hidden xl:flex">
-          Admin
-        </span>
-      </a>
+        % if cookie_user["user_is_active"] == 2:
+        <a href="/adminpanel" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <path id="eosIconsAdmin0" fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3Zm0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08Z"/>
+          </svg>     
+          <span class="hidden xl:flex">
+            Admin
+          </span>
+        </a>
+        % end
       % end
-      % end
+  
 
 
 
@@ -129,9 +132,9 @@
     <div class="flex items-center w-full mt-auto p-2 hover:bg-zinc-900 rounded-full">
       <a href="{{cookie_user['username']}}">
         % if cookie_user["user_profile_picture"]:
-        <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
+          <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
         % else:
-        <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+          <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
         % end
         
       <div class="xl:px-2">

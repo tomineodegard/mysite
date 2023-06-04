@@ -53,12 +53,12 @@ def _():
 		Hi {username}.
 		Looks like you have forgotten the password. Lets help you get access to your account again by resetting your password. Click the link below to reset your password.
         Your reset key is: {user_reset_password_key}.
-		http://127.0.0.1:4005/reset_password/{user_reset_password_key}"""
+		http://127.0.0.1:4444/reset_password/{user_reset_password_key}"""
 
         html = f"""\
 		<html>
 		<body>
-			<p>Hi.<br>Looks like you have forgotten the password.<br>Lets help you get access to your account again by resetting your password.<br>Click the link below to reset your password.<br>Your reset key is: {user_reset_password_key}.<br>Click <a href="http://127.0.0.1:4005/reset_password/{user_reset_password_key}">here</a>.
+			<p>Hi.<br>Looks like you have forgotten the password.<br>Lets help you get access to your account again by resetting your password.<br>Click the link below to reset your password.<br>Your reset key is: {user_reset_password_key}.<br>Click <a href="http://127.0.0.1:4444/reset_password/{user_reset_password_key}">here</a>.
 			</p>
 		</body>
 		</html>

@@ -56,26 +56,25 @@
         </a>
         
         % if cookie_user:
+            <div id="follow_unfollow" value="{{user['username']}}_profile">
+                % if cookie_user["user_id"] == user_id:
+                <button onclick="displaySettingsModal()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Edit profile</button>
+                % include('modal_settings')
 
-        <div id="follow_unfollow" value="{{user['username']}}_profile">
-            % if cookie_user["user_id"] == user_id:
-            <button onclick="displaySettingsModal()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Edit profile</button>
-            % include('modal_settings')
-
-            % elif follow == []:
-            <form onsubmit="follow(); return false">
-                <input type="text" name="followee_fk" value="{{user['username']}}" style="display:none">
-                <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
-            </form>
-            
-            % else:
-            <form id="" onsubmit="unfollow(); return false">
-                <input type="text" name="unfollowee_fk" value="{{user['username']}}" style="display:none">
-                <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Unfollow</button>
-            </form> 
-            % end
-        </div>
-    % end
+                % elif follow == []:
+                <form onsubmit="follow(); return false">
+                    <input type="text" name="followee_fk" value="{{user['username']}}" style="display:none">
+                    <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
+                </form>
+                
+                % else:
+                <form id="" onsubmit="unfollow(); return false">
+                    <input type="text" name="unfollowee_fk" value="{{user['username']}}" style="display:none">
+                    <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Unfollow</button>
+                </form> 
+                % end
+            </div>
+        % end
 
 
 

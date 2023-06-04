@@ -1,9 +1,15 @@
 <form method="POST" onsubmit="tweet(); return false" enctype="multipart/form-data">
   <div class="pb-4">
    <div class="flex flex-shrink-0 p-4 pb-0">
-    <div class="w-12 flex items-top">
-     <img class="inline-block h-10 w-10 rounded-full" src="images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="{{cookie_user['username']}}">
+    <div class="">
 
+      % if cookie_user["user_profile_picture"]:
+        <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full" alt="{{cookie_user['username']}}">
+      % else:
+        <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+      % end
+
+    
     </div>
 
     <div class="w-full p-2">

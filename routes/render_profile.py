@@ -24,17 +24,17 @@ def render_username(username):
         # print("User: " +"-"*50)
         # print(user)
         # 
-        if cookie_user:
-            user_is_admin = cookie_user["user_is_active"] == 2
-            if not user_is_admin: raise Exception(400, "You are not admin.")
-        else: user_is_admin = None   
+        # if cookie_user:
+        #     user_is_admin = cookie_user["user_is_active"] == 2
+        #     if not user_is_admin: raise Exception(400, "You are not admin.")
+        # else: user_is_admin = None   
 
 
         if cookie_user:
             follow = db.execute("SELECT * FROM followers WHERE follower_fk=? AND followee_fk=?", (cookie_user["user_id"], user_id)).fetchall()
         else: follow = None
 
-        return template("profile", title="Twitter", user_is_admin=user_is_admin, cookie_user=cookie_user, trends=trends, user=user, tweets=tweets, suggested_users=suggested_users, follow=follow, user_id=user_id)
+        return template("profile", title="Twitter", cookie_user=cookie_user, trends=trends, user=user, tweets=tweets, suggested_users=suggested_users, follow=follow, user_id=user_id)
 
     except Exception as ex:
         print("Exection: " +"-"*50)

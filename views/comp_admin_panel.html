@@ -5,22 +5,24 @@
 
 
     <!-- List with all users start -->
-    <div class="mt-8 py-4">
+    <!-- <div class="mt-8 py-4"> -->
     % for user in users:
     <div class="flex w-full overflow-hidden justify-between items-center">
         <div class="p-4 flex justify-between items-center gap-4">
-            <a href="{{user['username']}}">
-              <img src="/images/profilepictures/{{user['user_profile_picture']}}" class="w-12 h-auto rounded-full object-cover">
-            </a>
+          % if user["user_profile_picture"]:
+            <img src="/images/profilepictures/{{user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full object-cover">
+          % else:
+            <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+          % end
 
             <div class="flex flex-col">
               <a href="{{user['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
                 {{user["user_firstname"]}} {{user["user_lastname"]}}
-                % if user["user_is_verified"] == 1:
-              <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
-                  <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
-              </svg>
-              % end
+                  % if user["user_is_verified"] == 1:
+                  <svg width="20" height="20" viewBox="0 0 24 24" class="text-twitterBlue">
+                      <path fill="currentColor" d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"/>
+                  </svg>
+                % end
               </a>
               <a href="{{user['username']}}">
                 <p class="text-sm text-zinc-500 font-medium transition ease-in-out duration-150">
@@ -29,19 +31,27 @@
               </a>
           </div>
         </div>
-        <div class="flex gap-4">
+        <!-- <div class="flex gap-4">
+          </div> -->
+
+          <div id="activate_deactivate">
+            % if user["user_is_active"] == 1:
+              <form onsubmit="handleAdminDeactivateUser(); return false" class="flex justify-between gap-4">
+                <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
+                <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium border border-twitterRed rounded-full">Deactivate</button>
+              </form>
+            % end
+
+            % if user["user_is_active"] == 0:
+              <form onsubmit="handleAdminActivateUser(); return false" class="flex justify-between gap-4">
+                <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
+                <button class="ml-auto px-4 py-2 text-white text-sm font-medium border border-twitterGreen rounded-full">Activate user</button>
+              </form>
+            % end
           </div>
-          <div class="">
-            <form onsubmit="handleDeactivateUser(); return false" class="flex justify-between gap-4">
-                <input type="text" name="user_id" value="user_id" style="display:none">
-                <button class="ml-auto px-4 py-2 text-white text-sm font-medium border border-white rounded-full">Deactivate</button>
-                <button class="ml-auto px-4 py-2 text-white text-sm font-medium bg-twitterRed rounded-full">Delete</button>
-            </form>
-          </div>
-          
         </div>
     % end
-  </div>
+  <!-- </div> -->
 </div>
     <!-- List with all users end -->
     

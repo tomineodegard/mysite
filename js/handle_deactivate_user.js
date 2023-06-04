@@ -1,8 +1,6 @@
 "use strict"
 
 async function handleDeactivateUser() {
-    console.log("I am inside handleDeactivateUser.js")
-
     const form = event.target
     console.log(form)
 
@@ -17,8 +15,6 @@ async function handleDeactivateUser() {
 };
 
 async function handleConfirmDeactivateUser() {
-    console.log("I am inside handleConfirmDeactivateUser.js")
-
     const form = event.target
     console.log(form)
     console.log(form.user_deactivate_key1.value)

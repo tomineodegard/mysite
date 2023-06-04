@@ -43,7 +43,6 @@ import routes.render_adminpanel
 import views.tweet
 
 # ------------- APIS
-import apis.api_activate_user
 import apis.api_deactivate_user
 import apis.api_delete_tweet
 import apis.api_follow
@@ -59,6 +58,9 @@ import apis.api_update_user_cover_picture
 import apis.api_update_user_profile_picture
 import apis.api_update_user
 import apis.api_upload_tweet_image
+import apis.api_admin_deactivate_user
+import apis.api_admin_activate_user
+
 
 
 # ------------- BRIDGES
@@ -125,4 +127,4 @@ try:
 # -------------- this code will run in local computer
 except Exception as ex:
   print("Running local server")
-  run(host="127.0.0.1", port=4005, debug=True, reloader=True, server="paste")
+  run(host="127.0.0.1", port=4444, debug=True, reloader=True, server="paste")

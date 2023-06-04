@@ -41,13 +41,13 @@ def _():
 		Hi {username}.
 		Follow the link below to confirm the deactivation of your account with the username {username}.
         Your deactivate key is: {user_deactivate_key}.
-        Click <a href="http://127.0.0.1:4005/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
+        Click <a href="http://127.0.0.1:4444/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
 		"""
 
         html = f"""\
 		<html>
 		<body>
-			<p>Hi {username}.<br>Follow the link below to confirm the deactivation of your account with the username {username}.<br>Your deactivate key is: {user_deactivate_key}.<br>Click <a href="http://127.0.0.1:4005/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
+			<p>Hi {username}.<br>Follow the link below to confirm the deactivation of your account with the username {username}.<br>Your deactivate key is: {user_deactivate_key}.<br>Click <a href="http://127.0.0.1:4444/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
 			</p>
 		</body>
 		</html>

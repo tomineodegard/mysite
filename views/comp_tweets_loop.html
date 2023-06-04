@@ -3,7 +3,11 @@
     <!-- left col -->
     <div class="p-4 flex flex-col justify-between items-center">
       <a href="{{tweet['username']}}">
-        <img src="/images/profilepictures/{{tweet['user_profile_picture']}}" class="w-12 h-auto rounded-full object-cover">
+        % if cookie_user["user_profile_picture"]:
+          <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
+        % else:
+          <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+        % end
       </a>
     </div>
      <!-- left col end -->

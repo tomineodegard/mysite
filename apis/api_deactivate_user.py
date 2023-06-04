@@ -7,9 +7,6 @@ def _(user_deactivate_key):
     try:
         db = x.db()
 
-        # print("user_deactivate_key:"+"*"*50)
-        # print(user_deactivate_key)
-
         total_changes = db.execute(f"""
             UPDATE users
             SET user_is_active = 0, user_deactivate_key = ""
@@ -20,6 +17,7 @@ def _(user_deactivate_key):
   
         return {"info": "user is deactivated"}
     except Exception as ex:
+        if "db" in locals(): db.rollback()
         print("-"*30)
         print(ex)
         response.status = 400

@@ -513,5 +513,19 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "9ca4999f-0c4b-4339-9b5a-c4fdb6bb953a",
+    "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
+    "containerId": "",
+    "name": "api-admin-deactiavte-user",
+    "url": "api-admin-deactivate-user",
+    "method": "POST",
+    "sortNum": 170000,
+    "created": "2023-06-04T15:24:51.902Z",
+    "modified": "2023-06-04T15:51:13.499Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
