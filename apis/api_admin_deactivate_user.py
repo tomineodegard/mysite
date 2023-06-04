@@ -1,5 +1,8 @@
 from bottle import post, request, response
 import x
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import smtplib, ssl
 
 @post("/api-admin-deactivate-user")
 def _():
@@ -8,16 +11,56 @@ def _():
         if not cookie_user["user_is_active"] == 2 or not cookie_user: return {"info": "no access"}
 
         user_id = request.forms.get("user_id")
-        print("user_id:"+"-"*30)
-        print(user_id)
-
         db = x.db()
+        user = db.execute("SELECT * FROM users where user_id = ?",(user_id,)).fetchone()
+        username = user["username"] 
+
         total_changes = db.execute(f"""
             UPDATE users
             SET user_is_active = 0
             WHERE user_id=?
         """, (user_id,)).rowcount
         if not total_changes: raise Exception(400, "user not found")
+
+
+        sender_email = "tomineodegard99@gmail.com"
+        receiver_email = "tomineodegard99@gmail.com"
+        app_password = "ufouvebjcndaumua"
+        
+        message = MIMEMultipart("alternative")
+        message["Subject"] = "User deactivated"
+        message["From"] = sender_email
+        message["To"] = receiver_email
+
+        text = f"""\
+		Hi @{username}.
+		Your account has been deactivated.
+        Please contact customer support to activate your account again (admin@gmail.com).
+		"""
+
+        html = f"""\
+		<html>
+		<body>
+			<p>Hi @{username}.<br>Your account has been deactivated.<br>Please contact customer support to activate your account again (admin@gmail.com).
+			</p>
+		</body>
+		</html>
+		"""
+        
+        part1 = MIMEText(text, "plain")
+        part2 = MIMEText(html, "html")
+        
+        message.attach(part1)
+        message.attach(part2)
+        
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, app_password)
+            server.sendmail(
+				sender_email, receiver_email, message.as_string()
+			)
+
+
         db.commit()
 
         return {"info":"ok"}

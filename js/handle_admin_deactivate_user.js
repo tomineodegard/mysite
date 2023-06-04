@@ -15,12 +15,12 @@ async function handleAdminDeactivateUser() {
     const data = await conn.json()
     console.log(data)
 
-    document.querySelector(`#${parent}`).insertAdjacentHTML(
-        "afterbegin",
+    frm.insertAdjacentHTML(
+        "beforebegin",
         `
-        <form onsubmit="handleAdminDeactivateUser(); return false" class="flex justify-between gap-4">
+        <form onsubmit="handleAdminActivateUser(); return false" class="flex justify-between gap-4">
             <input type="text" name="user_id" value="${user_id}" style="display:none">
-            <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium border border-twitterGreen rounded-full">Activate</button>
+            <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium border border-white rounded-full">Activate</button>
         </form>
         `
         )
