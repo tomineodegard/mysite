@@ -35,7 +35,7 @@ import routes.render_forgot_password
 import routes.render_reset_password
 import routes.render_deactivate_user
 import routes.render_settings
-
+import routes.render_adminpanel
 
 
 

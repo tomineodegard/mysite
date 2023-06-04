@@ -33,6 +33,7 @@ def db():
 print(bcrypt.hashpw("password".encode("utf-8"), bcrypt.gensalt()))
 print(str(uuid.uuid4()).replace("-",""))
 # ------------------ Generate default users for the log in credidentials to work with bcrypt (this can not be done through SQL)
+
 user_admin = {
     "user_id": "e39a38e648d044c1b8c2ad3a161486cb",
     "username": "admin",
@@ -49,7 +50,7 @@ user_admin = {
     "user_profile_pictrue": "default_avatar.png",
     "user_cover_picture": "",
     "user_is_activated": 1,
-    "user_is_active": 1,
+    "user_is_active": 2,
     "user_activation_key": str(uuid.uuid4()).replace("-",""),
     "user_reset_password_key": "",
     "user_deactivate_key": "",
@@ -65,8 +66,8 @@ user_elonmusk = {
     "user_first_name": "Elon",
     "user_last_name": "Musk",
     "user_bio": "",
-    "user_is_verified": 0,
-    "user_total_followers": 0,
+    "user_is_verified": 1,
+    "user_total_followers": 10,
     "user_total_following": 0,
     "user_total_tweets": 0,
     "user_profile_pictrue": "438b092d344d4628a2deafabcf5b0689.jpeg",
@@ -110,8 +111,8 @@ user_rihanna = {
     "user_first_name": "Rihanna",
     "user_last_name": "",
     "user_bio": "",
-    "user_is_verified": 0,
-    "user_total_followers": 0,
+    "user_is_verified": 1,
+    "user_total_followers": 10,
     "user_total_following": 0,
     "user_total_tweets": 0,
     "user_profile_pictrue": "49b99d9e2e60478d8eb4ba7358017319.jpeg",
@@ -371,10 +372,11 @@ user_santiagodonoso = {
 
 
 
-# Would'nt this just set the values for all the users to be elon musk's values?
 values = get_values_from_dictionary(user_elonmusk)
 
-# How does this actually work?
+
+
+
 db = db()
 db.execute(f"INSERT INTO users VALUES({values})", user_admin).rowcount
 db.execute(f"INSERT INTO users VALUES({values})", user_elonmusk).rowcount

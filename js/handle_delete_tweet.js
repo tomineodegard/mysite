@@ -13,8 +13,8 @@ async function handleDeleteTweet() {
     console.log( tweet)
     tweet.remove();
 
+    
     function closeModal() {
         document.querySelector("#tweetOptionsModal").classList.remove("hidden");
     }
-    
 }

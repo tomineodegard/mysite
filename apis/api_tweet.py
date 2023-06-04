@@ -11,8 +11,8 @@ def _():
     x.validate_tweet()
     db = x.db()
     cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
-    # print("-"*50 + "cookie_user:")
-    # print(cookie_user)
+    print("-"*50 + "cookie_user:")
+    print(cookie_user)
 
     tweet_image = request.files.get("tweet_image", "")
     tweet_image_name = "empty"

@@ -35,6 +35,7 @@ db = db()
 elon_tweet_image = "94e041777c28495cbf62de59b75fa2d7.jpeg"
 rihanna_tweet_image = "8432451bc484471fac3788f2ac70ad26.jpeg"
 tomine_tweet_image = "3f19d64fe81b478bb93a1c6346f7a482.jpeg"
+tomine_tweet_image_dog = "a2d661d8d8dd49119bf80e5515066962.jpg"
         
 tweet_elon = {
         "tweet_id": "49c29377eda74912b854ffd818bf34cf",
@@ -76,10 +77,25 @@ tweet_tomine = {
     }
 
 
+tweet_tomine_dog = {
+        "tweet_id": "db8d0707316d4ac99cb5cd9551a61e1f",
+        "tweet_user_fk": "2f9214d6266e4a96a95bb6a5fb7d1a47",
+        "tweet_created_at": int(time.time()) - random.randint(0, 1000000),
+        "tweet_message": "Have you seen a more adorable thing???",
+        "tweet_image": tomine_tweet_image_dog,
+        "tweet_updated_at": 0, 
+        "tweet_total_retweets": 0,
+        "tweet_total_likes": 0,
+        "tweet_total_views": 0,
+        "tweet_total_replies": 0,
+    }
+
+
 
 values = get_values_from_dictionary(tweet_elon)
 print(values)
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_tomine).rowcount
+db.execute(f"INSERT INTO tweets VALUES({values})", tweet_tomine_dog).rowcount
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_elon).rowcount
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_rihanna).rowcount
 

@@ -143,7 +143,7 @@ def validate_user_confirm_password():
 
 
 # ------------------ tweet validation
-TWEET_MIN_LEN = 2
+TWEET_MIN_LEN = 0
 TWEET_MAX_LEN = 280
 
 def validate_tweet():
@@ -175,18 +175,19 @@ def check_mimetype_and_upload_image(field_name, path, current_image=""):
   uploaded_image = str(uuid.uuid4().hex)
   uploaded_image = uploaded_image + extention
 
-  ## Delete the old image
-  # if not current_image == "":
-  #   os.remove(f"assets/images/{path}/{current_image}")
+
+  print("-----HERE")
+  print(f"images/{path}/{current_image}")
+  # Delete the old image
+  if not current_image == "":
+    os.remove(f"images/{path}/{current_image}")
+
+  
+  # tweet_img_path = 'images/tweet_images'+uploaded_image['tweet_image']
+  # os.remove(tweet_img_path)
 
   field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
 
-# DOES NOT WORK
-  # mime_type = mimetypes.guess_type(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{uploaded_image}", strict=True)
-  # if str(mime_type[0]) not in "image/jpg image/jpeg image/png":
-  #   os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/assets/images/{path}/{field_name_uploaded_image}")
-  #   return {"info": f"{field_name} not uploaded, because file is not allowed"}
-  
   return uploaded_image
 
 

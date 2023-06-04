@@ -16,7 +16,7 @@ CREATE TABLE tweets(
     tweet_total_views      TEXT,
     tweet_total_replies    TEXT,
     PRIMARY KEY(tweet_id),
-    FOREIGN KEY(tweet_user_fk) REFERENCES users(user_id)
+    FOREIGN KEY(tweet_user_fk) REFERENCES users(user_id) ON DELETE CASCADE
 ) WITHOUT ROWID;
 
 

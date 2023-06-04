@@ -6,7 +6,8 @@ async function tweet() {
   });
 
   const data = await conn.json();
-  console.log(data.tweet_id);
+  console.log(data);
+
   let uploadedImg; 
  
   if (frm.tweet_image.files.length) {
@@ -31,17 +32,19 @@ async function tweet() {
    uploadedImg = "";
   }
 
+   // ----- check if the user i verified or not, this is for the insertAdjecentHTML
   let user_is_verified = data.cookie_user.user_is_verified
-  if (data.cookie_user.user_is_verified == "0") {
+  if (data.cookie_user.user_is_verified == 0) {
     user_is_verified = "";
   }
 
-  let is_cookie_user = data.cookie_user.user_is_verified
-  if (data.cookie_user.user_id == data.cookie_user.tweet_user_fk) {
-    is_cookie_user = "";
-  }
+
+  // let is_cookie_user = data.cookie_user.user_is_verified
+  // if (data.cookie_user.user_id == data.cookie_user.tweet_user_fk) {
+  //   is_cookie_user = "";
+  // }
   
-  // insertAdjecentHTML with new tweet created
+  // ----- insertAdjecentHTML with new tweet created
   document.querySelector("#welcome_back").insertAdjacentHTML(
    "afterend",
    `
@@ -79,7 +82,7 @@ async function tweet() {
         </div>
 
           <!-- ellipse icon --> 
-            <button onclick="displayTweetOptionsModal()" type="button" id="cookie_user_profile">
+            <button onclick="displayTweetOptionsModal()" type="button">
               <svg width="32" height="22" viewBox="0 0 24 24" class="ml-auto text-twitterLightGray hover:text-twitterBlue">
                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                   d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
@@ -137,36 +140,66 @@ async function tweet() {
        <!-- icons for each tweet end -->
      </div>
    </div>
+
+   <!-- Full screen overlay element -->
+<div class="hidden fixed z-40 w-screen h-screen inset-0 bg-gray-700 bg-opacity-75" id="tweetOptionsModal">
+    <!-- Dialog start -->
+    <div class="fixed z-50 w-screen h-screen sm:top-[30%] sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/4 bg-black sm:rounded-xl space-y-5 drop-shadow-lg sm:w-[600px] sm:h-auto">
+        <!-- Form start -->
+        <form onsubmit="handleDeleteTweet(); return false">
+            <div class="bg-black rounded-lg w-full h-fit flex flex-col justify-center items-center mx-auto my-0 md:h-fit md:my-4">
+                <!-- Modal navigation -->
+                <div class="p-4 flex items-center justify-between">
+                    <div class="flex gap-2">
+                        <button onclick="closeTweetOptionsModal()" type="button">
+                            <svg class="modal" height="22" viewbox="0 0 15 15" width="22" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <p class="text-base text-white">Are you sure you want to delete this tweet?</p>
+                    </div>
+                </div>
+                <!-- Modal navigation end -->
+                    <input type="text" name="tweet_id" id="${data.tweet_id}" value="${data.tweet_id}" style="display: none">
+                    <button onclick="closeTweetOptionsModal()" type="submit" class="cursor-pointer bg-twitterRed py-2 w-1/2 rounded-full text-white flex justify-center">Delete</button>
+                </div>
+        </form>
+        <!-- Form end -->
+    </div>
+</div>
+<!-- Dialog end -->
+<!-- Full screen overlay element end -->
     `
   );
-  // frm.reset();
-  frm[0].remove();
+
+  const tweetPreviewContainer = document.querySelectorAll(".tweetPreviewContainer");
+  // add hidden to tweetPreviewContainer and reset form when tweet is submitted
+  tweetPreviewContainer[0].classList.add("hidden");
+  frm.reset();
  }
   
   
   function previewTweetImg() {
-    console.log("function previewTweetImg()")
-    const tweetImgPreview = document.querySelectorAll(".tweetImgPreview");
     const tweetPreviewContainer = document.querySelectorAll(".tweetPreviewContainer");
-    const [indexTweetImg] = tweetImgUpload.files;
+    const tweetImgPreview = document.querySelectorAll(".tweetImgPreview");
+    const [tweetImage] = tweetImgUpload.files;
   
-    if(indexTweetImg) {
-    tweetImgPreview[0].src = URL.createObjectURL(indexTweetImg);
-    tweetPreviewContainer[0].classList.remove("hidden");
-    console.log("remove hidden", tweetPreviewContainer[0])
+    if(tweetImage) {
+      tweetImgPreview[0].src = URL.createObjectURL(tweetImage);
+      tweetPreviewContainer[0].classList.remove("hidden");
+      console.log("remove hidden from tweetPreviewContainer", tweetPreviewContainer[0])
     } else {
       tweetPreviewContainer[0].classList.add("hidden");
     }
 
-    console.log("User chose an image from his/her files, and this is now displaying in the preview.")
-
   
-  // removing the preview of the chosen image when clicking the x
+  // when the user clicks the X, the preview is cleared
    document.querySelectorAll(".closePreview")[0].addEventListener("click", () => {
+    console.log("add hidden to tweetPreviewContainer")
     tweetPreviewContainer[0].classList.add("hidden");
-    tweetImgPreview[0].src = URL.revokeObjectURL(indexTweetImg);
+    tweetImgPreview[0].src = URL.revokeObjectURL(tweetImage);
     document.querySelector('#tweetImgUpload').value = "";
-    console.log("Removed preview of the chosen image")
     return
    });
+   
   }

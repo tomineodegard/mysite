@@ -20,8 +20,13 @@ def _():
 		if not activated_user == 1: raise Exception(400, "You need to check your email and activate your account before you can log in.")
 		
 		user_is_active = cookie_user["user_is_active"]
-		if not user_is_active == 1: raise Exception(400, "You account is deactivated. Please contact customer support (admin@gmail.com).")
+		if not user_is_active > 0: raise Exception(400, "You account is deactivated. Please contact customer support (admin@gmail.com).")
 		
+		if cookie_user:
+			user_is_admin = cookie_user["user_is_active"] == 2
+			if not user_is_admin: raise Exception(400, "You are not admin.")
+		else: user_is_admin = None   
+
 		if not cookie_user: raise Exception(400, "Wrong credidentials")
 		if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
 			raise Exception(400, "Error, the credentials you have entered are invalid")

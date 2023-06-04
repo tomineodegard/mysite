@@ -19,7 +19,7 @@ def _():
             WHERE tweet_id = ?
         """, (tweet_image, tweet_id)).rowcount
         print("total_changes:", total_changes)
-        if not total_changes: raise Exception(400, "user not found (exception is from: total_changes in api_upload_tweet_image)")
+        if not total_changes: raise Exception(400, "user not found")
         db.commit()
 
         return {
