@@ -36,6 +36,7 @@ elon_tweet_image = "94e041777c28495cbf62de59b75fa2d7.jpeg"
 rihanna_tweet_image = "8432451bc484471fac3788f2ac70ad26.jpeg"
 tomine_tweet_image = "3f19d64fe81b478bb93a1c6346f7a482.jpeg"
 tomine_tweet_image_dog = "a2d661d8d8dd49119bf80e5515066962.jpg"
+rihanna_tweet2_image = "f106e764cf1148989e8a5548637d2757.jpeg"
         
 tweet_elon = {
         "tweet_id": "49c29377eda74912b854ffd818bf34cf",
@@ -90,6 +91,18 @@ tweet_tomine_dog = {
         "tweet_total_replies": 0,
     }
 
+tweet_rihanna2 = {
+        "tweet_id": "79ee3cbda2a648d5b8f4ecc42855c726",
+        "tweet_user_fk": "dd41b0e3eeb94f3c9d4304ba44ff198c",
+        "tweet_created_at": int(time.time()) - random.randint(0, 1000000),
+        "tweet_message": "👀 this shirt is old… @SavageXFenty",
+        "tweet_image": rihanna_tweet2_image,
+        "tweet_updated_at": 0, 
+        "tweet_total_retweets": 0,
+        "tweet_total_likes": 0,
+        "tweet_total_views": 0,
+        "tweet_total_replies": 0,
+    }
 
 
 values = get_values_from_dictionary(tweet_elon)
@@ -98,6 +111,8 @@ db.execute(f"INSERT INTO tweets VALUES({values})", tweet_tomine).rowcount
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_tomine_dog).rowcount
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_elon).rowcount
 db.execute(f"INSERT INTO tweets VALUES({values})", tweet_rihanna).rowcount
+db.execute(f"INSERT INTO tweets VALUES({values})", tweet_rihanna2).rowcount
+
 
 db.commit()
 

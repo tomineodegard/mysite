@@ -33,6 +33,7 @@
    <!-- middle -->
    <div id="profile" class="min-h-screen h-full border-x border-gray-600 w-[600px]">
       % include('comp_profile_header')
+      
       <!-- Profile tweets -->
       % for tweet in tweets:
       <div class="flex w-full border-t border-gray-600 overflow-hidden">
@@ -47,7 +48,7 @@
         <div class="w-full pr-4 pt-4 pb-4">
           <!-- tweet top row with username +++ -->
           <div class="flex justify-between">
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center">
               <a href="{{user['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
                 {{user["user_firstname"]}} {{user["user_lastname"]}}
                 % if user["user_is_verified"] == 1:

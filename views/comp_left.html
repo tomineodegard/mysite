@@ -129,27 +129,23 @@
 
 
     % if cookie_user:
-    <div class="flex items-center w-full mt-auto p-2 hover:bg-zinc-900 rounded-full">
-      <a href="{{cookie_user['username']}}">
-        % if cookie_user["user_profile_picture"]:
-          <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
-        % else:
-          <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
-        % end
+      <button type="button" onclick="toggleModalProfileOptions()"  class="flex items-center w-full mt-auto p-2 hover:bg-zinc-900 rounded-full">
+          % if cookie_user["user_profile_picture"]:
+            <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full">
+          % else:
+            <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+          % end
         
-      <div class="xl:px-2">
-        <div class="font-bold text-sm hidden xl:flex">{{cookie_user["user_firstname"]}} {{cookie_user["user_lastname"]}}</div>
-          <div class="text-twitterLightGray text-sm hidden xl:flex">@{{cookie_user["username"]}}</div>
-        </a>      
-      </div>
+          <div class="xl:px-2">
+            <span class="font-bold text-sm hidden xl:flex">{{cookie_user["user_firstname"]}} {{cookie_user["user_lastname"]}}</span>
+            <span class="text-twitterLightGray text-sm hidden xl:flex">@{{cookie_user["username"]}}</span>
+          </div>    
 
-        <button type="button" onclick="toggleModalProfileOptions()">
-          <svg width="32" height="32" viewBox="0 0 24 24" class="w-6 h-6 hidden xl:flex hover:text-twitterBlue hover:cursor-pointer">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
-          </svg>
-        </button>
-    </div>
+        <svg width="32" height="32" viewBox="0 0 24 24" class="w-6 h-6 hidden xl:flex hover:text-twitterBlue hover:cursor-pointer">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z" />
+        </svg>
+      </button>
     % include('modal_profile_options')
     % end
   </nav>

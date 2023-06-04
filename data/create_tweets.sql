@@ -11,10 +11,10 @@ CREATE TABLE tweets(
     tweet_message          TEXT,
     tweet_image            TEXT,
     tweet_updated_at       TEXT,
-    tweet_total_retweets   TEXT,
-    tweet_total_likes      TEXT,
-    tweet_total_views      TEXT,
-    tweet_total_replies    TEXT,
+    tweet_total_retweets   INTEGER DEFAULT 0,
+    tweet_total_likes      INTEGER DEFAULT 0,
+    tweet_total_views      INTEGER DEFAULT 0,
+    tweet_total_replies    INTEGER DEFAULT 0,
     PRIMARY KEY(tweet_id),
     FOREIGN KEY(tweet_user_fk) REFERENCES users(user_id) ON DELETE CASCADE
 ) WITHOUT ROWID;
