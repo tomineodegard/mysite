@@ -14,7 +14,7 @@ def _():
                     'sms_message': sms_message,
                     'sms_to_phone':sms_to_phone}
 
-        res = requests.get('127.0.0.1:4004/', data=payload)
+        res = requests.get('127.0.0.1:4444/', data=payload)
         print(res)
         print(res.text)
         return "ok"

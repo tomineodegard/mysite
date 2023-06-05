@@ -23,3 +23,13 @@ function displayModalDeleteTweet() {
 function closeModalDeleteTweet() {
     document.querySelector("#modal_delete_tweet").classList.add("hidden");
 };
+
+
+// delete user full screen modal
+function displayModalDeleteUser() {
+    document.querySelector("#modal_delete_user").classList.remove("hidden");
+};
+
+function closeModalDeleteUser() {
+    document.querySelector("#modal_delete_user").classList.add("hidden");
+};

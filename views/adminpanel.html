@@ -6,17 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
     <script defer src="/js/handle_admin_deactivate_user.js"></script>
+    <script defer src="/js/handle_delete_user.js"></script>
     <script defer src="/js/handle_admin_activate_user.js"></script>
-
-
+    <script defer src="/js/render_modals.js"></script>
     <title>{{title}}</title>
 </head>
+
 <body class="w-full h-full overflow-x-hidden overflow-y-scroll bg-black items-center place-content-center text-white">
     <main class="flex justify-center col-[2/3]">
         % include('comp_left')
-        % include('comp_admin_panel')
-        <div class="hidden lg:flex w-[200px] pl-6 pr-4"></div>
-        <!-- % include('modal_error') -->
+        <div class="min-h-screen h-full md:border-x border-gray-600 w-[800px] p-4">
+            <h1 class="text-2xl font-bold">Admin panel</h1>
+            <h2 class="text-sm font-normal text-twitterLightGray">Manage users in the system</h2>
+
+            <!-- List with all users start -->
+            <div class="mt-8 py-4">
+            % for user in users:
+            <article class="flex w-full overflow-hidden justify-between items-center">
+                <!-- --------- -->
+                <div class="p-4 flex justify-between items-center gap-4">
+                % if user["user_profile_picture"]:
+                    <img src="/images/profilepictures/{{user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full object-cover">
+                % else:
+                    <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
+                % end
+                    <div class="flex flex-col">
+                        <a href="{{user['username']}}" class="flex justify-between gap-2 items-center text-base font-medium text-white">
+                            {{user["user_firstname"]}} {{user["user_lastname"]}}
+                            % if user["user_is_verified"] == 1:
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/></g></svg>
+                            % end
+                        </a>
+                        <a href="{{user['username']}}">
+                            <p class="text-sm text-zinc-500 font-medium transition ease-in-out duration-150">
+                            @{{user["username"]}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- --------- -->
+
+                <div class="flex gap-4">
+                <!-- --------- -->
+                <div id="activate_deactivate">
+                    % if user["user_is_active"] == 1:
+                    <form onsubmit="handleAdminDeactivateUser(); return false" class="flex justify-between gap-4">
+                        <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
+                        <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium bg-twitterRed rounded-full">Deactivate</button>
+                    </form>
+                    % end
+
+                    % if user["user_is_active"] == 0:
+                    <form onsubmit="handleAdminActivateUser(); return false" class="flex justify-between gap-4">
+                        <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
+                        <button class="ml-auto px-4 py-2 text-white text-sm font-medium border border-white rounded-full">Activate</button>
+                    </form>
+                    % end
+                </div>
+                <!-- --------- -->
+
+                <!-- --------- -->
+                <div id="admin_delete_user">
+                    <form onsubmit="handleAdminDeleteUser(); return false" class="flex justify-between gap-4">
+                        <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
+                        <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium border border-twitterRed rounded-full">Delete user</button>
+                    </form>
+                </div>
+                <!-- --------- -->
+                </div>
+                </article>
+            % end
+            </div>
+        </div>
+        <!-- List with all users end -->
+    
+    <div class="hidden lg:flex w-[200px] pl-6 pr-4"></div>
   </main>
 </body>
 </html>

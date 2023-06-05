@@ -60,6 +60,8 @@ import apis.api_update_user
 import apis.api_upload_tweet_image
 import apis.api_admin_deactivate_user
 import apis.api_admin_activate_user
+import apis.api_admin_delete_user
+
 
 
 # ------------- BRIDGES

@@ -181,7 +181,7 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2023-03-27T13:38:45.810Z",
-    "modified": "2023-05-29T09:03:46.524Z",
+    "modified": "2023-06-05T14:04:21.422Z",
     "headers": [],
     "params": [],
     "body": {
@@ -190,7 +190,7 @@
       "form": [
         {
           "name": "user_email",
-          "value": "elon@gmail.com"
+          "value": "mathias@gmail.com"
         },
         {
           "name": "user_password",
@@ -533,11 +533,13 @@
     "colId": "cdad47f6-5bdc-42f2-bedd-9da8ef0c8079",
     "containerId": "",
     "name": "api-admin-delete-user",
-    "url": "",
-    "method": "GET",
+    "url": "api-admin-delete-user",
+    "method": "DELETE",
     "sortNum": 180000,
     "created": "2023-06-04T18:28:22.091Z",
-    "modified": "2023-06-04T18:28:22.091Z",
-    "headers": []
+    "modified": "2023-06-05T13:59:06.262Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

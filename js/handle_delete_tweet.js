@@ -11,9 +11,4 @@ async function handleDeleteTweet() {
     tweet = document.querySelector("#tweet_id")
     console.log( tweet)
     tweet.remove();
-
-    
-    // function closeModalDeleteTweet() {
-    //     document.querySelector("#modal_delete_tweet").classList.remove("hidden");
-    // }
 }
