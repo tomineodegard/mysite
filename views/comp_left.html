@@ -8,9 +8,7 @@
       <!-- home -->
       % if cookie_user:
       <a href="/" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-        </svg>        
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path d="M21.743 12.331l-9-10c-.379-.422-1.107-.422-1.486 0l-9 10A1 1 0 0 0 3 14h2v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7h2a.998.998 0 0 0 .743-1.669zM12 16a3 3 0 1 1 0-6a3 3 0 0 1 0 6z" fill="currentColor"/></svg>
         <span class="hidden xl:flex">
           Home
         </span>
@@ -19,35 +17,21 @@
 
       <!-- exlore -->
       <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M224 88h-48.6l8.5-46.6a8 8 0 0 0-15.8-2.8l-9 49.4h-47.7l8.5-46.6a8 8 0 1 0-15.8-2.8l-9 49.4H43.6a8 8 0 1 0 0 16h48.6l-8.7 48H32a8 8 0 0 0 0 16h48.6l-8.5 46.6a8 8 0 0 0 6.5 9.3H80a8 8 0 0 0 7.9-6.6l9-49.4h47.7l-8.5 46.6a8 8 0 0 0 6.5 9.3h1.4a8 8 0 0 0 7.9-6.6l9-49.4h51.5a8 8 0 0 0 0-16h-48.6l8.7-48H224a8 8 0 0 0 0-16Zm-76.5 64H99.8l8.7-48h47.7Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><g fill="currentColor"><path d="M11.242 3.03a1 1 0 0 1 .728 1.213l-4 16a1 1 0 1 1-1.94-.485l4-16a1 1 0 0 1 1.213-.728zm6 0a1 1 0 0 1 .728 1.213l-4 16a1 1 0 1 1-1.94-.485l4-16a1 1 0 0 1 1.212-.728z"/><path d="M4 9a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm-2 6a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1z"/></g></svg>
         <span class="hidden xl:flex">
           Explore
         </span>
       </a>
 
 
-      <!-- settings -->
-      % if cookie_user:
-      <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <span class="hidden xl:flex">
-          Settings
-        </span>
-      </a>
-      % end
-
-
       <!-- Notifications -->
       % if cookie_user:
       <a href="" class="flex gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full relative">
-        <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M168 224a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm52.9-32a15.9 15.9 0 0 1-13.9 8H49a16 16 0 0 1-13.8-24.1c5.9-10.2 13-29.6 13-63.9v-8A79.9 79.9 0 0 1 128 24h.6c43.7.3 79.2 36.6 79.2 80.9v7.1c0 34.3 7.1 53.7 13 63.9a16.2 16.2 0 0 1 .1 16.1Zm-13.9-8c-6.9-12-15.2-34.1-15.2-72v-7.1c0-35.5-28.4-64.7-63.3-64.9h-.5a63.8 63.8 0 0 0-63.8 64v8c0 37.9-8.3 60-15.2 72Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
         <span class="hidden xl:flex">
           Notifications
         </span>
-        <div class="flex justify-center absolute top-0 left-7 px-2 text-base text-white bg-twitterBlue rounded-full">
+        <div class="flex justify-center absolute top-0 left-7 px-2 h-fit w-fit text-sm text-white bg-twitterBlue rounded-full">
           4
         </div>
       </a>
@@ -57,7 +41,7 @@
       <!-- messages -->
       % if cookie_user:
       <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m0 1c-.5 0-.94.17-1.28.47l7.78 5.03l7.78-5.03C18.94 6.17 18.5 6 18 6H5m6.5 6.71L3.13 7.28C3.05 7.5 3 7.75 3 8v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8c0-.25-.05-.5-.13-.72l-8.37 5.43Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4.25H5A1.76 1.76 0 0 0 3.25 6v12A1.76 1.76 0 0 0 5 19.75h14A1.76 1.76 0 0 0 20.75 18V6A1.76 1.76 0 0 0 19 4.25ZM5 5.75h14a.25.25 0 0 1 .25.25v1.54L12 11.16L4.75 7.54V6A.25.25 0 0 1 5 5.75Zm14 12.5H5a.25.25 0 0 1-.25-.25V9.21l6.91 3.46a.76.76 0 0 0 .68 0l6.91-3.46V18a.25.25 0 0 1-.25.25Z"/></svg>
         <span class="hidden xl:flex">
           Messages
         </span>
@@ -68,7 +52,7 @@
       <!-- bookmarks -->
       % if cookie_user:
       <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M184 36H72a12 12 0 0 0-12 12v176a3.9 3.9 0 0 0 2.1 3.5a3.8 3.8 0 0 0 4-.1l61.9-38.7l61.9 38.7a3.9 3.9 0 0 0 2.1.6a4.1 4.1 0 0 0 1.9-.5a3.9 3.9 0 0 0 2.1-3.5V48a12 12 0 0 0-12-12Zm4 180.8l-57.9-36.2a4 4 0 0 0-4.2 0L68 216.8V48a4 4 0 0 1 4-4h112a4 4 0 0 1 4 4Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="m7 17.95l5-2.15l5 2.15V5H7v12.95Zm-.6 2.45q-.5.2-.95-.088T5 19.476V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v14.475q0 .55-.45.838t-.95.087L12 18l-5.6 2.4ZM7 5h10H7Z"/></svg>
         <span class="hidden xl:flex">
           Bookmarks
         </span>
@@ -79,7 +63,7 @@
       <!-- Twitter Blue -->
       % if cookie_user:
       <a href="" class="flex items-center gap-4 px-4 py-2 hover:bg-zinc-900 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4c0 146.8-111.8 315.9-316.1 315.9c-63 0-121.4-18.3-170.6-49.8c9 1 17.6 1.4 26.8 1.4c52 0 99.8-17.6 137.9-47.4c-48.8-1-89.8-33-103.8-77c17.1 2.5 32.5 2.5 50.1-2a111 111 0 0 1-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 0 1-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 0 0 229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35c25.1-4.7 49.1-14.1 70.5-26.7c-8.3 25.7-25.7 47.4-48.8 61.1c22.4-2.4 44-8.6 64-17.3c-15.1 22.2-34 41.9-55.7 57.6z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 1024 1024"><path fill="currentColor" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64zm215.3 337.7c.3 4.7.3 9.6.3 14.4c0 146.8-111.8 315.9-316.1 315.9c-63 0-121.4-18.3-170.6-49.8c9 1 17.6 1.4 26.8 1.4c52 0 99.8-17.6 137.9-47.4c-48.8-1-89.8-33-103.8-77c17.1 2.5 32.5 2.5 50.1-2a111 111 0 0 1-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 0 1-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 0 0 229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35c25.1-4.7 49.1-14.1 70.5-26.7c-8.3 25.7-25.7 47.4-48.8 61.1c22.4-2.4 44-8.6 64-17.3c-15.1 22.2-34 41.9-55.7 57.6z"/></svg>
         <span class="hidden xl:flex">
           Twitter Blue
         </span>
