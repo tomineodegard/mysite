@@ -18,15 +18,7 @@ def render_username(username):
 
 
         user_id = user["user_id"]
-        tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()    
-        # print("User: " +"-"*50)
-        # print(user)
-        # 
-        # if cookie_user:
-        #     user_is_admin = cookie_user["user_is_active"] == 2
-        #     if not user_is_admin: raise Exception(400, "You are not admin.")
-        # else: user_is_admin = None   
-
+        tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()
 
         if cookie_user:
             follow = db.execute("SELECT * FROM followers WHERE follower_fk=? AND followee_fk=?", (cookie_user["user_id"], user_id)).fetchall()

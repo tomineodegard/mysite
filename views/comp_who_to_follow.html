@@ -26,10 +26,12 @@
           </div>
 
           <div id="follow_unfollow_{{suggested_user['username']}}_aside" value="">
-            <form onsubmit="follow(); return false">
-                <input type="text" name="followee_fk" value="{{suggested_user['username']}}" style="display:none">
-                <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
-            </form>
+            <form id="follow_form" onsubmit="follow(); return false">
+              <input type="text" name="followee_fk" value="{{suggested_user['user_id']}}" style="display:none">
+              <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
+          </form>
+
+
         </div>
 
         </div>

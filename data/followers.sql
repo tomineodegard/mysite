@@ -7,6 +7,7 @@ CREATE TABLE followers (
 ) WITHOUT ROWID;
 
 
+
 -- Followers Plus 
 DROP TRIGGER IF EXISTS increment_user_total_followers;
 CREATE TRIGGER increment_user_total_followers 

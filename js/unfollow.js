@@ -2,12 +2,6 @@
 
 async function unfollow(){
     const frm = event.target
-    console.log(frm)
-    const username = frm[0].value
-    const cookie_user_profile = document.querySelector("#cookie_user_profile")
-    const parent = event.target.parentElement.id
-    console.log(parent)
-
     const conn = await fetch("/api-unfollow", {
         method : "DELETE",
         body : new FormData(frm)
@@ -16,34 +10,25 @@ async function unfollow(){
     
     const data = await conn.json()
     console.log(data)
-    console.log(`ok unfollow ${username}`)
 
+    if (document.querySelector("#user_total_followers")) {
+        document.querySelector("#user_total_followers").textContent = data.user_total_followers;
+    }
+
+    console.log("#user_total_followers")
+    console.log(document.querySelector("#user_total_followers"))
+
+    // (!)data.user_is_verified ? document.querySelectorAll("#verified_icon").forEach((e) => {
+    //     e.remove()
+    // }) : null
+
+    const followForm = frm.parentNode.insertAdjacentHTML("beforeend", 
+    `
+    <form id="follow_form" onsubmit="follow(); return false;">
+        <input type="text" name="followee_fk" value="${data.unfollowee_fk}" style="display: none" />
+        <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
+    </form>
+    `)
 
     frm.remove();
-    document.querySelector(`#${parent}`).insertAdjacentHTML(
-        "afterbegin",
-        `
-        <form onsubmit="follow(); return false">
-            <input type="text" name="followee_fk" value="${username}" style="display:none">
-            <button class="ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full">Follow</button>
-        </form>  
-        `
-    )
-
-    const decrement_user_followers = document.querySelector("#user_total_followers");
-    const decrement_my_following = document.querySelector("#my_total_following");
-
-    
-    if(cookie_user_profile) {
-        console.log("true")
-    } else if(decrement_user_followers) {
-        decrement_user_followers.textContent--
-    }
-
-    if(cookie_user_profile) {
-        decrement_my_following.textContent--
-    } else {
-        console.log("false")
-    }
-
 }

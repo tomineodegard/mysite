@@ -13,7 +13,9 @@
             <p class="font-bold text-xl px-4">{{user["user_firstname"]}} {{user["user_lastname"]}}</p>
            
             % if user["user_is_verified"] == 1:
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/></g></svg>
+            <div class="verified_container">
+                <svg id="verified_icon" xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/></g></svg>
+            </div>
             % end
         </div>
         
@@ -54,15 +56,15 @@
                 % include('modal_settings')
 
                 % elif follow == []:
-                <form onsubmit="follow(); return false">
-                    <input type="text" name="followee_fk" value="{{user['username']}}" style="display:none">
+                <form id="follow_form" onsubmit="follow(); return false">
+                    <input type="text" name="followee_fk" value="{{user['user_id']}}" style="display:none">
                     <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
                 </form>
                 
                 % else:
-                <form id="" onsubmit="unfollow(); return false">
-                    <input type="text" name="unfollowee_fk" value="{{user['username']}}" style="display:none">
-                    <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Unfollow</button>
+                <form id="unfollow_form" onsubmit="unfollow(); return false">
+                    <input type="text" name="unfollowee_fk" value="{{user['user_id']}}" style="display:none">
+                    <button type="submit" class="ml-auto px-4 py-2 border border-twitterLightGray bg-transparent ease-in duration-100 hover:border-twitterRed hover:text-twitterRed rounded-full text-sm font-medium before:content-['Following'] hover:before:content-['Unfollow'] w-28"></button>
                 </form> 
                 % end
             </div>
@@ -79,7 +81,10 @@
             <p class="font-bold text-xl">{{user["user_firstname"]}} {{user["user_lastname"]}}</p>
             
             % if user["user_is_verified"] == 1:
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/></g></svg>
+            <div class="verified_container">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/></g></svg>
+            </div>
+            
             % end
 
         </div>
@@ -100,8 +105,8 @@
             </div>
             %if cookie_user:
             <div class="flex gap-4">
-                <p class="text-sm text-twitterLightGray"><span id="my_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
-                <p class="text-sm text-twitterLightGray"><span id="my_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
+                <p class="text-sm text-twitterLightGray"><span id="user_total_following" class="text-white font-bold"> {{user["user_total_following"]}}</span> Following</p>
+                <p class="text-sm text-twitterLightGray"><span id="user_total_followers" class="text-white font-bold">{{user["user_total_followers"]}}</span> Followers</p>
             </div>
 
             % else:
