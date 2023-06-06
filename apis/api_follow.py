@@ -24,6 +24,7 @@ def _():
         if not follow_success: raise Exception (400, "user not followed")
 
         user_total_followers = db.execute("SELECT user_total_followers FROM users WHERE user_id=?",(followee_fk,)).fetchone()
+        user_total_following = db.execute("SELECT user_total_following FROM users WHERE user_id=?",(followee_fk,)).fetchone()
 
         # print("user_total_followers:"+"-"*50)
         # print(user_total_followers)
@@ -44,7 +45,8 @@ def _():
             "follower_fk": follower_fk,
             "followee_fk": followee_fk,
             "user_is_verified": user_is_verified,
-            "user_total_followers": user_total_followers["user_total_followers"]
+            "user_total_followers": user_total_followers["user_total_followers"],
+            "user_total_following": user_total_following["user_total_following"]
         }
     
     except Exception as ex:

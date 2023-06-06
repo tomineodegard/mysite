@@ -22,6 +22,7 @@ def _():
         if unfollow_success != 1: raise Exception(400, "oh no, user not unfollowed successfully")
 
         user_total_followers = db.execute("SELECT user_total_followers FROM users WHERE user_id=?",(unfollowee_fk,)).fetchone()
+        user_total_following = db.execute("SELECT user_total_following FROM users WHERE user_id=?",(unfollowee_fk,)).fetchone()
 
         # ---- Check if the user has more than 3 followers aka is verified
         user_is_verified = 0
@@ -36,7 +37,8 @@ def _():
             "unfollower_fk":unfollower_fk,
             "unfollowee_fk":unfollowee_fk,
             "user_is_verified":user_is_verified,
-            "user_total_followers": user_total_followers["user_total_followers"]
+            "user_total_followers": user_total_followers["user_total_followers"],
+            "user_total_following": user_total_following["user_total_following"]
         }
     
     except Exception as ex:

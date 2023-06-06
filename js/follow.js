@@ -2,8 +2,8 @@
 
 async function follow(){
     const frm = event.target
-    // const parent = event.target.parentElement.id
-    // console.log(parent)
+    const cookie_user_profile = document.querySelector("#cookie_user_profile")
+    const follow_unfollow_container = document.querySelector("#follow_unfollow")
 
     const conn = await fetch("/api-follow", {
         method : "POST",
@@ -15,20 +15,18 @@ async function follow(){
     console.log(data)
     
 
-    if (document.querySelector("#user_total_followers")) {
-        document.querySelector("#user_total_followers").textContent = data.user_total_followers;
-    }
+  
    
     console.log("#user_total_followers")
     console.log(document.querySelector("#user_total_followers"))
 
     
     data.user_total_followers === 3 ?
-    document.querySelectorAll("#verified-container").forEach((e) => {
+    document.querySelectorAll("#verified_container").forEach((e) => {
         e.insertAdjacentHTML("beforeend", 
-        `<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Verified account" role="img" class="w-5" data-icon-verified="icon-verified">
-            <g fill="#1D9BF0">
-                <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z" fill="#1D9BF0"></path>
+        `<svg id="verified_icon" xmlns="http://www.w3.org/2000/svg" class="text-twitterBlue" width="20" height="20" viewBox="0 0 24 24">
+            <g fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.054 2.344a3 3 0 0 1 3.892 0l1.271 1.084a1 1 0 0 0 .57.236l1.665.133a3 3 0 0 1 2.751 2.751l.133 1.666a1 1 0 0 0 .236.569l1.084 1.271a3 3 0 0 1 0 3.892l-1.084 1.271a1 1 0 0 0-.236.57l-.133 1.665a3 3 0 0 1-2.751 2.751l-1.666.133a1 1 0 0 0-.569.236l-1.271 1.084a3 3 0 0 1-3.892 0l-1.271-1.084a1 1 0 0 0-.57-.236l-1.665-.133a3 3 0 0 1-2.751-2.751l-.133-1.666a1 1 0 0 0-.236-.569l-1.084-1.271a3 3 0 0 1 0-3.892l1.084-1.271a1 1 0 0 0 .236-.57l.133-1.665a3 3 0 0 1 2.751-2.751l1.666-.133a1 1 0 0 0 .569-.236l1.271-1.084zm5.653 8.363a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z" fill="currentColor"/>
             </g>
         </svg>`)
     }) : null
@@ -37,9 +35,30 @@ async function follow(){
     const unfollowForm = frm.parentNode.insertAdjacentHTML("beforeend", 
         `<form id="unfollow_form" onsubmit="unfollow(); return false;">
             <input type="text" name="unfollowee_fk" value="${data.followee_fk}" style="display: none" />
-            <button type="submit" class="ml-auto px-4 py-2 border border-twitterLightGray bg-transparent ease-in duration-100 hover:border-twitterRed hover:text-twitterRed rounded-full text-sm font-medium before:content-['Following'] hover:before:content-['Unfollow'] w-28"></button>
+            <button type="submit" class="ml-auto px-4 py-2 border border-twitterLightGray bg-transparent ease-in duration-100 hover:border-twitterRed hover:text-twitterRed rounded-full text-sm font-medium before:content-['Following'] hover:before:content-['Unfollow']"></button>
         </form>
         `)
 
     frm.remove();
+
+
+    if(cookie_user_profile) {
+    document.querySelector("#user_total_following").textContent++;
+    } else if (follow_unfollow_container) {
+    document.querySelector("#user_total_followers").textContent = data.user_total_followers;
+    }
+
+
+
+    // if(cookie_user_profile) {
+    //     increment_my_following.textContent++
+    // } else if(increment_my_following) {
+    //     console.log("true")
+    // }
+
+    // if(cookie_user_profile) {
+    //     console.log("true")
+    // } else if(increment_followers) {
+    //     increment_followers.textContent++
+    // }
 }

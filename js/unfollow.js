@@ -1,7 +1,11 @@
 "use strict"
 
 async function unfollow(){
+
     const frm = event.target
+    const cookie_user_profile = document.querySelector("#cookie_user_profile")
+    const follow_unfollow_container = document.querySelector("#follow_unfollow")
+
     const conn = await fetch("/api-unfollow", {
         method : "DELETE",
         body : new FormData(frm)
@@ -11,16 +15,12 @@ async function unfollow(){
     const data = await conn.json()
     console.log(data)
 
-    if (document.querySelector("#user_total_followers")) {
-        document.querySelector("#user_total_followers").textContent = data.user_total_followers;
-    }
-
     console.log("#user_total_followers")
     console.log(document.querySelector("#user_total_followers"))
 
-    // (!)data.user_is_verified ? document.querySelectorAll("#verified_icon").forEach((e) => {
-    //     e.remove()
-    // }) : null
+    !data.user_is_verified ? document.querySelectorAll("#verified_icon").forEach((e) => {
+        e.remove()
+    }) : null
 
     const followForm = frm.parentNode.insertAdjacentHTML("beforeend", 
     `
@@ -31,4 +31,10 @@ async function unfollow(){
     `)
 
     frm.remove();
+
+    if(cookie_user_profile) {
+        document.querySelector("#user_total_following").textContent--;
+        } else if (follow_unfollow_container) {
+        document.querySelector("#user_total_followers").textContent = data.user_total_followers;
+        }
 }
