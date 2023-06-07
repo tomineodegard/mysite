@@ -1,5 +1,5 @@
 <!-- Full screen overlay element -->
-<div id="modal_settings" class="hidden fixed z-40 w-screen h-screen inset-0 bg-gray-700 bg-opacity-75">
+<div id="modal_edit_profile" class="hidden fixed z-40 w-screen h-screen inset-0 bg-gray-700 bg-opacity-75">
     <!-- Dialog start -->
     <div class="fixed z-50 w-screen h-screen sm:top-[30%] sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/4 bg-black sm:rounded-xl space-y-5 drop-shadow-lg sm:w-[600px] sm:h-auto">
         <!-- Form start -->
@@ -8,21 +8,21 @@
                 <!-- Modal navigation -->
                 <div class="p-4 flex items-center justify-between">
                     <div class="flex gap-2">
-                        <button onclick="closeModalSettings()" type="button">
+                        <button onclick="closeModalEditProfile()" type="button">
                             <svg height="22" viewbox="0 0 15 15" width="22" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" fill="currentColor" fill-rule="evenodd"></path>
                             </svg>
                         </button>
                         <p class="text-base text-white">Edit profile</p>
                     </div>
-                    <button onclick="closeModalSettings()" class="ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full">Save</button>
+                    <button onclick="closeModalEditProfile()" class="ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full">Save</button>
                 </div>
                 <!-- Modal navigation end -->
 
                 <!-- Coverpicture -->
                 <div class="flex flex-col justify-center overflow-hidden items-center">
                     % if user["user_cover_picture"]: 
-                        <img class="w-full bg-cover bg-no-repeat bg-center max-h-[200px]" id="user_cover_picture_preview" src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture"> 
+                        <img class="w-full bg-cover bg-no-repeat bg-center max-h-[200px]" id="user_cover_picture_preview" src="/images/coverpictures/{{user['user_cover_picture']}}" alt="coverpicture {{user['username']}}"> 
                     % else:
                         <div class="w-full bg-cover bg-no-repeat bg-center h-[200px]">
                             <div class="bg-zinc-600 w-full h-full"></div>
@@ -52,9 +52,9 @@
                 <!-- Profile picture -->
                 <div class="relative w-24 sm:w-32 h-12 ml-4 mt-8">
                     % if user["user_profile_picture"]: 
-                        <img alt="" class="absolute bottom-0 w-32 rounded-full" id="user_profile_picture_preview" src="/images/profilepictures/{{user['user_profile_picture']}}"> 
+                        <img alt="profile picture {{user['username']}}" class="absolute bottom-0 w-32 rounded-full" id="user_profile_picture_preview" src="/images/profilepictures/{{user['user_profile_picture']}}"> 
                     % else:
-                        <div class="absolute bottom-0 w-32 h-32 rounded-full bg-slate-500"></div>
+                        <img alt="default avatar picture {{user['username']}}" class="absolute bottom-0 w-32 rounded-full" id="user_profile_picture_preview" src="/images/profilepictures/default_avatar.png"> 
                     % end 
                     
                     <!-- Edit icon -->

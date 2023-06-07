@@ -5,14 +5,14 @@ function toggleModalProfileOptions() {
     document.querySelector("#modal_profile_options").classList.toggle("hidden");
 };
 
-// settings on cookie_users profile page
-function displayModalSettings() {
-    console.log("displayModalSettings")
-    document.querySelector("#modal_settings").classList.remove("hidden");
+// edit profile on cookie_users page
+function displayModalEditProfile() {
+    console.log("displayEditProfile")
+    document.querySelector("#modal_edit_profile").classList.remove("hidden");
 };
 
-function closeModalSettings() {
-    document.querySelector("#modal_settings").classList.add("hidden");
+function closeModalEditProfile() {
+    document.querySelector("#modal_edit_profile").classList.add("hidden");
 };
 
 

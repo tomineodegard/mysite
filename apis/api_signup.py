@@ -26,7 +26,6 @@ def _():
 		user_id = str(uuid.uuid4().hex)
 		activation_key = str(uuid.uuid4().hex)
 		user_reset_password_key = str(uuid.uuid4().hex)
-		# user_deactivate_key = str(uuid.uuid4().hex)
 
 		new_user = {
             "user_id" : user_id,

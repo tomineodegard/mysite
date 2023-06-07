@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import uuid
 
-@post("/api-request-deactivate-user-key")
+@post("/api-deactivate-user")
 def _():
     try:
         db = x.db()
@@ -13,12 +13,6 @@ def _():
         user_deactivate_key = str(uuid.uuid4()).replace("-","")
         user_email = db.execute("SELECT user_email FROM users WHERE user_id=?", (user_id,)).fetchone()
         username = db.execute("SELECT username FROM users WHERE user_id=?", (user_id,)).fetchone()
-
-        # print("user email:"+"-"*50)
-        # print(user_email["user_email"])
-
-        # print("user_deactivate_key:"+"-"*50)
-        # print(user_deactivate_key)
 
         total_changes = db.execute(f"""
             UPDATE users
@@ -38,8 +32,8 @@ def _():
         message["To"] = receiver_email
 
         text = f"""\
-		Hi {username}.
-		Follow the link below to confirm the deactivation of your account with the username {username}.
+		Hi {username["username"]}.
+		Follow the link below to confirm the deactivation of your account with the username {username["username"]}.
         Your deactivate key is: {user_deactivate_key}.
         Click <a href="http://127.0.0.1:4321/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
 		"""
@@ -47,7 +41,7 @@ def _():
         html = f"""\
 		<html>
 		<body>
-			<p>Hi {username}.<br>Follow the link below to confirm the deactivation of your account with the username {username}.<br>Your deactivate key is: {user_deactivate_key}.<br>Click <a href="http://127.0.0.1:4321/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
+			<p>Hi {username["username"]}.<br>Follow the link below to confirm the deactivation of your account with the username {username["username"]}.<br>Your deactivate key is: {user_deactivate_key}.<br>Click <a href="http://127.0.0.1:4321/deactivate_user/{user_deactivate_key}">here</a> to complete the deactivation.
 			</p>
 		</body>
 		</html>
@@ -66,14 +60,13 @@ def _():
 				sender_email, receiver_email, message.as_string()
 			)
 
-
-
         db.commit()    
 
         return {
         "info": f"user with id: {user_id} has requested to deactivate there account. Email is sent to {user_email}",
         "user_deactivate_key": user_deactivate_key,
         "username": username,
+        "user_id": user_id,
     }
     except Exception as ex:
         print("-"*30)
