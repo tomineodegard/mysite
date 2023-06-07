@@ -9,7 +9,7 @@ async function render_signup() {
     });
 
     const data = await connection.json();
-    data.info === "Your new user has been created. However, before you can log in, you need to check your email to validate your identity." ? displaySuccess() : displayError()
+    data.info === "Your new user has been created. However, before you can log in, we kindly ask you to check your email to validate your identity." ? displaySuccess() : displayError()
     console.log(data)
 
 

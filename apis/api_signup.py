@@ -13,13 +13,13 @@ def _():
 	try:
 		db = x.db()
 		taken_username = db.execute("SELECT username FROM users WHERE username = ?",(request.forms.username,)).fetchone()
-		taken_email = db.execute("SELECT user_email FROM users WHERE user_email = ?",(request.forms.user_email,)).fetchone()
+		# taken_email = db.execute("SELECT user_email FROM users WHERE user_email = ?",(request.forms.user_email,)).fetchone()
 		
 		username = x.validate_username(taken_username)
 
 		user_firstname = x.validate_user_firstname()
 		user_lastname = x.validate_user_lastname()
-		user_email = x.validate_user_email(taken_email)
+		user_email = x.validate_user_email()
 		user_password = x.validate_user_password()
 		salt = bcrypt.gensalt()
 		user_id = str(uuid.uuid4().hex)

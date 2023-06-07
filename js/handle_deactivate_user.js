@@ -17,7 +17,7 @@ async function handleDeactivateUser() {
     `
     <form class="flex flex-col mt-8" >
         <input type="text" name="user_id" id="user_id" value="{{cookie_user['user_id']}}" style="display:none">
-        <button class="cursor-pointer border border-twitterRed py-2 px-6 rounded-full text-twitterRed flex justify-center">Please check your email</button>
+        <button class="cursor-pointer border border-twitterBlue py-2 px-6 rounded-full text-white flex justify-center">Check your email to confirm</button>
     </form>
     `
 

@@ -108,8 +108,8 @@ USER_EMAIL_MIN = 6
 USER_EMAIL_MAX = 100
 USER_EMAIL_REGEX = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
 
-def validate_user_email(taken_email):
-  error_taken_email = f"A user with this email already exist."
+def validate_user_email():
+  # error_taken_email = f"A user with this email already exist."
   error = f"Please enter an email that is valid."
   user_email = request.forms.get("user_email", "")        
   user_email = user_email.strip()
@@ -117,7 +117,7 @@ def validate_user_email(taken_email):
   if len(user_email) > USER_EMAIL_MAX : raise Exception(400, error)  
   if not re.match(USER_EMAIL_REGEX, user_email): raise Exception(400, error)
   
-  if taken_email: raise Exception(error_taken_email)
+  # if taken_email: raise Exception(error_taken_email)
   return user_email
 
 
