@@ -29,25 +29,27 @@
     <!-- This will deactivate your account -->
     <div class="flex flex-col gap-4 py-4">
         <h2 class="text-xl font-bold">This will deactivate your account</h2>
-        <p class="text-xs text-twitterLightGray">You’re about to start the process of deactivating your Twitter account. Your display name, @username, and public profile will no longer be viewable on Twitter.com, Twitter for iOS, or Twitter for Android.</p>
+        <p class="text-sm text-twitterLightGray">You’re about to start the process of deactivating your Twitter account. Your display name, <span class="font-bold">@{{cookie_user['username']}}</span>, and public profile will no longer be viewable on Twitter.com, Twitter for iOS, or Twitter for Android.</p>
 
         <!-- What else you should know -->
         <div class="flex flex-col gap-4 my-4">
             <h3 class="text-lg font-bold">What else you should know</h3>
-            <p class=" text-xs text-twitterLightGray">You can restore your Twitter account if it was accidentally or wrongfully deactivated for up to 30 days after deactivation</p>
-            <p class="py-2 border-t border-twitterDarkGray text-xs text-twitterLightGray">Some account information may still be available in search engines, such as Google or Bing. <a href="#" class="text-twitterBlue">Learn more</a></p>
-            <p class="py-2 border-t border-twitterDarkGray text-xs text-twitterLightGray">If you just want to change your @username, you don’t need to deactivate your account — edit it in your <a href="#" class="text-twitterBlue">settings</a>.</p>
-            <p class="py-2 border-t border-twitterDarkGray text-xs text-twitterLightGray">To use your current @username or email address with a different Twitter account, <a href="#" class="text-twitterBlue">change them</a> before you deactivate this account.</p>
-            <p class="py-2 border-y border-twitterDarkGray text-xs text-twitterLightGray">If you want to download <a href="#" class="text-twitterBlue">your Twitter data</a>, you’ll need to complete both the request and download process before deactivating your account. Links to download your data cannot be sent to deactivated accounts.</p>
+            <p class=" text-sm text-twitterLightGray">You can restore your Twitter account if it was accidentally or wrongfully deactivated for up to 30 days after deactivation</p>
+            <p class="py-2 border-t border-twitterDarkGray text-sm text-twitterLightGray">Some account information may still be available in search engines, such as Google or Bing. <a href="#" class="text-twitterBlue">Learn more</a></p>
+            <p class="py-2 border-t border-twitterDarkGray text-sm text-twitterLightGray">If you just want to change your username, you don’t need to deactivate your account — edit it in your <a href="#" class="text-twitterBlue">settings</a>.</p>
+            <p class="py-2 border-t border-twitterDarkGray text-sm text-twitterLightGray">To use your current username or email address with a different Twitter account, <a href="#" class="text-twitterBlue">change them</a> before you deactivate this account.</p>
+            <p class="py-2 border-y border-twitterDarkGray text-sm text-twitterLightGray">If you want to download <a href="#" class="text-twitterBlue">your Twitter data</a>, you’ll need to complete both the request and download process before deactivating your account. Links to download your data cannot be sent to deactivated accounts.</p>
         </div>
 
     </div>
     <!-- End of This will deactivate your account -->
 
 
-    <form onsubmit="handleDeactivateUser(); return false" class="flex flex-col mt-8" >
-        <input type="text" name="user_id" id="user_id" value="{{cookie_user['user_id']}}" style="display:none">
-        <button type="submit" class="cursor-pointer bg-twitterRed py-2 px-6 rounded-full text-white flex justify-center">Send mail to deactivate</button>
-    </form>
+    <div id="deactivate_form">
+        <form onsubmit="handleDeactivateUser(); return false" class="flex flex-col mt-8" >
+            <input type="text" name="user_id" id="user_id" value="{{cookie_user['user_id']}}" style="display:none">
+            <button type="submit" class="cursor-pointer bg-twitterRed py-2 px-6 rounded-full text-white flex justify-center">Deactivate user</button>
+        </form>
+    </div>
     
 </div>

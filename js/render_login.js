@@ -12,8 +12,12 @@ async function render_login() {
 
 
     function displayError() {
-        const errorMessage = data.info;
+        let errorMessage = data.info;
         console.log(errorMessage)
+
+        if (data.info === "'NoneType' object is not subscriptable"){
+            errorMessage = " User not found"
+        }
 
         document.querySelector("#errorModal").classList.remove("hidden");
         document.querySelector("#errorMessage").textContent = errorMessage

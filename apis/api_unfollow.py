@@ -26,10 +26,10 @@ def _():
 
         # ---- Check if the user has more than 3 followers aka is verified
         user_is_verified = 0
-        if user_total_followers["user_total_followers"] >= 3:
-            total_changes = db.execute("UPDATE users SET user_is_verified = 1 WHERE user_id = ?", (unfollowee_fk,)).rowcount
+        if user_total_followers["user_total_followers"] < 3:
+            total_changes = db.execute("UPDATE users SET user_is_verified = 0 WHERE user_id = ?", (unfollowee_fk,)).rowcount
             if not total_changes: raise Exception (400, "user not found")
-            user_is_verified = 1
+            user_is_verified = 0
 
         db.commit()
         return {

@@ -9,12 +9,11 @@ import uuid
 @post("/api-forgot-password")
 def _():
     try:
-        db = x.db()
-
-        print("I am here NOW"+"-"*50)
+        
         username = request.forms.get("username")
         user_email = request.forms.get("user_email")
 
+        db = x.db()
         verify_identity = db.execute("SELECT * FROM users WHERE username = ? AND user_email = ?", (username, user_email)).fetchone()
         if not verify_identity: raise Exception ("Error")
 
@@ -30,16 +29,6 @@ def _():
         if not total_changes: raise Exception(400, "Could not update user_reset_password_key.")
 
 
-        # user = {
-        #     "username" : username,
-        #     "user_email" : user_email,            
-        # }
-
-		
-        # total_rows_inserted = db.execute("INSERT INTO users(user_password) VALUES ('?')", user).rowcount 
-        # if total_rows_inserted != 1: raise Exception("Please, try again")
-
-
         sender_email = "tomineodegard99@gmail.com"
         receiver_email = "tomineodegard99@gmail.com"
         app_password = "ufouvebjcndaumua"
@@ -53,15 +42,15 @@ def _():
 		Hi {username}.
 		Looks like you have forgotten the password. Lets help you get access to your account again by resetting your password. Click the link below to reset your password.
         Your reset key is: {user_reset_password_key}.
-		http://127.0.0.1:4444/reset_password/{user_reset_password_key}"""
+		http://127.0.0.1:4321/reset_password/{user_reset_password_key}"""
 
         html = f"""\
 		<html>
-		<body>
-			<p>Hi.<br>Looks like you have forgotten the password.<br>Lets help you get access to your account again by resetting your password.<br>Click the link below to reset your password.<br>Your reset key is: {user_reset_password_key}.<br>Click <a href="http://127.0.0.1:4444/reset_password/{user_reset_password_key}">here</a>.
-			</p>
-		</body>
-		</html>
+            <body>
+                <p>Hi {username}.<br>Looks like you have forgotten the password. Lets help you get access to your account again by resetting your password.</p>
+                <button class=`ml-auto px-4 py-2 text-black text-base font-medium bg-white rounded-full`>Click <a href="http://127.0.0.1:4321/reset_password/{user_reset_password_key}">here </a>to reset password.</button>
+            </body>
+        </html>
 		"""
         
         part1 = MIMEText(text, "plain")

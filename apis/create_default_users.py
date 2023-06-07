@@ -304,7 +304,7 @@ user_magnusnielsen = {
 user_anderstrapman = {
     "user_id": "e3f6b571c7bc41bd8a48ae7b0eea6ed6",
     "username": "anderstrapman",
-    "user_email": "magnus@gmail.com",
+    "user_email": "anders@gmail.com",
     "user_password": bcrypt.hashpw("password".encode("utf-8"), bcrypt.gensalt()),
     "user_created_at": 1685183698,
     "user_first_name": "Anders",

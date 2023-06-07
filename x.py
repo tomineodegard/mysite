@@ -175,19 +175,17 @@ def check_mimetype_and_upload_image(field_name, path, current_image=""):
   uploaded_image = str(uuid.uuid4().hex)
   uploaded_image = uploaded_image + extention
 
-
-  print("-----HERE")
-  print(f"images/{path}/{current_image}")
-  # Delete the old image
+  # ---- Delete the old image
   if not current_image == "":
     os.remove(f"images/{path}/{current_image}")
 
-
   field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
-  mime_type = magic.from_file(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}", mime=True)
-  if str(mime_type) not in ["image/jpg","image/jpeg", "image/png"]:
-    os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
-  raise Exception(400,f"{uploaded_image} not uploaded, because file is not allowed")
+
+  # ---- Check mimetype
+  # mime_type = magic.from_file(str(pathlib.Path(__file__).parent.resolve())+f"images/{path}/{field_name}", mime=True)
+  # if str(mime_type) not in ["image/jpg","image/jpeg", "image/png"]:
+  #   os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{field_name}")
+  #   raise Exception(400,f"{field_name} not uploaded, because file is not allowed")
 
   return uploaded_image
 

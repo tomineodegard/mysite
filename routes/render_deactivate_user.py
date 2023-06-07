@@ -6,15 +6,16 @@ import x
 def _(user_deactivate_key):
     try:
         db = x.db()
-        cookie_user = request.get_cookie("cookie_user", secret=x.COOKIE_SECRET)
-        print("Cookie user: " +"-"*50)
-        print(cookie_user)
 
-        print("user_deactivate_key: " +"-"*50)
-        print(user_deactivate_key)
-        
-        return template("confirm_deactivate_account", title="Deactivate user - Twitter", user_deactivate_key=user_deactivate_key, cookie_user=cookie_user)
+        user = db.execute("SELECT * FROM users WHERE user_deactivate_key = ?", (user_deactivate_key,)).fetchone()
+        total_changes = db.execute("UPDATE users SET user_deactivate_key = ? AND user_is_active = ?",("", 0)).rowcount
+        if not total_changes: raise Exception (400, "user is not deactivated, something went wrong")
+
+        # TO DO: Delete cookie and redirect to indexpage
+        return template("confirm_deactivate_account", title="Deactivate user - Twitter", user_deactivate_key=user_deactivate_key, user=user)
+    
     except Exception as ex:
+        if "db" in locals(): db.rollback()
         print("Exection: " +"-"*50)
         print(ex)
         return f"{str(ex)}"

@@ -2,42 +2,47 @@
   <div class="pb-4">
    <div class="flex flex-shrink-0 p-4 pb-0">
     <div class="">
-
       % if cookie_user["user_profile_picture"]:
         <img src="/images/profilepictures/{{cookie_user['user_profile_picture']}}" alt="" class="w-12 h-auto rounded-full" alt="{{cookie_user['username']}}">
       % else:
         <img src="/images/profilepictures/default_avatar.png" alt="" class="w-12 h-auto rounded-full">
       % end
-
-    
     </div>
 
+    <!-- new tweet field -->
     <div class="w-full p-2">
+    <!-- text area -->
      <textarea name="tweet_message" id="make-tweet" data-validate="str" data-min="1" data-max="20" class="text-white placeholder-gray-400 w-full h-10 bg-transparent border-0 focus:outline-none resize-none text-xl" placeholder="What's happening?"></textarea>
 
+     <!-- hidden tweet preview container -->
      <div class="tweetPreviewContainer relative hidden">
       <div class="closePreview p-2 bg-input/60 hover:bg-input/90 hover:cursor-pointer rounded-full w-10 h-10 top-[5px] left-[7px] flex justify-center items-center absolute">
        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-6 h-6 text-white">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
        </svg>
       </div>
-
       <img draggable="false" class="tweetImgPreview rounded-md h-full w-full">
      </div>
     </div>
+    <!-- new tweet field end -->
    </div>
+
+    <!-- icons -->
+    <!-- image upload icon -->
    <div class="w-full flex items-top p-2 text-white pl-14">
+    <input id="tweetImgUpload" onchange="previewTweetImg()" class="hidden" type="file" accept="image/*" name="tweet_image">
     <label class="flex justify-center items-center group cursor-pointer" for="tweetImgUpload">
-     <input id="tweetImgUpload" onchange="previewTweetImg()" class="hidden" type="file" accept="image/*" name="tweet_image">
+     
      <a href="#" class="pointer-events-none text-twitterBlue group-hover:bg-dim-800 rounded-full p-2">
-      <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
-       <g>
+      <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><g>
         <path d="M19.75 2H4.25C3.01 2 2 3.01 2 4.25v15.5C2 20.99 3.01 22 4.25 22h15.5c1.24 0 2.25-1.01 2.25-2.25V4.25C22 3.01 20.99 2 19.75 2zM4.25 3.5h15.5c.413 0 .75.337.75.75v9.676l-3.858-3.858c-.14-.14-.33-.22-.53-.22h-.003c-.2 0-.393.08-.532.224l-4.317 4.384-1.813-1.806c-.14-.14-.33-.22-.53-.22-.193-.03-.395.08-.535.227L3.5 17.642V4.25c0-.413.337-.75.75-.75zm-.744 16.28l5.418-5.534 6.282 6.254H4.25c-.402 0-.727-.322-.744-.72zm16.244.72h-2.42l-5.007-4.987 3.792-3.85 4.385 4.384v3.703c0 .413-.337.75-.75.75z"></path>
         <circle cx="8.868" cy="8.309" r="1.542"></circle>
        </g>
       </svg>
      </a>
     </label>
+    <!-- end image upload icon -->
+
 
     <a href="#" class="flex justify-center items-center text-twitterBlue hover:bg-dim-800 rounded-full p-2">
      <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
@@ -83,12 +88,11 @@
      </svg>
     </a>
 
-     <!-- Tweet button -->
      <button type="submit" id="submit_tweet" class="ml-auto bg-twitterBlue py-2 px-6 rounded-full text-sm">
       Tweet
     </button>
-    <!-- Tweet button end -->
 
    </div>
+   <!-- icons end -->
   </div>
  </form>

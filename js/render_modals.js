@@ -7,6 +7,7 @@ function toggleModalProfileOptions() {
 
 // settings on cookie_users profile page
 function displayModalSettings() {
+    console.log("displayModalSettings")
     document.querySelector("#modal_settings").classList.remove("hidden");
 };
 

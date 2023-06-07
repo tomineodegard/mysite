@@ -51,9 +51,8 @@
         
         % if cookie_user:
                 % if cookie_user["user_id"] == user_id:
-                <form id="edit_profile">
-                    <button onclick="displayModalSettings()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Edit profile</button>
-                </form>
+                <button onclick="displayModalSettings()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Edit profile</button>
+
                 % include('modal_settings')
 
                 % elif follow == []:
