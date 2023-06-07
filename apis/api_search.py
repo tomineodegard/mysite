@@ -12,6 +12,8 @@ def _():
         search_input = request.json["search_input"]
         print(search_input)
 
+
+        
         db = x.db()
         results = db.execute("SELECT * FROM users WHERE username LIKE ? AND username != ?", ('%' + search_input + '%', username,)).fetchall()
 

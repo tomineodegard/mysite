@@ -150,7 +150,7 @@ user_barackobama = {
 user_tomineodegard = {
     "user_id": "2f9214d6266e4a96a95bb6a5fb7d1a47",
     "username": "tomineodegard",
-    "user_email": "tomine@gmail.com",
+    "user_email": "tomineodegard99@gmail.com",
     "user_password": bcrypt.hashpw("password".encode("utf-8"), bcrypt.gensalt()),
     "user_created_at": 1676120649,
     "user_first_name": "Tomine",
