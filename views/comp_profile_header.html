@@ -50,7 +50,6 @@
         </a>
         
         % if cookie_user:
-            
                 % if cookie_user["user_id"] == user_id:
                 <form id="edit_profile">
                     <button onclick="displayModalSettings()" id="cookie_user_profile" class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Edit profile</button>
@@ -59,18 +58,18 @@
 
                 % elif follow == []:
                 <div id="follow_unfollow" value="{{user['username']}}_profile">
-                <form id="follow_form" onsubmit="follow(); return false">
-                    <input type="text" name="followee_fk" value="{{user['user_id']}}" style="display:none">
-                    <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
-                </form>
+                    <form id="follow_form" onsubmit="follow(); return false">
+                        <input type="text" name="followee_fk" value="{{user['user_id']}}" style="display:none">
+                        <button class="ml-auto px-4 py-2 text-black text-sm font-medium bg-white rounded-full">Follow</button>
+                    </form>
                 </div>
                 
                 % else:
                 <div id="follow_unfollow" value="{{user['username']}}_profile">
-                <form id="unfollow_form" onsubmit="unfollow(); return false">
-                    <input type="text" name="unfollowee_fk" value="{{user['user_id']}}" style="display:none">
-                    <button type="submit" class="ml-auto px-4 py-2 border border-twitterLightGray bg-transparent ease-in duration-100 hover:border-twitterRed hover:text-twitterRed rounded-full text-sm font-medium before:content-['Following'] hover:before:content-['Unfollow']"></button>
-                </form>
+                    <form id="unfollow_form" onsubmit="unfollow(); return false">
+                        <input type="text" name="unfollowee_fk" value="{{user['user_id']}}" style="display:none">
+                        <button type="submit" class="ml-auto px-4 py-2 border border-twitterLightGray bg-transparent ease-in duration-100 hover:border-twitterRed hover:text-twitterRed rounded-full text-sm font-medium before:content-['Following'] hover:before:content-['Unfollow']"></button>
+                    </form>
                 </div> 
                 % end
 

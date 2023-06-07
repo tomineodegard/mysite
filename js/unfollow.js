@@ -13,10 +13,6 @@ async function unfollow(){
     })
     
     const data = await conn.json()
-    console.log(data)
-
-    console.log("#user_total_followers")
-    console.log(document.querySelector("#user_total_followers"))
 
     !data.user_is_verified ? document.querySelectorAll("#verified_icon").forEach((e) => {
         e.remove()

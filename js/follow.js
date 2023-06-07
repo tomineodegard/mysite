@@ -12,14 +12,6 @@ async function follow(){
     })
 
     const data = await conn.json()
-    console.log(data)
-    
-
-  
-   
-    console.log("#user_total_followers")
-    console.log(document.querySelector("#user_total_followers"))
-
     
     data.user_total_followers === 3 ?
     document.querySelectorAll("#verified_container").forEach((e) => {
@@ -47,18 +39,4 @@ async function follow(){
     } else if (follow_unfollow_container) {
     document.querySelector("#user_total_followers").textContent = data.user_total_followers;
     }
-
-
-
-    // if(cookie_user_profile) {
-    //     increment_my_following.textContent++
-    // } else if(increment_my_following) {
-    //     console.log("true")
-    // }
-
-    // if(cookie_user_profile) {
-    //     console.log("true")
-    // } else if(increment_followers) {
-    //     increment_followers.textContent++
-    // }
 }

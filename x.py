@@ -2,7 +2,7 @@ from bottle import request, response
 import sqlite3
 import pathlib 
 import re
-
+import magic
 import os
 import uuid
 import mimetypes
@@ -182,11 +182,12 @@ def check_mimetype_and_upload_image(field_name, path, current_image=""):
   if not current_image == "":
     os.remove(f"images/{path}/{current_image}")
 
-  
-  # tweet_img_path = 'images/tweet_images'+uploaded_image['tweet_image']
-  # os.remove(tweet_img_path)
 
   field_name.save(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
+  mime_type = magic.from_file(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}", mime=True)
+  if str(mime_type) not in ["image/jpg","image/jpeg", "image/png"]:
+    os.remove(str(pathlib.Path(__file__).parent.resolve())+f"/images/{path}/{uploaded_image}")
+  raise Exception(400,f"{uploaded_image} not uploaded, because file is not allowed")
 
   return uploaded_image
 
