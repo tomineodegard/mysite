@@ -28,7 +28,7 @@ def render_username(username):
 
     except Exception as ex:
         if "db" in locals():db.rollback()
-        print("Exection: " +"-"*50)
+        print("Exception: " +"-"*50)
         print(ex)
         traceback.print_exc()
         return f"{str(ex)}"

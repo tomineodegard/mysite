@@ -15,7 +15,7 @@ def _():
 
         db = x.db()
         verify_identity = db.execute("SELECT * FROM users WHERE username = ? AND user_email = ?", (username, user_email)).fetchone()
-        if not verify_identity: raise Exception ("Error")
+        if not verify_identity: raise Exception ("Something went wrong. Please doublecheck the information you have entered.")
 
 
         user_reset_password_key = str(uuid.uuid4()).replace("-","")
@@ -68,7 +68,7 @@ def _():
             
         db.commit()
 
-        return {"info":"ok"}
+        return {"info":"An email is sent, please check your inbox to reset your password."}
     except Exception as e:
         print(e)
         return {"info":str(e)}

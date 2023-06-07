@@ -19,7 +19,7 @@ async function handleResetPassword() {
             const errorMessage = data.info;
             console.log(errorMessage)
     
-            document.querySelector("#errorModal").classList.remove("hidden");
+            document.querySelector("#modal_error").classList.remove("hidden");
             document.querySelector("#errorMessage").textContent = errorMessage
     }
 };

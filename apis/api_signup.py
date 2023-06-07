@@ -13,14 +13,13 @@ def _():
 	try:
 		db = x.db()
 		taken_username = db.execute("SELECT username FROM users WHERE username = ?",(request.forms.username,)).fetchone()
-		
-		print(taken_username)
+		taken_email = db.execute("SELECT user_email FROM users WHERE user_email = ?",(request.forms.user_email,)).fetchone()
 		
 		username = x.validate_username(taken_username)
 
 		user_firstname = x.validate_user_firstname()
 		user_lastname = x.validate_user_lastname()
-		user_email = x.validate_user_email()
+		user_email = x.validate_user_email(taken_email)
 		user_password = x.validate_user_password()
 		salt = bcrypt.gensalt()
 		user_id = str(uuid.uuid4().hex)
@@ -108,7 +107,7 @@ def _():
 
 		db.commit()
 		return {
-			"info" : "a new user is created", 
+			"info" : "Your new user has been created. However, before you can log in, you need to check your email to validate your identity.", 
 			"user_id" : user_id,
 			"username" : username
 		}

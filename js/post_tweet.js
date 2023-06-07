@@ -38,11 +38,12 @@ async function tweet() {
     user_is_verified = "";
   }
 
+  let user_profile_picture = data.cookie_user.user_profile_picture
+  if (data.cookie_user.user_profile_picture == "") {
+    user_profile_picture = `<img src="images/profilepictures/default_avatar.png" class="w-12 h-auto rounded-full object-cover">`;
+  }
 
-  // let is_cookie_user = data.cookie_user.user_is_verified
-  // if (data.cookie_user.user_id == data.cookie_user.tweet_user_fk) {
-  //   is_cookie_user = "";
-  // }
+
   
   // ----- insertAdjecentHTML with new tweet created
   document.querySelector("#welcome_back").insertAdjacentHTML(
@@ -51,9 +52,11 @@ async function tweet() {
    <div id="tweet_id" class="flex w-full border-t border-gray-600 overflow-hidden">
     <!-- left col -->
     <div class="p-4 flex flex-col justify-between items-center">
-      <a href="/${data.cookie_user.username}">
+    ${user_profile_picture &&
+      `<a href="/${data.cookie_user.username}">
         <img src="images/profilepictures/${data.cookie_user.user_profile_picture}" class="w-12 h-auto rounded-full object-cover">
-      </a>
+      </a>`
+      }
     </div>
      <!-- left col end -->
      <!-- right -->

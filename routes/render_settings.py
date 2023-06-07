@@ -13,7 +13,7 @@ def _():
 
         return template("settings", title="Settings - Twitter", cookie_user=cookie_user)
     except Exception as ex:
-        print("Exection: " +"-"*50)
+        print("Exception: " +"-"*50)
         print(ex)
         return f"{str(ex)}"
 

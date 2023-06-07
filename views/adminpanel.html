@@ -22,7 +22,7 @@
             <!-- List with all users start -->
             <div class="mt-8 py-4">
             % for user in users:
-            <article class="flex w-full overflow-hidden justify-between items-center">
+            <article id ="item" class="flex w-full overflow-hidden justify-between items-center">
                 <!-- --------- -->
                 <div class="p-4 flex justify-between items-center gap-4">
                 % if user["user_profile_picture"]:
@@ -68,7 +68,7 @@
                 <!-- --------- -->
 
                 <!-- --------- -->
-                <div id="admin_delete_user">
+                <div id="admin_delete_user_form">
                     <form onsubmit="handleAdminDeleteUser(); return false" class="flex justify-between gap-4">
                         <input type="text" name="user_id" value="{{user['user_id']}}" style="display:none">
                         <button type="submit" class="ml-auto px-4 py-2 text-white text-sm font-medium border border-twitterRed rounded-full">Delete user</button>

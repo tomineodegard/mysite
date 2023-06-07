@@ -24,7 +24,7 @@ def _(user_deactivate_key):
         return template("confirm_deactivate_account", title="Deactivate user - Twitter", user_deactivate_key=user_deactivate_key, user=user)
     except Exception as ex:
         if "db" in locals(): db.rollback()
-        print("Exection: " +"-"*50)
+        print("Exception: " +"-"*50)
         print(ex)
         return f"{str(ex)}"
 

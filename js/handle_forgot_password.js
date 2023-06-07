@@ -11,16 +11,34 @@ async function handleForgotPassword() {
     });
 
     const data = await connection.json();
-    data.info === "password reset" ? location.href = `login` : displayError();
+    data.info === "An email is sent, please check your inbox to reset your password." ? displaySuccess() : displayError();
+
     console.log(data)
+
+
+    function displaySuccess() {
+        const successMessage = data.info;
+        console.log(successMessage)
+        document.querySelector("#modal_success").classList.remove("hidden");
+        document.querySelector("#successMessage").textContent = successMessage
+    };
+
 
     function displayError() {
         const errorMessage = data.info;
         console.log(errorMessage)
 
-        document.querySelector("#errorModal").classList.remove("hidden");
+        document.querySelector("#modal_error").classList.remove("hidden");
         document.querySelector("#errorMessage").textContent = errorMessage
     }
-
+    
 };
-   
+
+
+function closeModalError() {
+    document.querySelector("#modal_error").classList.add("hidden");
+};
+
+function closeModalSuccess() {
+    document.querySelector("#modal_success").classList.add("hidden");
+};

@@ -70,7 +70,7 @@ def validate_username(taken_username):
 
 
 # ------------------ firstname validation
-USER_FIRSTNAME_MIN = 4
+USER_FIRSTNAME_MIN = 3
 USER_FIRSTNAME_MAX = 15
 USER_FIRSTNAME_REGEX = "^[a-zA-Z]*$"
 
@@ -78,7 +78,7 @@ def validate_user_firstname():
   print("user firstname:" + "-"*50)
   print(request.forms.user_firstname)
   
-  error = f"user_firstname must contain {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} english letters"
+  error = f"The first name must contain {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} english letters"
   validated_firstname = request.forms.user_firstname = request.forms.user_firstname.strip()
   if len(request.forms.user_firstname) < USER_FIRSTNAME_MIN: raise Exception(error)
   if len(request.forms.user_firstname) > USER_FIRSTNAME_MAX: raise Exception(error)
@@ -87,7 +87,7 @@ def validate_user_firstname():
 
 
 # ------------------ lastname validation
-USER_LASTNAME_MIN = 4
+USER_LASTNAME_MIN = 3
 USER_LASTNAME_MAX = 15
 USER_LASTNAME_REGEX = "^[a-zA-Z]*$"
 
@@ -95,7 +95,7 @@ def validate_user_lastname():
   print("user lastname:" + "-"*50)
   print(request.forms.user_lastname)
   
-  error = f"user_lastname must contain {USER_LASTNAME_MIN} to {USER_LASTNAME_MAX} english letters"
+  error = f"The last name must contain {USER_LASTNAME_MIN} to {USER_LASTNAME_MAX} english letters"
   validated_lastname = request.forms.user_lastname = request.forms.user_lastname.strip()
   if len(request.forms.user_lastname) < USER_LASTNAME_MIN: raise Exception(error)
   if len(request.forms.user_lastname) > USER_LASTNAME_MAX: raise Exception(error)
@@ -108,14 +108,17 @@ USER_EMAIL_MIN = 6
 USER_EMAIL_MAX = 100
 USER_EMAIL_REGEX = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$"
 
-def validate_user_email():
-	error = f"The email you entered did not match our records. Please double check and try again."
-	user_email = request.forms.get("user_email", "")        
-	user_email = user_email.strip()
-	if len(user_email) < USER_EMAIL_MIN : raise Exception(400, error)
-	if len(user_email) > USER_EMAIL_MAX : raise Exception(400, error)  
-	if not re.match(USER_EMAIL_REGEX, user_email): raise Exception(400, error)
-	return user_email
+def validate_user_email(taken_email):
+  error_taken_email = f"A user with this email already exist."
+  error = f"Please enter an email that is valid."
+  user_email = request.forms.get("user_email", "")        
+  user_email = user_email.strip()
+  if len(user_email) < USER_EMAIL_MIN : raise Exception(400, error)
+  if len(user_email) > USER_EMAIL_MAX : raise Exception(400, error)  
+  if not re.match(USER_EMAIL_REGEX, user_email): raise Exception(400, error)
+  
+  if taken_email: raise Exception(error_taken_email)
+  return user_email
 
 
 # ------------------ password validation
@@ -124,7 +127,7 @@ USER_PASSWORD_MAX = 50
 
 def validate_user_password():
   password = request.forms.user_password 
-  error = f"The password you entered did not match our records. Please double check and try again." 
+  error = f"The password is not valid. Please double check and try again." 
   user_password = request.forms.user_password = request.forms.user_password.strip() 
   if len(request.forms.user_password) < USER_PASSWORD_MIN:
     raise Exception(error) 
