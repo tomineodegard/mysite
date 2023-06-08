@@ -30,9 +30,8 @@ async function handleUpdateUser() {
             
         })
         
-        // console.log(connToCoverPic)
         const dataToCoverPic = await connToCoverPic.json()
-        // console.log(dataToCoverPic)
+        console.log(dataToCoverPic)
     }
 }
 

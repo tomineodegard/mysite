@@ -368,6 +368,51 @@ user_santiagodonoso = {
     "user_deactivate_key": "",
 }
 
+user_mileycyrus = {
+    "user_id": "9b228f4fd9fb41278cdd7f5af1700e7f",
+    "username": "mileycyrus",
+    "user_email": "miley@gmail.com",
+    "user_password": bcrypt.hashpw("password".encode("utf-8"), bcrypt.gensalt()),
+    "user_created_at": 1685183698,
+    "user_first_name": "Miley",
+    "user_last_name": "Cyrus",
+    "user_bio": "",
+    "user_is_verified": 1,
+    "user_total_followers": 5,
+    "user_total_following": 0,
+    "user_total_tweets": 0,
+    "user_profile_pictrue": "3636d4e2e2a543238aeabd743f9c319f.jpeg",
+    "user_cover_picture": "94330ef324d943aa83e5ce607dc79c44.jpeg",
+    "user_is_activated": 1,
+    "user_is_active": 1,
+    "user_activation_key": str(uuid.uuid4()).replace("-",""),
+    "user_reset_password_key": "",
+    "user_deactivate_key": "",
+}
+
+user_tylorswift = {
+    "user_id": "4e8f16459d194cc6a3f87c1e03c5bb6a",
+    "username": "tylorswift13",
+    "user_email": "tylor@gmail.com",
+    "user_password": bcrypt.hashpw("password".encode("utf-8"), bcrypt.gensalt()),
+    "user_created_at": 1685183698,
+    "user_first_name": "Tylor",
+    "user_last_name": "Swift",
+    "user_bio": "",
+    "user_is_verified": 0,
+    "user_total_followers": 0,
+    "user_total_following": 0,
+    "user_total_tweets": 0,
+    "user_profile_pictrue": "dd8c9d47077747aabc4f7db74397cadd.jpeg",
+    "user_cover_picture": "382d4a6a4c454434b96a62d5449e23d5.jpeg",
+    "user_is_activated": 1,
+    "user_is_active": 1,
+    "user_activation_key": str(uuid.uuid4()).replace("-",""),
+    "user_reset_password_key": "",
+    "user_deactivate_key": "",
+}
+
+
 
 
 
@@ -393,6 +438,10 @@ db.execute(f"INSERT INTO users VALUES({values})", user_magnusnielsen).rowcount
 db.execute(f"INSERT INTO users VALUES({values})", user_anderstrapman).rowcount
 db.execute(f"INSERT INTO users VALUES({values})", user_lasseweber).rowcount
 db.execute(f"INSERT INTO users VALUES({values})", user_santiagodonoso).rowcount
+db.execute(f"INSERT INTO users VALUES({values})", user_mileycyrus).rowcount
+db.execute(f"INSERT INTO users VALUES({values})", user_tylorswift).rowcount
+
+
 
 
 db.commit()

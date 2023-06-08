@@ -107,7 +107,7 @@ def _():
 
 		db.commit()
 		return {
-			"info" : "Your new user has been created. However, before you can log in, you need to check your email to validate your identity.", 
+			"info" : "Your new user has been created. However, before you can log in, we kindly ask you to check your email to validate your identity.", 
 			"user_id" : user_id,
 			"username" : username
 		}
